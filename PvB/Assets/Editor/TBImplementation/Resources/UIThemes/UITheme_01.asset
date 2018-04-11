@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88319e441e9448dc946e5b113dbc367, type: 3}
+  m_Name: UITheme_01
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  PlayButton:
+    Width: 0
+    Height: 0
+    Position: {x: 0, y: 0}
+    ButtonSprite: {fileID: 0}
+    showSpriteInput: 0
+  TutorialButton:
+    Width: 0
+    Height: 0
+    Position: {x: 0, y: 0}
+    ButtonSprite: {fileID: 0}
+    showSpriteInput: 0
+  BackButton:
+    Width: 0
+    Height: 0
+    Position: {x: 0, y: 0}
+    ButtonSprite: {fileID: 0}
+    showSpriteInput: 0
