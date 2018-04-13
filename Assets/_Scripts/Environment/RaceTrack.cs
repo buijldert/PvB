@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
+using Utility;
 
 namespace Environment
 {
@@ -12,17 +14,43 @@ namespace Environment
         private Vector2 _textureOffset;
         private float _speed = 0.5f;
 
-        void Start()
+        private bool _canMove;
+
+        private void OnEnable()
+        {
+            CollisionHandler.OnCollision += StopTrack;
+            RestartGameButton.OnRestartGame += StartMovement;
+        }
+
+        private void OnDisable()
+        {
+            CollisionHandler.OnCollision -= StopTrack;
+            RestartGameButton.OnRestartGame -= StartMovement;
+        }
+
+        private void Start()
         {
             _trackRenderer = GetComponent<MeshRenderer>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void StartMovement()
         {
-            _textureOffset = new Vector2(0, Time.time * _speed);
+            _canMove = true;
+        }
+        
+        private void Update()
+        {
+            if(_canMove)
+            {
+                _textureOffset = new Vector2(0, Time.time * _speed);
 
-            _trackRenderer.material.mainTextureOffset = _textureOffset;
+                _trackRenderer.material.mainTextureOffset = _textureOffset;
+            }
+        }
+
+        private void StopTrack()
+        {
+            _canMove = false;
         }
     }
 }

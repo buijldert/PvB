@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Environment
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Obstacle : MonoBehaviour
+    public class ObstacleMovement : MonoBehaviour
     {
         private Rigidbody _rb;
-        private float _movementSpeed = 200f;
+        private float _movementSpeed = 300f;
 
         private void Start()
         {

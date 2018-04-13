@@ -1,30 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
+using Utility;
 
 namespace Environment
 {
     public class ObstacleGenerator : MonoBehaviour
     {
-        [SerializeField] private GameObject _obstaclePrefab;
+        [SerializeField] private GameObject[] _obstaclePrefabs;
 
         private float _spawnDelay = .75f;
 
         private Coroutine _spawningCoroutine;
 
-        private void Start()
+        private float[] _xOffsets = new float[2] { 0f, 25f };
+
+        private void OnEnable()
         {
-            _spawningCoroutine = StartCoroutine(StartSpawning());
+            CollisionHandler.OnCollision += StopSpawning;
+            RestartGameButton.OnRestartGame += StartSpawning;
         }
 
-        private IEnumerator StartSpawning()
+        private void OnDisable()
+        {
+            CollisionHandler.OnCollision -= StopSpawning;
+            RestartGameButton.OnRestartGame -= StartSpawning;
+        }
+
+        private void StartSpawning()
+        {
+            _spawningCoroutine = StartCoroutine(SpawningCoroutine());
+        }
+
+        private IEnumerator SpawningCoroutine()
         {
             _spawnDelay = Random.Range(0.5f, 0.75f);
             yield return new WaitForSeconds(_spawnDelay);
-            GameObject obstacleClone = Instantiate(_obstaclePrefab);
-            obstacleClone.transform.position = new Vector3(Random.Range(-20f, 20f), transform.position.y, 350f);
+            int randomObstacle = Random.Range(0, 2);
+            GameObject obstacleClone = Instantiate(_obstaclePrefabs[randomObstacle]);
+            obstacleClone.transform.position = new Vector3(obstacleClone.transform.position.x - (_xOffsets[Random.Range(0, 2)]), transform.position.y, 350f);
             obstacleClone.transform.SetParent(transform);
-            _spawningCoroutine = StartCoroutine(StartSpawning());
+            _spawningCoroutine = StartCoroutine(SpawningCoroutine());
+        }
+
+        private void StopSpawning()
+        {
+            if(_spawningCoroutine != null)
+                StopCoroutine(_spawningCoroutine);
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
         }
     }
 }
