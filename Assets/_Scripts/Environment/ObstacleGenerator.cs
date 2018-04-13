@@ -18,13 +18,13 @@ namespace Environment
 
         private void OnEnable()
         {
-            CollisionHandler.OnCollision += StopSpawning;
+            CollisionHandler.OnDeadlyCollision += StopSpawning;
             RestartGameButton.OnRestartGame += StartSpawning;
         }
 
         private void OnDisable()
         {
-            CollisionHandler.OnCollision -= StopSpawning;
+            CollisionHandler.OnDeadlyCollision -= StopSpawning;
             RestartGameButton.OnRestartGame -= StartSpawning;
         }
 

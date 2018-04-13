@@ -17,12 +17,12 @@ namespace UI
 
         private void OnEnable()
         {
-            CollisionHandler.OnCollision += StopGame;
+            CollisionHandler.OnDeadlyCollision += StopGame;
         }
 
         private void OnDisable()
         {
-            CollisionHandler.OnCollision -= StopGame;
+            CollisionHandler.OnDeadlyCollision -= StopGame;
         }
 
         public void RestartGame()

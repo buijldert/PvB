@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacle
+  - BlackObstacle
+  - WhiteObstacle
   layers:
   - Default
   - TransparentFX

@@ -7,24 +7,37 @@ using Utility;
 
 namespace Player
 {
+    public enum PlayerColor
+    {
+        Black,
+        White
+    }
+
     [RequireComponent(typeof(MeshRenderer))]
     public class PlayerMovement : MonoBehaviour
     {
+        private PlayerColor _playerColor;
+
         private MeshRenderer _mr;
 
         [SerializeField] private Vector3 _leftPos, _rightPos;
 
         private bool _canMove;
 
+        public PlayerColor GetPlayerColor()
+        {
+            return _playerColor;
+        }
+
         private void OnEnable()
         {
-            CollisionHandler.OnCollision += ResetPlayer;
+            CollisionHandler.OnDeadlyCollision += ResetPlayer;
             RestartGameButton.OnRestartGame += StartMovment;
         }
 
         private void OnDisable()
         {
-            CollisionHandler.OnCollision -= ResetPlayer;
+            CollisionHandler.OnDeadlyCollision -= ResetPlayer;
             RestartGameButton.OnRestartGame -= StartMovment;
         }
 
@@ -40,32 +53,45 @@ namespace Player
             {
                 if (gameObject.layer == 11)
                 {
-                    TransformPlayer(10, _leftPos, Color.white);
+                    ChangePlayer(10, _leftPos, Color.white, PlayerColor.White);
                 }
                 else
                 {
-                    TransformPlayer(11, _rightPos, Color.black);
+                    ChangePlayer(11, _rightPos, Color.black, PlayerColor.Black);
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Makes sure the player can start moving again after the level resets.
+        /// </summary>
         private void StartMovment()
         {
             _canMove = true;
         }
 
-        private void TransformPlayer(int layer, Vector3 positionToMove, Color colorToMake)
+        /// <summary>
+        /// Changes the player's layer, position and color to the given values.
+        /// </summary>
+        /// <param name="layer">The (physics) layer that the player will be placed on.</param>
+        /// <param name="positionToMove">The position that the player will move to.</param>
+        /// <param name="colorToMake">The color that the player will be made.</param>
+        private void ChangePlayer(int layer, Vector3 positionToMove, Color colorToMake, PlayerColor color)
         {
             gameObject.layer = layer;
             transform.position = positionToMove;
             _mr.material.DOColor(colorToMake, 0f);
+            _playerColor = color;
         }
 
+        /// <summary>
+        /// Resets the player to his original layer, position and color.
+        /// </summary>
         private void ResetPlayer()
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             _canMove = false;
-            TransformPlayer(11, _rightPos, Color.black);
+            ChangePlayer(11, _rightPos, Color.black, PlayerColor.Black);
         }
     }
 }

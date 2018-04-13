@@ -18,13 +18,13 @@ namespace Environment
 
         private void OnEnable()
         {
-            CollisionHandler.OnCollision += StopTrack;
+            CollisionHandler.OnDeadlyCollision += StopTrack;
             RestartGameButton.OnRestartGame += StartMovement;
         }
 
         private void OnDisable()
         {
-            CollisionHandler.OnCollision -= StopTrack;
+            CollisionHandler.OnDeadlyCollision -= StopTrack;
             RestartGameButton.OnRestartGame -= StartMovement;
         }
 
