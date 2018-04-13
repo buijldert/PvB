@@ -37,8 +37,8 @@ MonoBehaviour:
     ButtonSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     showSpriteInput: 0
   BackButton:
-    Width: 0
-    Height: 0
-    Position: {x: 0, y: 0}
-    ButtonSprite: {fileID: 0}
+    Width: 750
+    Height: 200
+    Position: {x: 0, y: 300}
+    ButtonSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     showSpriteInput: 0
