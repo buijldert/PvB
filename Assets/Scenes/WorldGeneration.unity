@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 1444247351}
   - component: {fileID: 1444247352}
   - component: {fileID: 1444247353}
+  - component: {fileID: 1444247354}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -535,6 +536,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd1204602df937d4dbfdfc2bdfbaeeda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1444247354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1444247346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4586f805654105041800c3f39326b869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1517954565
@@ -673,6 +685,53 @@ MonoBehaviour:
   _resetButtonSprite: {fileID: 21300016, guid: f343ab0ee15689e479cbf9f6a4ca9c91, type: 3}
   _buttonImage: {fileID: 1517954568}
   _restartButton: {fileID: 1517954567}
+--- !u!1 &1616163807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1616163809}
+  - component: {fileID: 1616163808}
+  m_Layer: 0
+  m_Name: ChunkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1616163808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616163807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179865350ceef20498bdf0d79353dd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chunkPrefabs:
+  - {fileID: 1830410798016478, guid: d8267b7e74e4d804dbf9c5143137d660, type: 2}
+  - {fileID: 1657082511698060, guid: eec8a150d674a844e89c23baa15be77f, type: 2}
+  - {fileID: 1300025512222920, guid: 657ebd037ecc4ca4ba2be441d763fd1e, type: 2}
+  - {fileID: 1513491585392276, guid: 2b7b619be236e774d8c0c88b5cf3dcf6, type: 2}
+  - {fileID: 1376803890678442, guid: a722dc7f1c8e0104b864c0cfaa12804e, type: 2}
+  _chunkClones: []
+--- !u!4 &1616163809
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616163807}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.6, y: -0.44139862, z: 83.664635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738962272
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +820,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1738962272}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}

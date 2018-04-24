@@ -42,10 +42,18 @@ namespace Environment
         {
             if(_canMove)
             {
-                _textureOffset = new Vector2(0, Time.time * _speed);
-
-                _trackRenderer.material.mainTextureOffset = _textureOffset;
+                ScrollTexture();
             }
+        }
+
+        /// <summary>
+        /// Scrolls the texture over the quad its attached to.
+        /// </summary>
+        private void ScrollTexture()
+        {
+            _textureOffset = new Vector2(0, Time.time * _speed);
+
+            _trackRenderer.material.mainTextureOffset = _textureOffset;
         }
 
         private void StopTrack()

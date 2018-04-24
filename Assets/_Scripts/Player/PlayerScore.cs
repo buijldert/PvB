@@ -25,12 +25,19 @@ namespace Player
             RestartGameButton.OnRestartGame -= ResetScore;
         }
 
+        /// <summary>
+        /// Resets the score to 0.
+        /// </summary>
         private void ResetScore()
         {
             _score = 0;
             _scoreText.text = _score.ToString();
         }
 
+        /// <summary>
+        /// Updates the score by the given scoreMutation
+        /// </summary>
+        /// <param name="scoreMutation">The given scoreMutation.</param>
         private void UpdateScore(float scoreMutation)
         {
             _score += scoreMutation;

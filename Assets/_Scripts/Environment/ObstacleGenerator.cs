@@ -28,11 +28,17 @@ namespace Environment
             RestartGameButton.OnRestartGame -= StartSpawning;
         }
 
+        /// <summary>
+        /// Engages the spawning of obstacles.
+        /// </summary>
         private void StartSpawning()
         {
             _spawningCoroutine = StartCoroutine(SpawningCoroutine());
         }
 
+        /// <summary>
+        /// Constantly spawns new obstacles on both lanes.
+        /// </summary>
         private IEnumerator SpawningCoroutine()
         {
             _spawnDelay = Random.Range(0.5f, 0.75f);
@@ -44,6 +50,9 @@ namespace Environment
             _spawningCoroutine = StartCoroutine(SpawningCoroutine());
         }
 
+        /// <summary>
+        /// Stops the spawning when 
+        /// </summary>
         private void StopSpawning()
         {
             if(_spawningCoroutine != null)

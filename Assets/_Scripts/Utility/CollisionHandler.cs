@@ -20,6 +20,10 @@ namespace Utility
             _playerMovement = GetComponent<PlayerMovement>();
         }
 
+        /// <summary>
+        /// Handles the collision of the player with the differenc obstacles.
+        /// </summary>
+        /// <param name="collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider collision)
         {
             if((collision.gameObject.tag == "WhiteObstacle" && _playerMovement.GetPlayerColor() == PlayerColor.Black) || 

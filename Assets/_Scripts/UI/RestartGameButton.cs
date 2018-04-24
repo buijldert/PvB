@@ -25,6 +25,9 @@ namespace UI
             CollisionHandler.OnDeadlyCollision -= StopGame;
         }
 
+        /// <summary>
+        /// (Re)starts the game.
+        /// </summary>
         public void RestartGame()
         {
             _restartButton.interactable = false;
@@ -35,6 +38,9 @@ namespace UI
                 OnRestartGame();
         }
 
+        /// <summary>
+        /// Stops the game.
+        /// </summary>
         private void StopGame()
         {
             _restartButton.interactable = true;

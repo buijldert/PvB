@@ -17,6 +17,14 @@ namespace Environment
         
         private void FixedUpdate()
         {
+            MoveObstacle();
+        }
+
+        /// <summary>
+        /// Moves the obstacle towards the player.
+        /// </summary>
+        private void MoveObstacle()
+        {
             _rb.velocity = Vector3.back * _movementSpeed;
         }
     }

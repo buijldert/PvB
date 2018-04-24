@@ -13,6 +13,9 @@ namespace Utility
             StartCoroutine(DestroyDelay());
         }
 
+        /// <summary>
+        /// Destroys the gameObject after the given time.
+        /// </summary>
         private IEnumerator DestroyDelay()
         {
             yield return new WaitForSeconds(_destroyTime);
