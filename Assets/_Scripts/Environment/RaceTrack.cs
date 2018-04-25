@@ -32,11 +32,6 @@ namespace Environment
         {
             _trackRenderer = GetComponent<MeshRenderer>();
         }
-
-        private void StartMovement()
-        {
-            _canMove = true;
-        }
         
         private void Update()
         {
@@ -44,6 +39,14 @@ namespace Environment
             {
                 ScrollTexture();
             }
+        }
+
+        /// <summary>
+        /// Starts the scrolling movement of the scrolling texture.
+        /// </summary>
+        private void StartMovement()
+        {
+            _canMove = true;
         }
 
         /// <summary>

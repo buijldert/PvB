@@ -32,14 +32,14 @@ namespace Player
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += ResetPlayer;
-            RestartGameButton.OnRestartGame += StartMovment;
+            RestartGameButton.OnRestartGame += StartMovement;
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= ResetPlayer;
-            RestartGameButton.OnRestartGame -= StartMovment;
+            RestartGameButton.OnRestartGame -= StartMovement;
             PlayerInput.OnLeftMouseButtonDown -= TogglePlayer;
         }
 
@@ -52,7 +52,7 @@ namespace Player
         /// <summary>
         /// Makes sure the player can start moving again after the level resets.
         /// </summary>
-        private void StartMovment()
+        private void StartMovement()
         {
             _canMove = true;
         }

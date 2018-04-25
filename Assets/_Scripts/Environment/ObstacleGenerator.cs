@@ -14,7 +14,7 @@ namespace Environment
 
         private Coroutine _spawningCoroutine;
 
-        private float[] _xOffsets = new float[2] { 0f, 25f };
+        private float[] _xOffsets = new float[2] { -12.5f, 12.5f };
 
         private void OnEnable()
         {
@@ -44,8 +44,8 @@ namespace Environment
             _spawnDelay = Random.Range(0.5f, 0.75f);
             yield return new WaitForSeconds(_spawnDelay);
             int randomObstacle = Random.Range(0, 2);
-            GameObject obstacleClone = Instantiate(_obstaclePrefabs[randomObstacle]);
-            obstacleClone.transform.position = new Vector3(obstacleClone.transform.position.x - (_xOffsets[Random.Range(0, 2)]), transform.position.y, 350f);
+            GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(_obstaclePrefabs[randomObstacle].name, false);
+            obstacleClone.transform.position = new Vector3(_xOffsets[Random.Range(0, 2)], transform.position.y, 350f);
             obstacleClone.transform.SetParent(transform);
             _spawningCoroutine = StartCoroutine(SpawningCoroutine());
         }
@@ -60,7 +60,7 @@ namespace Environment
 
             for (int i = 0; i < transform.childCount; i++)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                ObjectPool.Instance.PoolObject(transform.GetChild(i).gameObject);
             }
         }
     }
