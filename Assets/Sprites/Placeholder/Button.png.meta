@@ -16,7 +16,7 @@ TextureImporter:
     21300018: ResetButtonHover
     21300020: ResetButtonPressed
     21300022: ResetButtonDisabled
-    21300024: Button_12
+    21300024: ScoreBG
     21300026: Button_13
     21300028: Button_14
     21300030: Button_15
@@ -453,7 +453,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Button_12
+      name: ScoreBG
       rect:
         serializedVersion: 2
         x: 171

@@ -19,7 +19,7 @@ public class ChunkManager : MonoBehaviour
             _chunkClones.Add(GetRandomChunk(Vector3.zero));
         }
 
-        _chunkClones[0].transform.position = new Vector3(0, 0, 0f + GetSize(_chunkClones[0]).z);
+        _chunkClones[0].transform.position = new Vector3(0, 0, transform.position.z + GetSize(_chunkClones[0]).z);
         SortChunks();
 	}
 
@@ -41,7 +41,7 @@ public class ChunkManager : MonoBehaviour
             for (int i = 0; i < _chunkClones.Count; i++)
             {
                 MoveChunk(_chunkClones[i], _movementSpeed);
-                if (_chunkClones[_chunkClones.Count - 1].transform.position.z < 350f)
+                if (_chunkClones[_chunkClones.Count - 1].transform.position.z < 200f)
                 {
                     _chunkClones.Add(GetRandomChunk(Vector3.zero));
                 }
@@ -116,7 +116,7 @@ public class ChunkManager : MonoBehaviour
         {
             if(i > 0)
                 previousChunkPos.z += (GetSize(_chunkClones[i]).z / 2f);
-            _chunkClones[i].transform.position = new Vector3(transform.position.x, GetSize(_chunkClones[i]).y / 2f, previousChunkPos.z);
+            _chunkClones[i].transform.position = new Vector3(transform.position.x, 0f/*GetSize(_chunkClones[i]).y / 2f*/, previousChunkPos.z);
             previousChunkPos.z += (GetSize(_chunkClones[i]).z / 2f);
         }
     }
@@ -138,7 +138,7 @@ public class ChunkManager : MonoBehaviour
     /// <returns>A boolean signalling whether the chunk is out of bounds or not.</returns>
     private bool ChunkOutOfBounds(GameObject chunk)
     {
-        if (chunk.transform.position.z < 0)
+        if (chunk.transform.position.z < transform.position.z)
             return true;
         else
             return false;

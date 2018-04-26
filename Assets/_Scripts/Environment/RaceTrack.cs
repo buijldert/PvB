@@ -12,7 +12,7 @@ namespace Environment
         private MeshRenderer _trackRenderer;
 
         private Vector2 _textureOffset;
-        private float _speed = 0.5f;
+        private float _speed = 1f;
 
         private bool _canMove;
 

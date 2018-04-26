@@ -22,6 +22,8 @@ namespace Player
 
         [SerializeField] private Vector3 _leftPos, _rightPos;
 
+        [SerializeField] private Color _pink, _blue;
+
         private bool _canMove;
 
         public PlayerColor GetPlayerColor()
@@ -66,11 +68,11 @@ namespace Player
             {
                 if (_playerColor == PlayerColor.Black)
                 {
-                    ChangePlayer(_leftPos, Color.white, PlayerColor.White);
+                    ChangePlayer(_leftPos, _blue, PlayerColor.White);
                 }
                 else
                 {
-                    ChangePlayer(_rightPos, Color.black, PlayerColor.Black);
+                    ChangePlayer(_rightPos, _pink, PlayerColor.Black);
                 }
             }
         }
@@ -95,7 +97,7 @@ namespace Player
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             _canMove = false;
-            ChangePlayer(_rightPos, Color.black, PlayerColor.Black);
+            ChangePlayer(_rightPos, _pink, PlayerColor.Black);
         }
     }
 }

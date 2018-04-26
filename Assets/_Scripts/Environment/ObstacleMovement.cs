@@ -8,7 +8,7 @@ namespace Environment
     public class ObstacleMovement : MonoBehaviour
     {
         private Rigidbody _rb;
-        private float _movementSpeed = 300f;
+        private float _movementSpeed = 100f;
 
         private void Start()
         {

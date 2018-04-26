@@ -9,12 +9,14 @@ namespace Environment
     public class ObstacleGenerator : MonoBehaviour
     {
         [SerializeField] private GameObject[] _obstaclePrefabs;
+        private List<GameObject> _obstacleClones = new List<GameObject>();
 
         private float _spawnDelay = .75f;
+        private float _backPosZ = 200f;
 
         private Coroutine _spawningCoroutine;
 
-        private float[] _xOffsets = new float[2] { -12.5f, 12.5f };
+        private float[] _xOffsets = new float[2] { -3f, 3f };
 
         private void OnEnable()
         {
@@ -45,8 +47,9 @@ namespace Environment
             yield return new WaitForSeconds(_spawnDelay);
             int randomObstacle = Random.Range(0, 2);
             GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(_obstaclePrefabs[randomObstacle].name, false);
-            obstacleClone.transform.position = new Vector3(_xOffsets[Random.Range(0, 2)], transform.position.y, 350f);
+            obstacleClone.transform.position = new Vector3(_xOffsets[Random.Range(0, 2)], transform.position.y, 200f);
             obstacleClone.transform.SetParent(transform);
+            _obstacleClones.Add(obstacleClone);
             _spawningCoroutine = StartCoroutine(SpawningCoroutine());
         }
 
@@ -58,10 +61,11 @@ namespace Environment
             if(_spawningCoroutine != null)
                 StopCoroutine(_spawningCoroutine);
 
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < _obstacleClones.Count; i++)
             {
-                ObjectPool.Instance.PoolObject(transform.GetChild(i).gameObject);
+                ObjectPool.Instance.PoolObject(_obstacleClones[i]);
             }
+            _obstacleClones.Clear();
         }
     }
 }

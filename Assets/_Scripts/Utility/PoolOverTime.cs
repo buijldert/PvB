@@ -7,10 +7,13 @@ namespace Utility
     public class PoolOverTime : MonoBehaviour
     {
         [SerializeField] private float _poolTime;
+        private Coroutine _poolDelayCoroutine;
+
+        private bool _isApplicationQuitting;
 
         private void OnEnable()
         {
-            StartCoroutine(PoolDelay());
+            _poolDelayCoroutine = StartCoroutine(PoolDelay());
         }
 
         /// <summary>
@@ -20,6 +23,18 @@ namespace Utility
         {
             yield return new WaitForSeconds(_poolTime);
             ObjectPool.Instance.PoolObject(gameObject);
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isApplicationQuitting = true;
+        }
+
+        private void OnDisable()
+        {
+            if (!_isApplicationQuitting && _poolDelayCoroutine != null)
+                StopCoroutine(_poolDelayCoroutine);
+                
         }
     }
 }
