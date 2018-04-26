@@ -26,11 +26,9 @@ namespace Utility
         /// <param name="collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider collision)
         {
-            Debug.Log("collision");
             if ((collision.gameObject.tag == "WhiteObstacle" && _playerMovement.GetPlayerColor() == PlayerColor.Black) || 
                 (collision.gameObject.tag == "BlackObstacle" && _playerMovement.GetPlayerColor() == PlayerColor.White))
             {
-                Debug.Log("deadlycollision");
                 if (OnDeadlyCollision != null)
                     OnDeadlyCollision();
             }
