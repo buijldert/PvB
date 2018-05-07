@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioProcessor : MonoBehaviour
 {
+    [SerializeField] private LevelData currentLevelData;
+
     private AudioSource source;
 
     private List<IAudioCallback> callbacks;
@@ -48,8 +51,15 @@ public class AudioProcessor : MonoBehaviour
 
     public static AudioProcessor instance;
     
+    public void SetLevelData(LevelData _levelData)
+    {
+        currentLevelData = _levelData;
+    }
+
     private void Awake()
     {
+        SetLevelData();
+
         callbacks = new List<IAudioCallback>();
         source = GetComponent<AudioSource>();
 
@@ -60,7 +70,6 @@ public class AudioProcessor : MonoBehaviour
     
     private void Start()
     {
-
         InitArrays();
 
         framePeriod = (float)bufferSize / (float)SAMPLING_RATE;
@@ -70,6 +79,8 @@ public class AudioProcessor : MonoBehaviour
         for (int i = 0; i < bandAmount; ++i) spec[i] = 100.0f;
 
         autoco = new Autoco(maxlag, decay, framePeriod, GetBandWidth());
+
+        
     }
 
     private void Update()
@@ -78,7 +89,7 @@ public class AudioProcessor : MonoBehaviour
         if (source.isPlaying)
         {
             float[] spectrum = new float[bufferSize];
-            GetComponent<AudioSource>().GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+           source.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
             averages = ComputeAverages(spectrum);
 
             if (callbacks != null)
@@ -105,6 +116,13 @@ public class AudioProcessor : MonoBehaviour
                 now = 0;
             }
         }
+    }
+
+    private void SetLevelData()
+    {
+        source.clip = currentLevelData.LevelAudio;
+        bufferSize = currentLevelData.BufferSize;
+        threshold = currentLevelData.LevelThreshold;
     }
 
     private void InitArrays()
