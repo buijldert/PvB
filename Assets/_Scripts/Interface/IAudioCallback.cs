@@ -1,5 +1,5 @@
 ﻿public interface IAudioCallback
 {
-    void onOnbeatDetected();
-    void onSpectrum(float[] spectrum);
+    void OnOnbeatDetected();
+    void OnSpectrum(float[] _spectrum);
 }

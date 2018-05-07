@@ -1,25 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Utility;
 
 public class ChunkManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _chunkPrefabs;
-    private List<GameObject> _chunkClones = new List<GameObject>();
+    [SerializeField] private GameObject[] chunkPrefabs;
+    private List<GameObject> chunkClones = new List<GameObject>();
+    
+    [SerializeField] private float movementSpeed = 30f;
 
-    [SerializeField] private float _movementSpeed = 30f;
-    private bool _canmove;
+    private bool canmove;
 
     private void Start ()
     {
         for (int i = 0; i < 20; i++)
         {
-            _chunkClones.Add(GetRandomChunk(Vector3.zero));
+            chunkClones.Add(GetRandomChunk(Vector3.zero));
         }
 
-        _chunkClones[0].transform.position = new Vector3(0, 0, transform.position.z + GetSize(_chunkClones[0]).z);
+        chunkClones[0].transform.position = new Vector3(0, 0, transform.position.z + GetSize(chunkClones[0]).z);
         SortChunks();
 	}
 
@@ -31,25 +31,26 @@ public class ChunkManager : MonoBehaviour
 
     private void OnDisable()
     {
-        
+        CollisionHandler.OnDeadlyCollision -= StopMovement;
+        RestartGameButton.OnRestartGame -= StartMovement;
     }
 
     private void Update()
     {
-        if (_canmove)
+        if (canmove)
         {
-            for (int i = 0; i < _chunkClones.Count; i++)
+            for (int i = 0; i < chunkClones.Count; i++)
             {
-                MoveChunk(_chunkClones[i], _movementSpeed);
-                if (_chunkClones[_chunkClones.Count - 1].transform.position.z < 200f)
+                MoveChunk(chunkClones[i], movementSpeed);
+                if (chunkClones[chunkClones.Count - 1].transform.position.z < 200f)
                 {
-                    _chunkClones.Add(GetRandomChunk(Vector3.zero));
+                    chunkClones.Add(GetRandomChunk(Vector3.zero));
                 }
                 SortChunks();
-                if (ChunkOutOfBounds(_chunkClones[i]))
+                if (ChunkOutOfBounds(chunkClones[i]))
                 {
-                    ObjectPool.Instance.PoolObject(_chunkClones[i]);
-                    _chunkClones.RemoveAt(i);
+                    ObjectPool.Instance.PoolObject(chunkClones[i]);
+                    chunkClones.RemoveAt(i);
                 }
             }
         }
@@ -57,22 +58,22 @@ public class ChunkManager : MonoBehaviour
 
     private void StartMovement()
     {
-        _canmove = true;
+        canmove = true;
     }
 
     private void StopMovement()
     {
-        _canmove = false;
+        canmove = false;
     }
 
     /// <summary>
     /// Gets the size of the given chunk.
     /// </summary>
-    /// <param name="chunk">The chunk of which the size will be retuned.</param>
+    /// <param name="_chunk">The chunk of which the size will be retuned.</param>
     /// <returns>The size of the given chunk.</returns>
-    private Vector3 GetSize(GameObject chunk)
+    private Vector3 GetSize(GameObject _chunk)
     {
-        Vector3 size = chunk.GetComponent<MeshRenderer>().bounds.extents * 2f;
+        Vector3 size = _chunk.GetComponent<MeshRenderer>().bounds.extents * 2f;
         return size;
     }
 
@@ -83,7 +84,7 @@ public class ChunkManager : MonoBehaviour
     /// <returns>Returns the chunk that spawned.</returns>
     private GameObject GetRandomChunk(Vector3 _position)
     {
-        return SpawnChunk(_chunkPrefabs[Random.Range(0, _chunkPrefabs.Length)], _position);
+        return SpawnChunk(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], _position);
     }
 
     /// <summary>
@@ -105,40 +106,40 @@ public class ChunkManager : MonoBehaviour
     /// </summary>
     private void SortChunks()
     {
-        if (_chunkClones.Count < 1)
+        if (chunkClones.Count < 1)
         {
             Debug.Log("No chunks to sort.");
             return;
         }
 
-        Vector3 previousChunkPos = _chunkClones[0].transform.position;
-        for (int i = 0; i < _chunkClones.Count; i++)
+        Vector3 previousChunkPos = chunkClones[0].transform.position;
+        for (int i = 0; i < chunkClones.Count; i++)
         {
             if(i > 0)
-                previousChunkPos.z += (GetSize(_chunkClones[i]).z / 2f);
-            _chunkClones[i].transform.position = new Vector3(transform.position.x, 0f/*GetSize(_chunkClones[i]).y / 2f*/, previousChunkPos.z);
-            previousChunkPos.z += (GetSize(_chunkClones[i]).z / 2f);
+                previousChunkPos.z += (GetSize(chunkClones[i]).z / 2f);
+            chunkClones[i].transform.position = new Vector3(transform.position.x, 0f/*GetSize(_chunkClones[i]).y / 2f*/, previousChunkPos.z);
+            previousChunkPos.z += (GetSize(chunkClones[i]).z / 2f);
         }
     }
 
     /// <summary>
     /// Moves the given chunk at the given speed.
     /// </summary>
-    /// <param name="chunk">The chunk to move.</param>
-    /// <param name="speed">The speed at which the chunk will be moved.</param>
-    private void MoveChunk(GameObject chunk, float speed)
+    /// <param name="_chunk">The chunk to move.</param>
+    /// <param name="_speed">The speed at which the chunk will be moved.</param>
+    private void MoveChunk(GameObject _chunk, float _speed)
     {
-        chunk.transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+        _chunk.transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
     }
 
     /// <summary>
     /// Checks if the chunk is out of bounds.
     /// </summary>
-    /// <param name="chunk">The chunk that will be checked.</param>
+    /// <param name="_chunk">The chunk that will be checked.</param>
     /// <returns>A boolean signalling whether the chunk is out of bounds or not.</returns>
-    private bool ChunkOutOfBounds(GameObject chunk)
+    private bool ChunkOutOfBounds(GameObject _chunk)
     {
-        if (chunk.transform.position.z < transform.position.z)
+        if (_chunk.transform.position.z < transform.position.z)
             return true;
         else
             return false;

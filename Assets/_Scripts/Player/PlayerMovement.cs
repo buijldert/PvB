@@ -1,6 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Utility;
@@ -9,26 +7,26 @@ namespace Player
 {
     public enum PlayerColor
     {
-        Black,
-        White
+        Pink,
+        Blue
     }
 
     [RequireComponent(typeof(MeshRenderer))]
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerColor _playerColor = PlayerColor.Black;
+        private PlayerColor playerColor = PlayerColor.Pink;
 
-        private MeshRenderer _mr;
+        private MeshRenderer mr;
 
-        [SerializeField] private Vector3 _leftPos, _rightPos;
+        [SerializeField] private Vector3 leftPos, rightPos;
 
-        [SerializeField] private Color _pink, _blue;
+        [SerializeField] private Color pink, blue;
 
-        private bool _canMove;
+        private bool canMove;
 
         public PlayerColor GetPlayerColor()
         {
-            return _playerColor;
+            return playerColor;
         }
 
         private void OnEnable()
@@ -47,7 +45,7 @@ namespace Player
 
         private void Start()
         {
-            _mr = GetComponent<MeshRenderer>();
+            mr = GetComponent<MeshRenderer>();
             
         }
         
@@ -56,7 +54,7 @@ namespace Player
         /// </summary>
         private void StartMovement()
         {
-            _canMove = true;
+            canMove = true;
         }
 
         /// <summary>
@@ -64,15 +62,15 @@ namespace Player
         /// </summary>
         private void TogglePlayer()
         {
-            if (_canMove)
+            if (canMove)
             {
-                if (_playerColor == PlayerColor.Black)
+                if (playerColor == PlayerColor.Pink)
                 {
-                    ChangePlayer(_leftPos, _blue, PlayerColor.White);
+                    ChangePlayer(leftPos, blue, PlayerColor.Blue);
                 }
                 else
                 {
-                    ChangePlayer(_rightPos, _pink, PlayerColor.Black);
+                    ChangePlayer(rightPos, pink, PlayerColor.Pink);
                 }
             }
         }
@@ -86,8 +84,8 @@ namespace Player
         private void ChangePlayer(Vector3 positionToMove, Color colorToMake, PlayerColor color)
         {
             transform.DOMove(positionToMove, 0f);
-            _mr.material.DOColor(colorToMake, 0f);
-            _playerColor = color;
+            mr.material.DOColor(colorToMake, 0f);
+            playerColor = color;
         }
 
         /// <summary>
@@ -96,8 +94,8 @@ namespace Player
         private void ResetPlayer()
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
-            _canMove = false;
-            ChangePlayer(_rightPos, _pink, PlayerColor.Black);
+            canMove = false;
+            ChangePlayer(rightPos, pink, PlayerColor.Pink);
         }
     }
 }

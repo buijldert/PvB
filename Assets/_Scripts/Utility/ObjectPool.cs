@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Utility
 {
     /// <summary>
@@ -40,21 +39,21 @@ namespace Utility
         /// by The amount of objects of each type to buffer.
         /// </summary>
         [SerializeField]
-        private ObjectPoolEntry[] Entries;
+        private ObjectPoolEntry[] entries;
 
         /// <summary>
         /// The pooled objects currently available.
         /// Indexed by the index of the objectPrefabs
         /// </summary>
         [HideInInspector]
-        private List<GameObject>[] Pool;
+        private List<GameObject>[] pool;
 
         /// <summary>
         /// The container object that we will keep unused pooled objects so we dont clog up the editor with objects.
         /// </summary>
-        private GameObject _containerObject;
+        private GameObject containerObject;
 
-        private static ObjectPool s_Instance = null;
+        private static ObjectPool instance = null;
 
 
         private void OnEnable()
@@ -65,26 +64,26 @@ namespace Utility
         // Use this for initialization
         private void Awake()
         {
-            if (s_Instance == null)
-                s_Instance = this;
-            else if (s_Instance != this)
+            if (instance == null)
+                instance = this;
+            else if (instance != this)
                 Destroy(gameObject);
 
             DontDestroyOnLoad(gameObject);
 
-            _containerObject = this.gameObject;
+            containerObject = this.gameObject;
 
             //Loop through the object prefabs and make a new list for each one.
             //We do this because the pool can only support prefabs set to it in the editor,
             //so we can assume the lists of pooled objects are in the same order as object prefabs in the array
-            Pool = new List<GameObject>[Entries.Length];
+            pool = new List<GameObject>[entries.Length];
 
-            for (int i = 0; i < Entries.Length; i++)
+            for (int i = 0; i < entries.Length; i++)
             {
-                var objectPrefab = Entries[i];
+                var objectPrefab = entries[i];
 
                 //create the repository
-                Pool[i] = new List<GameObject>();
+                pool[i] = new List<GameObject>();
 
                 //fill it
                 for (int n = 0; n < objectPrefab.count; n++)
@@ -108,39 +107,39 @@ namespace Utility
         /// <returns>
         /// The object for type.
         /// </returns>
-        /// <param name='objectType'>
+        /// <param name='_objectType'>
         /// Object type.
         /// </param>
-        /// <param name='onlyPooled'>
+        /// <param name='_onlyPooled'>
         /// If true, it will only return an object if there is one currently pooled.
         /// </param>
-        public GameObject GetObjectForType(string objectType, bool onlyPooled)
+        public GameObject GetObjectForType(string _objectType, bool _onlyPooled)
         {
 
-            for (int i = 0; i < Entries.Length; i++)
+            for (int i = 0; i < entries.Length; i++)
             {
-                var prefab = Entries[i].prefab;
+                var prefab = entries[i].prefab;
 
-                if (prefab.name != objectType)
+                if (prefab.name != _objectType)
                     continue;
 
-                if (Pool[i].Count > 0)
+                if (pool[i].Count > 0)
                 {
 
-                    GameObject pooledObject = Pool[i][0];
+                    GameObject pooledObject = pool[i][0];
 
-                    Pool[i].RemoveAt(0);
+                    pool[i].RemoveAt(0);
 
                     pooledObject.transform.parent = null;
 
-                    pooledObject.SetActive(Entries[i].startActive);
+                    pooledObject.SetActive(entries[i].startActive);
 
                     return pooledObject;
                 }
-                if (!onlyPooled)
+                if (!_onlyPooled)
                 {
-                    GameObject newObj = Instantiate(Entries[i].prefab) as GameObject;
-                    newObj.name = Entries[i].prefab.name;
+                    GameObject newObj = Instantiate(entries[i].prefab) as GameObject;
+                    newObj.name = entries[i].prefab.name;
                     return newObj;
                 }
             }
@@ -158,14 +157,14 @@ namespace Utility
         public void PoolObject(GameObject obj)
         {
 
-            for (int i = 0; i < Entries.Length; i++)
+            for (int i = 0; i < entries.Length; i++)
             {
-                if (Entries[i].prefab.name != obj.name)
+                if (entries[i].prefab.name != obj.name)
                     continue;
 
-                Pool[i].Add(obj);
+                pool[i].Add(obj);
 
-                obj.transform.SetParent(_containerObject.transform, false);
+                obj.transform.SetParent(containerObject.transform, false);
 
                 obj.SetActive(false);
 

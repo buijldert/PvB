@@ -10,29 +10,29 @@ namespace Utility
     public class CollisionHandler : MonoBehaviour
     {
         public static Action OnDeadlyCollision;
-        public delegate void FadeThroughCollision(float scoreMutation);
+        public delegate void FadeThroughCollision(float _scoreMutation);
         public static FadeThroughCollision OnFadeThroughCollision;
 
-        private PlayerMovement _playerMovement;
+        private PlayerMovement playerMovement;
 
         private void Start()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
+            playerMovement = GetComponent<PlayerMovement>();
         }
 
         /// <summary>
         /// Handles the collision of the player with the differenc obstacles.
         /// </summary>
-        /// <param name="collision">The collider the player is colliding with.</param>
-        private void OnTriggerEnter(Collider collision)
+        /// <param name="_collision">The collider the player is colliding with.</param>
+        private void OnTriggerEnter(Collider _collision)
         {
-            if ((collision.gameObject.tag == "WhiteObstacle" && _playerMovement.GetPlayerColor() == PlayerColor.Black) || 
-                (collision.gameObject.tag == "BlackObstacle" && _playerMovement.GetPlayerColor() == PlayerColor.White))
+            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
+                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Blue))
             {
                 if (OnDeadlyCollision != null)
                     OnDeadlyCollision();
             }
-            else if(collision.gameObject.tag == "WhiteObstacle" || collision.gameObject.tag == "BlackObstacle")
+            else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
             {
                 if (OnFadeThroughCollision != null)
                     OnFadeThroughCollision(10f);

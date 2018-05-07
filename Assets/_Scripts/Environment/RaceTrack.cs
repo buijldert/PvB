@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UI;
+﻿using UI;
 using UnityEngine;
 using Utility;
 
@@ -9,12 +7,12 @@ namespace Environment
     [RequireComponent(typeof(MeshRenderer))]
     public class RaceTrack : MonoBehaviour
     {
-        private MeshRenderer _trackRenderer;
+        private MeshRenderer trackRenderer;
 
-        private Vector2 _textureOffset;
-        private float _speed = 1f;
+        private Vector2 textureOffset;
+        private float speed = 1f;
 
-        private bool _canMove;
+        private bool canMove;
 
         private void OnEnable()
         {
@@ -30,12 +28,12 @@ namespace Environment
 
         private void Start()
         {
-            _trackRenderer = GetComponent<MeshRenderer>();
+            trackRenderer = GetComponent<MeshRenderer>();
         }
         
         private void Update()
         {
-            if(_canMove)
+            if(canMove)
             {
                 ScrollTexture();
             }
@@ -46,7 +44,7 @@ namespace Environment
         /// </summary>
         private void StartMovement()
         {
-            _canMove = true;
+            canMove = true;
         }
 
         /// <summary>
@@ -54,14 +52,14 @@ namespace Environment
         /// </summary>
         private void ScrollTexture()
         {
-            _textureOffset = new Vector2(0, Time.time * _speed);
+            textureOffset = new Vector2(0, Time.time * speed);
 
-            _trackRenderer.material.mainTextureOffset = _textureOffset;
+            trackRenderer.material.mainTextureOffset = textureOffset;
         }
 
         private void StopTrack()
         {
-            _canMove = false;
+            canMove = false;
         }
     }
 }

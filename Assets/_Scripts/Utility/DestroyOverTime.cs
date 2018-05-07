@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utility
 {
     public class DestroyOverTime : MonoBehaviour
     {
-        [SerializeField] private float _destroyTime;
+        [SerializeField] private float destroyTime;
 
         private void OnEnable()
         {
@@ -18,7 +17,7 @@ namespace Utility
         /// </summary>
         private IEnumerator DestroyDelay()
         {
-            yield return new WaitForSeconds(_destroyTime);
+            yield return new WaitForSeconds(destroyTime);
             Destroy(gameObject);
         }
     }

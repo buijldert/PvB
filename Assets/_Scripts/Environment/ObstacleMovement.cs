@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Environment
 {
     [RequireComponent(typeof(Rigidbody))]
     public class ObstacleMovement : MonoBehaviour
     {
-        private Rigidbody _rb;
-        private float _movementSpeed = 100f;
+        private Rigidbody rb;
+        private float movementSpeed = 100f;
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
         }
         
         private void FixedUpdate()
@@ -25,7 +23,7 @@ namespace Environment
         /// </summary>
         private void MoveObstacle()
         {
-            _rb.velocity = Vector3.back * _movementSpeed;
+            rb.velocity = Vector3.back * movementSpeed;
         }
     }
 }

@@ -140,11 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179865350ceef20498bdf0d79353dd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chunkPrefabs:
+  chunkPrefabs:
   - {fileID: 1856215653949512, guid: 2c57b13f5b4a1f64fb9d1584d404d118, type: 2}
   - {fileID: 1963489085582114, guid: a206314f71e599b4995fa7882d715ddc, type: 2}
   - {fileID: 1718432313860478, guid: 496fce05aab96ae4493036b3ad7042a3, type: 2}
-  _movementSpeed: 50
+  movementSpeed: 50
 --- !u!4 &336738954
 Transform:
   m_ObjectHideFlags: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433645ca0f3348f4fb530347c3409d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstaclePrefabs:
+  obstaclePrefabs:
   - {fileID: 1372672576942454, guid: 5e25303c05c18d848aa2f5c6ae5a81b7, type: 2}
   - {fileID: 1974420066732456, guid: b63efa31be10391478a517d7b0faaaac, type: 2}
 --- !u!4 &896791504
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c5337c4bdc6d8469c1f56d070e10f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Entries:
+  entries:
   - prefab: {fileID: 1974420066732456, guid: b63efa31be10391478a517d7b0faaaac, type: 2}
     count: 5
     startActive: 1
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1276872617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2a72485abd39d3429c6de136fa25c06, type: 3}
   m_Name: 
@@ -1192,10 +1192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03df68a9e956df847b0d01368aff179a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftPos: {x: -3, y: 0.75, z: 61}
-  _rightPos: {x: 3, y: 0.75, z: 61}
-  _pink: {r: 1, g: 0.18382353, b: 0.8423932, a: 0}
-  _blue: {r: 0.31617647, g: 0.77363074, b: 1, a: 0}
+  leftPos: {x: 0, y: 0, z: 0}
+  rightPos: {x: 0, y: 0, z: 0}
+  pink: {r: 0, g: 0, b: 0, a: 0}
+  blue: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1444247353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,9 +1351,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a71794dc1cbb1468a4858d0b4f9867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resetButtonSprite: {fileID: 21300016, guid: f343ab0ee15689e479cbf9f6a4ca9c91, type: 3}
-  _buttonImage: {fileID: 1517954568}
-  _restartButton: {fileID: 1517954567}
+  resetButtonSprite: {fileID: 21300016, guid: f343ab0ee15689e479cbf9f6a4ca9c91, type: 3}
+  buttonImage: {fileID: 1517954568}
+  restartButton: {fileID: 1517954567}
 --- !u!1 &1616163807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,11 +1381,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179865350ceef20498bdf0d79353dd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chunkPrefabs:
+  chunkPrefabs:
   - {fileID: 1856215653949512, guid: 2c57b13f5b4a1f64fb9d1584d404d118, type: 2}
   - {fileID: 1963489085582114, guid: a206314f71e599b4995fa7882d715ddc, type: 2}
   - {fileID: 1718432313860478, guid: 496fce05aab96ae4493036b3ad7042a3, type: 2}
-  _movementSpeed: 50
+  movementSpeed: 50
 --- !u!4 &1616163809
 Transform:
   m_ObjectHideFlags: 0
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658b160a5f010ce4f854b8787b6f3326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreText: {fileID: 1853824711}
+  scoreText: {fileID: 1853824711}
 --- !u!1 &2102493728
 GameObject:
   m_ObjectHideFlags: 0

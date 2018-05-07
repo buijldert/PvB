@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UI;
+﻿using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -9,9 +7,9 @@ namespace Player
 {
     public class PlayerScore : MonoBehaviour
     {
-        private float _score;
-
-        [SerializeField]private Text _scoreText;
+        private float score;
+        
+        [SerializeField]private Text scoreText;
 
         private void OnEnable()
         {
@@ -30,18 +28,18 @@ namespace Player
         /// </summary>
         private void ResetScore()
         {
-            _score = 0;
-            _scoreText.text = _score.ToString();
+            score = 0;
+            scoreText.text = score.ToString();
         }
 
         /// <summary>
         /// Updates the score by the given scoreMutation
         /// </summary>
-        /// <param name="scoreMutation">The given scoreMutation.</param>
-        private void UpdateScore(float scoreMutation)
+        /// <param name="_scoreMutation">The given scoreMutation.</param>
+        private void UpdateScore(float _scoreMutation)
         {
-            _score += scoreMutation;
-            _scoreText.text = _score.ToString();
+            score += _scoreMutation;
+            scoreText.text = score.ToString();
         }
     }
 }
