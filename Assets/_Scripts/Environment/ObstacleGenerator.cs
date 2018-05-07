@@ -6,7 +6,7 @@ using Utility;
 
 namespace Environment
 {
-    public class ObstacleGenerator : MonoBehaviour
+    public class ObstacleGenerator : MonoBehaviour, IAudioCallback
     {
         [SerializeField] private GameObject[] _obstaclePrefabs;
         private List<GameObject> _obstacleClones = new List<GameObject>();
@@ -30,6 +30,23 @@ namespace Environment
             RestartGameButton.OnRestartGame -= StartSpawning;
         }
 
+        private void Start()
+        {
+            AudioProcessor processor = FindObjectOfType<AudioProcessor>();
+            processor.AddAudioCallback(this);
+        }
+
+        public void onOnbeatDetected()
+        {
+            Debug.Log("beat");
+            SpawnObstacle();
+        }
+
+        public void onSpectrum(float[] spectrum)
+        {
+
+        }
+
         /// <summary>
         /// Engages the spawning of obstacles.
         /// </summary>
@@ -45,11 +62,7 @@ namespace Environment
         {
             _spawnDelay = Random.Range(0.5f, 0.75f);
             yield return new WaitForSeconds(_spawnDelay);
-            int randomObstacle = Random.Range(0, 2);
-            GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(_obstaclePrefabs[randomObstacle].name, false);
-            obstacleClone.transform.position = new Vector3(_xOffsets[Random.Range(0, 2)], transform.position.y, 200f);
-            obstacleClone.transform.SetParent(transform);
-            _obstacleClones.Add(obstacleClone);
+            SpawnObstacle();
             _spawningCoroutine = StartCoroutine(SpawningCoroutine());
         }
 
@@ -66,6 +79,15 @@ namespace Environment
                 ObjectPool.Instance.PoolObject(_obstacleClones[i]);
             }
             _obstacleClones.Clear();
+        }
+
+        private void SpawnObstacle()
+        {
+            int randomObstacle = Random.Range(0, 2);
+            GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(_obstaclePrefabs[randomObstacle].name, false);
+            obstacleClone.transform.position = new Vector3(_xOffsets[Random.Range(0, 2)], transform.position.y, 200f);
+            obstacleClone.transform.SetParent(transform);
+            _obstacleClones.Add(obstacleClone);
         }
     }
 }
