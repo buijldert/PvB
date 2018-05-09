@@ -12,6 +12,8 @@ namespace Utility
 
         private void OnEnable()
         {
+            if (poolDelayCoroutine != null)
+                StopCoroutine(poolDelayCoroutine);
             poolDelayCoroutine = StartCoroutine(PoolDelay());
         }
 
@@ -22,18 +24,6 @@ namespace Utility
         {
             yield return new WaitForSeconds(poolTime);
             ObjectPool.Instance.PoolObject(gameObject);
-        }
-
-        private void OnApplicationQuit()
-        {
-            isApplicationQuitting = true;
-        }
-
-        private void OnDisable()
-        {
-            if (!isApplicationQuitting && poolDelayCoroutine != null)
-                StopCoroutine(poolDelayCoroutine);
-                
         }
     }
 }

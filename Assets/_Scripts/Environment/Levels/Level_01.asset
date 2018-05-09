@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelName: Level_01
   LevelAudio: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}
+  BeatPattern: 03000000060000000500000005000000

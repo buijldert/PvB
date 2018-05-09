@@ -432,7 +432,6 @@ MonoBehaviour:
   obstaclePrefabs:
   - {fileID: 1372672576942454, guid: 5e25303c05c18d848aa2f5c6ae5a81b7, type: 2}
   - {fileID: 1974420066732456, guid: b63efa31be10391478a517d7b0faaaac, type: 2}
-  beatPositions: []
 --- !u!4 &896791504
 Transform:
   m_ObjectHideFlags: 0
@@ -653,8 +652,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1138287683}
   - component: {fileID: 1138287684}
-  - component: {fileID: 1138287685}
   - component: {fileID: 1138287686}
+  - component: {fileID: 1138287685}
+  - component: {fileID: 1138287687}
   m_Layer: 0
   m_Name: Pattern Detector
   m_TagString: Untagged
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea09543a04dee4515a80baa90060a389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatValues: 03000000060000000900000005000000
+  beatValues: 03000000060000000500000005000000
   beatScalar: 1
   loopTime: 30
   audioSource: {fileID: 1138287685}
@@ -702,10 +702,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -785,6 +785,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 120
   startDelay: 1
+--- !u!114 &1138287687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1138287682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef19db52c83a394e892ab63cda0aafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1326942614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1444247347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1128,10 +1139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03df68a9e956df847b0d01368aff179a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftPos: {x: 0, y: 0, z: 0}
-  rightPos: {x: 0, y: 0, z: 0}
-  pink: {r: 0, g: 0, b: 0, a: 0}
-  blue: {r: 0, g: 0, b: 0, a: 0}
+  leftPos: {x: -3, y: 0.75, z: 61}
+  rightPos: {x: 3, y: 0.75, z: 61}
+  pink: {r: 1, g: 0.18431373, b: 0.84313726, a: 0}
+  blue: {r: 0.31764707, g: 0.77254903, b: 1, a: 0}
 --- !u!114 &1444247353
 MonoBehaviour:
   m_ObjectHideFlags: 0

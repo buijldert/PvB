@@ -19,27 +19,32 @@ namespace Environment
 
         private float[] xOffsets = new float[2] { -3f, 3f };
 
-        public Vector3[] beatPositions;
-
         private BeatObserver beatObserver;
         private int beatCounter;
 
         private int counter;
 
+        private int[] lastTwoLanes = new int[2];
+
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopSpawning;
-            RestartGameButton.OnRestartGame += StartSpawning;
+            //RestartGameButton.OnRestartGame += StartSpawning;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
-            RestartGameButton.OnRestartGame -= StartSpawning;
+            //RestartGameButton.OnRestartGame -= StartSpawning;
         }
 
         private void Start()
         {
+            for (int i = 0; i < lastTwoLanes.Length; i++)
+            {
+                lastTwoLanes[i] = 5;
+            }
+
             beatObserver = GetComponent<BeatObserver>();
             beatCounter = 0;
         }
@@ -48,17 +53,18 @@ namespace Environment
         {
             if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
             {
-                beatCounter = (++beatCounter == beatPositions.Length ? 0 : beatCounter);
                 counter++;
-                //if (counter % 2 == 0)
+                //if (counter % 4 == 0)
                 //{
                     OnOnbeatDetected();
                 //}
-
             }
 
         }
 
+        /// <summary>
+        /// Spawns an obstacle once a beat is detected.
+        /// </summary>
         public void OnOnbeatDetected()
         {
             Debug.Log("beat");
@@ -66,32 +72,10 @@ namespace Environment
         }
 
         /// <summary>
-        /// Engages the spawning of obstacles.
-        /// </summary>
-        private void StartSpawning()
-        {
-            spawningCoroutine = StartCoroutine(SpawningCoroutine());
-        }
-
-        /// <summary>
-        /// Constantly spawns new obstacles on both lanes.
-        /// </summary>
-        private IEnumerator SpawningCoroutine()
-        {
-            spawnDelay = Random.Range(0.5f, 0.75f);
-            yield return new WaitForSeconds(spawnDelay);
-            SpawnObstacle();
-            spawningCoroutine = StartCoroutine(SpawningCoroutine());
-        }
-
-        /// <summary>
-        /// Stops the spawning when 
+        /// Stops the spawning when the player is game over.
         /// </summary>
         private void StopSpawning()
         {
-            if(spawningCoroutine != null)
-                StopCoroutine(spawningCoroutine);
-
             for (int i = 0; i < obstacleClones.Count; i++)
             {
                 ObjectPool.Instance.PoolObject(obstacleClones[i]);
@@ -99,13 +83,36 @@ namespace Environment
             obstacleClones.Clear();
         }
 
+        /// <summary>
+        /// Spawns a random obstacle in a random lane.
+        /// </summary>
         private void SpawnObstacle()
         {
             int randomObstacle = Random.Range(0, 2);
+            
             GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
-            obstacleClone.transform.position = new Vector3(xOffsets[Random.Range(0, 2)], transform.position.y, 200f);
+            obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, 200f);
             obstacleClone.transform.SetParent(transform);
             obstacleClones.Add(obstacleClone);
+        }
+
+        private int MakeRandomCheck()
+        {
+            int randomLane = Random.Range(0, 2);
+            if (randomLane == lastTwoLanes[0] && randomLane == lastTwoLanes[1])
+            {
+                if (randomLane == 0)
+                {
+                    randomLane = 1;
+                }  
+                else
+                {
+                    randomLane = 0;
+                }
+            }
+            lastTwoLanes[1] = lastTwoLanes[0];
+            lastTwoLanes[0] = randomLane;
+            return randomLane;
         }
     }
 }
