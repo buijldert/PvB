@@ -1,4 +1,5 @@
-﻿using UI;
+﻿using Audio;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -7,7 +8,6 @@ namespace Player
 {
     public class PlayerScore : MonoBehaviour
     {
-
         private int score;
         
         [SerializeField]private Text scoreText;

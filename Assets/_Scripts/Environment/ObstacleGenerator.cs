@@ -11,8 +11,7 @@ namespace Environment
     {
         [SerializeField] private GameObject[] obstaclePrefabs;
         private List<GameObject> obstacleClones = new List<GameObject>();
-
-        private float spawnDelay = .75f;
+        
         private float backPosZ = 200f;
 
         private Coroutine spawningCoroutine;
@@ -20,9 +19,8 @@ namespace Environment
         private float[] xOffsets = new float[2] { -3f, 3f };
 
         private BeatObserver beatObserver;
-        private int beatCounter;
 
-        private int counter;
+        //private int counter;
 
         private int[] lastTwoLanes = new int[2];
 
@@ -46,18 +44,14 @@ namespace Environment
             }
 
             beatObserver = GetComponent<BeatObserver>();
-            beatCounter = 0;
         }
 
         void Update()
         {
             if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
             {
-                counter++;
-                //if (counter % 4 == 0)
-                //{
-                   OnOnbeatDetected();
-                //}
+                //counter++;
+                OnOnbeatDetected();
             }
 
         }
@@ -91,7 +85,7 @@ namespace Environment
             int randomObstacle = Random.Range(0, 2);
             
             GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
-            obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, 200f);
+            obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, backPosZ);
             obstacleClone.transform.SetParent(transform);
             obstacleClones.Add(obstacleClone);
         }

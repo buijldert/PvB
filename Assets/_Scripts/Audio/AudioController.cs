@@ -6,9 +6,9 @@ using Utility;
 
 namespace Audio
 {
+    [RequireComponent(typeof(AudioSource))]
     public class AudioController : MonoBehaviour
     {
-
         private AudioSource audioSource;
 
         private void OnEnable()
