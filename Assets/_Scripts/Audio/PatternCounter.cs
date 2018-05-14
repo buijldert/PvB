@@ -79,9 +79,9 @@ public class PatternCounter : MonoBehaviour {
 	/// </remarks>
 	IEnumerator PatternCheck ()
 	{
+        yield return new WaitForEndOfFrame();
 		while (audioSource.isPlaying) {
 			currentSample = (float)AudioSettings.dspTime * audioSource.clip.frequency;
-			
 			if (currentSample >= nextBeatSample) {
 				foreach (GameObject obj in observers) {
 					// Since this is a specific pattern of beats, we don't need to track different beat types.

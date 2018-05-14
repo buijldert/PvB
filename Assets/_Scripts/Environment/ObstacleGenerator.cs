@@ -56,7 +56,7 @@ namespace Environment
                 counter++;
                 //if (counter % 4 == 0)
                 //{
-                    OnOnbeatDetected();
+                   OnOnbeatDetected();
                 //}
             }
 

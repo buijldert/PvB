@@ -7,7 +7,8 @@ namespace Player
 {
     public class PlayerScore : MonoBehaviour
     {
-        private float score;
+
+        private int score;
         
         [SerializeField]private Text scoreText;
 
@@ -36,7 +37,7 @@ namespace Player
         /// Updates the score by the given scoreMutation
         /// </summary>
         /// <param name="_scoreMutation">The given scoreMutation.</param>
-        private void UpdateScore(float _scoreMutation)
+        private void UpdateScore(int _scoreMutation)
         {
             score += _scoreMutation;
             scoreText.text = score.ToString();

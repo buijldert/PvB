@@ -10,7 +10,7 @@ namespace Utility
     public class CollisionHandler : MonoBehaviour
     {
         public static Action OnDeadlyCollision;
-        public delegate void FadeThroughCollision(float _scoreMutation);
+        public delegate void FadeThroughCollision(int _scoreMutation);
         public static FadeThroughCollision OnFadeThroughCollision;
 
         private PlayerMovement playerMovement;
@@ -35,7 +35,7 @@ namespace Utility
             else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
             {
                 if (OnFadeThroughCollision != null)
-                    OnFadeThroughCollision(10f);
+                    OnFadeThroughCollision(10);
             }
         }
     }

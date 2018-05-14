@@ -39,28 +39,42 @@ public class ChunkManager : MonoBehaviour
     {
         if (canmove)
         {
-            for (int i = 0; i < chunkClones.Count; i++)
+            MoveAllChunks();
+        }
+    }
+    
+    /// <summary>
+    /// Moves all chunks while the game is running.
+    /// </summary>
+    private void MoveAllChunks()
+    {
+        for (int i = 0; i < chunkClones.Count; i++)
+        {
+            MoveChunk(chunkClones[i], movementSpeed);
+            if (chunkClones[chunkClones.Count - 1].transform.position.z < 200f)
             {
-                MoveChunk(chunkClones[i], movementSpeed);
-                if (chunkClones[chunkClones.Count - 1].transform.position.z < 200f)
-                {
-                    chunkClones.Add(GetRandomChunk(Vector3.zero));
-                }
-                SortChunks();
-                if (ChunkOutOfBounds(chunkClones[i]))
-                {
-                    ObjectPool.Instance.PoolObject(chunkClones[i]);
-                    chunkClones.RemoveAt(i);
-                }
+                chunkClones.Add(GetRandomChunk(Vector3.zero));
+            }
+            SortChunks();
+            if (ChunkOutOfBounds(chunkClones[i]))
+            {
+                ObjectPool.Instance.PoolObject(chunkClones[i]);
+                chunkClones.RemoveAt(i);
             }
         }
     }
 
+    /// <summary>
+    /// Starts the movement of the chunks.
+    /// </summary>
     private void StartMovement()
     {
         canmove = true;
     }
 
+    /// <summary>
+    /// Stops the movement of the chunks.
+    /// </summary>
     private void StopMovement()
     {
         canmove = false;
