@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 2e2b9cb0c67084e82a3a06e9e79c6fc8
 folderAsset: yes
+<<<<<<< HEAD:Assets/UI/Base.meta
 timeCreated: 1526282191
+=======
+timeCreated: 1525701764
+>>>>>>> Development_branch:Assets/Editor.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

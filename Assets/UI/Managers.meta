@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/UI/Managers.meta
 guid: 917b14b486559479ea3dc46e5e225658
 folderAsset: yes
 timeCreated: 1526282203
+=======
+<<<<<<< HEAD:Assets/MaterialLibrary/Materials.meta
+guid: 3150da0ff403b414bbbb2b5c7477cb16
+folderAsset: yes
+timeCreated: 1525690386
+=======
+guid: 5e1970555dd09bb4aaedaa9f6fe76545
+folderAsset: yes
+timeCreated: 1523432989
+>>>>>>> WorldGeneration-Implementation:Assets/MaterialLibrary/Materials.meta
+>>>>>>> Development_branch:Assets/MaterialLibrary/Materials.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
