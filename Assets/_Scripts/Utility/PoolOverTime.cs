@@ -6,15 +6,13 @@ namespace Utility
     public class PoolOverTime : MonoBehaviour
     {
         [SerializeField] private float poolTime;
-        private Coroutine poolDelayCoroutine;
 
         private bool isApplicationQuitting;
 
         private void OnEnable()
         {
-            if (poolDelayCoroutine != null)
-                StopCoroutine(poolDelayCoroutine);
-            poolDelayCoroutine = StartCoroutine(PoolDelay());
+            StopAllCoroutines();
+            StartCoroutine(PoolDelay());
         }
 
         /// <summary>

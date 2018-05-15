@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1444247347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1542,7 +1542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658b160a5f010ce4f854b8787b6f3326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}
   scoreText: {fileID: 1853824711}
 --- !u!1 &2102493728
 GameObject:
