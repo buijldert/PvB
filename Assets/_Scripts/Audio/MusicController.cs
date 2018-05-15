@@ -7,7 +7,7 @@ using Utility;
 namespace Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    public class AudioController : MonoBehaviour
+    public class MusicController : MonoBehaviour
     {
         private AudioSource audioSource;
 
