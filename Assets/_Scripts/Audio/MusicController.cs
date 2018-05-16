@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using Utility;
@@ -9,7 +8,8 @@ namespace Audio
     [RequireComponent(typeof(AudioSource))]
     public class MusicController : MonoBehaviour
     {
-        private AudioSource audioSource;
+        private AudioSource mutedSource;
+        [SerializeField]private AudioSource nonMutedSource;
 
         private void OnEnable()
         {
@@ -25,17 +25,25 @@ namespace Audio
 
         void Start()
         {
-            audioSource = GetComponent<AudioSource>();
+            mutedSource = GetComponent<AudioSource>();
         }
 
         private void StartMusic()
         {
-            audioSource.Play();
+            mutedSource.Play();
+            StartCoroutine(PlayMusicDelay());
+        }
+
+        private IEnumerator PlayMusicDelay()
+        {
+            yield return new WaitForSeconds(2.25f);
+            nonMutedSource.Play();
         }
 
         private void StopMusic()
         {
-            audioSource.Stop();
+            mutedSource.Stop();
+            nonMutedSource.Stop();
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Utility
         /// <param name="_collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider _collision)
         {
-            print("collision");
             if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Black) || 
                 (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.White))
             {

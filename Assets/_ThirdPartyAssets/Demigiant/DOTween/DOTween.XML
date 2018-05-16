@@ -319,7 +319,8 @@
             <code>DOTween.Init(false, false, LogBehaviour.Default).SetCapacity(100, 20);</code>
             </summary>
             <param name="recycleAllByDefault">If TRUE all new tweens will be set for recycling, meaning that when killed,
-            instead of being destroyed, they will be put in a pool and reused instead of creating new tweens. This option allows you to avoid
+            instead of being 
+            ed, they will be put in a pool and reused instead of creating new tweens. This option allows you to avoid
             GC allocations by reusing tweens, but you will have to take care of tween references, since they might result active
             even if they were killed (since they might have been respawned and are now being used for other tweens).
             <para>If you want to automatically set your tween references to NULL when a tween is killed 

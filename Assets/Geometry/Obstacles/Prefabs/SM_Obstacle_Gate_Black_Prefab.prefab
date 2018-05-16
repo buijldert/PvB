@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 65248027369036356}
   - component: {fileID: 54839722843870800}
   - component: {fileID: 114298588796730030}
-  - component: {fileID: 114876703595801018}
   m_Layer: 0
   m_Name: SM_Obstacle_Gate_Black_Prefab
   m_TagString: BlackObstacle
@@ -125,15 +124,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a527ee6f1a17b458d2c52e89a8995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114876703595801018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1595639631869090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9b5c38337320047acd576e9d8194a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolTime: 7
