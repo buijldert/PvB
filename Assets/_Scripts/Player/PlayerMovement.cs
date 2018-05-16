@@ -7,20 +7,22 @@ namespace Player
 {
     public enum PlayerColor
     {
-        Pink,
-        Blue
+        Black,
+        White
     }
 
     [RequireComponent(typeof(MeshRenderer))]
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerColor playerColor = PlayerColor.Pink;
+        private PlayerColor playerColor = PlayerColor.Black;
 
-        private MeshRenderer mr;
+        private MeshFilter meshFilter;
+        private MeshRenderer meshRenderer;
+        
 
         [SerializeField] private Vector3 leftPos, rightPos;
 
-        [SerializeField] private Color pink, blue;
+        [SerializeField] private PlayerModel blackPlayerModel, whitePlayerModel;
 
         private bool canMove;
 
@@ -45,8 +47,8 @@ namespace Player
 
         private void Start()
         {
-            mr = GetComponent<MeshRenderer>();
-            
+            meshRenderer = GetComponent<MeshRenderer>();
+            meshFilter = GetComponent<MeshFilter>();
         }
         
         /// <summary>
@@ -64,13 +66,13 @@ namespace Player
         {
             if (canMove)
             {
-                if (playerColor == PlayerColor.Pink)
+                if (playerColor == PlayerColor.Black)
                 {
-                    ChangePlayer(leftPos, blue, PlayerColor.Blue);
+                    ChangePlayer(leftPos, PlayerColor.White, whitePlayerModel);
                 }
                 else
                 {
-                    ChangePlayer(rightPos, pink, PlayerColor.Pink);
+                    ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel);
                 }
             }
         }
@@ -81,11 +83,12 @@ namespace Player
         /// <param name="positionToMove">The position that the player will move to.</param>
         /// <param name="colorToMake">The color that the player will be made.</param>
         /// <param name="color">The PlayerColor that the player will be made.</param>
-        private void ChangePlayer(Vector3 positionToMove, Color colorToMake, PlayerColor color)
+        private void ChangePlayer(Vector3 positionToMove,PlayerColor color, PlayerModel model)
         {
             transform.DOMove(positionToMove, 0f);
-            mr.material.DOColor(colorToMake, 0f);
             playerColor = color;
+            meshFilter.mesh = model.PlayerMeshFilter.sharedMesh;
+            meshRenderer.material = model.PlayerMeshRenderer.sharedMaterial;
         }
 
         /// <summary>
@@ -95,7 +98,7 @@ namespace Player
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             canMove = false;
-            ChangePlayer(rightPos, pink, PlayerColor.Pink);
+            ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel);
         }
     }
 }

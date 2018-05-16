@@ -1,7 +1,5 @@
 ﻿using Player;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utility
@@ -21,13 +19,14 @@ namespace Utility
         }
 
         /// <summary>
-        /// Handles the collision of the player with the differenc obstacles.
+        /// Handles the collision of the player with the different obstacles.
         /// </summary>
         /// <param name="_collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider _collision)
         {
-            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
-                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Blue))
+            print("collision");
+            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Black) || 
+                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.White))
             {
                 if (OnDeadlyCollision != null)
                     OnDeadlyCollision();

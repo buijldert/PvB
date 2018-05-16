@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: fe4ac14a53c7daa40901ed5f5b89b824, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkPrefabs:
-  - {fileID: 1856215653949512, guid: 2c57b13f5b4a1f64fb9d1584d404d118, type: 2}
-  - {fileID: 1963489085582114, guid: a206314f71e599b4995fa7882d715ddc, type: 2}
-  - {fileID: 1718432313860478, guid: 496fce05aab96ae4493036b3ad7042a3, type: 2}
+  - {fileID: 1867379867378656, guid: 32d260ad7f10abc4fa473dadb6d8eb19, type: 2}
+  - {fileID: 1493367464886308, guid: 71156fa504be1594f8dcb9740d03bae1, type: 2}
+  - {fileID: 1957481177315094, guid: 226249834bf33cb4aa26f9af86c6170b, type: 2}
   movementSpeed: 50
 --- !u!4 &336738954
 Transform:
@@ -430,8 +430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 1372672576942454, guid: 5e25303c05c18d848aa2f5c6ae5a81b7, type: 2}
-  - {fileID: 1974420066732456, guid: b63efa31be10391478a517d7b0faaaac, type: 2}
+  - {fileID: 1595639631869090, guid: f6e24edab1dd7c04e86ad3e7b2be5256, type: 2}
+  - {fileID: 1393731956495662, guid: d6cf7105a4fc2c448ae19f0fd8c44adb, type: 2}
 --- !u!4 &896791504
 Transform:
   m_ObjectHideFlags: 0
@@ -622,19 +622,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entries:
-  - prefab: {fileID: 1974420066732456, guid: b63efa31be10391478a517d7b0faaaac, type: 2}
+  - prefab: {fileID: 1867379867378656, guid: 32d260ad7f10abc4fa473dadb6d8eb19, type: 2}
     count: 5
     startActive: 1
-  - prefab: {fileID: 1372672576942454, guid: 5e25303c05c18d848aa2f5c6ae5a81b7, type: 2}
+  - prefab: {fileID: 1493367464886308, guid: 71156fa504be1594f8dcb9740d03bae1, type: 2}
     count: 5
     startActive: 1
-  - prefab: {fileID: 1856215653949512, guid: 2c57b13f5b4a1f64fb9d1584d404d118, type: 2}
+  - prefab: {fileID: 1957481177315094, guid: 226249834bf33cb4aa26f9af86c6170b, type: 2}
     count: 5
     startActive: 1
-  - prefab: {fileID: 1963489085582114, guid: a206314f71e599b4995fa7882d715ddc, type: 2}
+  - prefab: {fileID: 1595639631869090, guid: f6e24edab1dd7c04e86ad3e7b2be5256, type: 2}
     count: 5
     startActive: 1
-  - prefab: {fileID: 1718432313860478, guid: 496fce05aab96ae4493036b3ad7042a3, type: 2}
+  - prefab: {fileID: 1393731956495662, guid: d6cf7105a4fc2c448ae19f0fd8c44adb, type: 2}
     count: 5
     startActive: 1
 --- !u!4 &916638512
@@ -1063,12 +1063,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1444247350}
   - component: {fileID: 1444247349}
-  - component: {fileID: 1444247348}
   - component: {fileID: 1444247347}
   - component: {fileID: 1444247351}
   - component: {fileID: 1444247352}
   - component: {fileID: 1444247353}
   - component: {fileID: 1444247354}
+  - component: {fileID: 1444247348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1090,7 +1090,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 609d89990b7b68242be0a82046bd4d6d, type: 2}
+  - {fileID: 2100000, guid: f7f65902eb1fd1d4fadef421f7cb96db, type: 2}
+  - {fileID: 2100000, guid: 8f83cff52551c4a4da9f907566a2afee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1098,7 +1099,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -1110,38 +1111,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1444247348
-SphereCollider:
+--- !u!65 &1444247348
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1444247346}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.76, y: 1.52, z: 0.71999997}
+  m_Center: {x: -0.019999996, y: 0.76, z: 0.03999999}
 --- !u!33 &1444247349
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1444247346}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 62855cf8fc48e7f49906202ddf41d872, type: 3}
 --- !u!4 &1444247350
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1444247346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3, y: 0.75, z: 61}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &1444247351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1170,8 +1171,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftPos: {x: -3, y: 0.75, z: 61}
   rightPos: {x: 3, y: 0.75, z: 61}
-  pink: {r: 1, g: 0.18431373, b: 0.84313726, a: 0}
-  blue: {r: 0.31764707, g: 0.77254903, b: 1, a: 0}
+  blackPlayerModel:
+    PlayerMeshFilter: {fileID: 33614602777030392, guid: a4a5d93e0dfed32468ebfb812c765b15,
+      type: 2}
+    PlayerMeshRenderer: {fileID: 23462599232880920, guid: a4a5d93e0dfed32468ebfb812c765b15,
+      type: 2}
+  whitePlayerModel:
+    PlayerMeshFilter: {fileID: 33451260114072478, guid: f8820f8acd6215f4a9e4f494bd7bc8e3,
+      type: 2}
+    PlayerMeshRenderer: {fileID: 23977366283878952, guid: f8820f8acd6215f4a9e4f494bd7bc8e3,
+      type: 2}
 --- !u!114 &1444247353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,9 +1367,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkPrefabs:
-  - {fileID: 1856215653949512, guid: 2c57b13f5b4a1f64fb9d1584d404d118, type: 2}
-  - {fileID: 1963489085582114, guid: a206314f71e599b4995fa7882d715ddc, type: 2}
-  - {fileID: 1718432313860478, guid: 496fce05aab96ae4493036b3ad7042a3, type: 2}
+  - {fileID: 1867379867378656, guid: 32d260ad7f10abc4fa473dadb6d8eb19, type: 2}
+  - {fileID: 1493367464886308, guid: 71156fa504be1594f8dcb9740d03bae1, type: 2}
+  - {fileID: 1957481177315094, guid: 226249834bf33cb4aa26f9af86c6170b, type: 2}
   movementSpeed: 50
 --- !u!4 &1616163809
 Transform:
