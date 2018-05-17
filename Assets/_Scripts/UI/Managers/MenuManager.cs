@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
-using UI.Base;
-using UI.Controllers;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 
 namespace UI.Managers
 {
-    public class MenuManager : ScreenManager
+    public class MenuManager : MonoBehaviour
     {
         public static MenuManager instance;
+
+        private static Vector2 MENU_MIDDLE_POSITION = new Vector2(0f, -650f);
+
+        private static Vector2 MENU_BIG_BUTTON_SIZE = new Vector2(235f, 270f);
+        private static Vector2 MENU_SMALL_BUTTON_SIZE = new Vector2(215f, 250f);
 
         [SerializeField] private Image hexagonImage;
 
@@ -24,32 +27,27 @@ namespace UI.Managers
 
         Sequence textFade;
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
-            base.OnEnable();
+            demoButton.onClick.AddListener(() => OnDemoButtonClicked());
 
-            //demoButton.onClick.AddListener(() => OnDemoButtonClicked());
-            shopButton.onClick.AddListener(() => OnShopButtonClicked());
-            homeButton.onClick.AddListener(() => OnHomeButtonClicked());
-            settingsButton.onClick.AddListener(() => OnSettingsButtonClicked());
+            menuButtons[0].onClick.AddListener(() => OnHomeButtonClicked());
+            menuButtons[1].onClick.AddListener(() => OnShopButtonClicked());
+            menuButtons[2].onClick.AddListener(() => OnSettingsButtonClicked());
         }
 
-        protected override void Awake()
+        private void Awake()
         {
             if (instance != null && instance != this)
             {
                 Destroy(this.gameObject);
             }
             instance = this;
-
-            screenState = MenuState.Menu;
         }
 
         private void Start()
         {
-            //DOTextFade();
-
-            DoOpeningSequence();
+            DOTextFade();
         }
 
         private void DOTextFade()
@@ -74,8 +72,8 @@ namespace UI.Managers
         {
             Sequence openingSequence = DOTween.Sequence();
 
-            openingSequence.Append(hexagonImage.rectTransform.DOSizeDelta(new Vector2(250, 250), 1));
-            openingSequence.Join(hexagonImage.rectTransform.DOAnchorPos(new Vector2(0, -650), 1));
+            openingSequence.Append(hexagonImage.rectTransform.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 1));
+            openingSequence.Join(hexagonImage.rectTransform.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
 
             openingSequence.AppendCallback(() =>
             {
@@ -90,16 +88,6 @@ namespace UI.Managers
             openingSequence.Join(settingsButton.GetComponent<Image>().DOFade(1, 2));
         }
 
-        protected override void PrepareScreen(MenuState state)
-        {
-            base.PrepareScreen(state);
-        }
-
-        protected override void StartScreen()
-        {
-           
-        }
-
         private void OnDemoButtonClicked()
         {
             textFade.Append(pressToPlayText.DOFade(0, 2));
@@ -107,19 +95,14 @@ namespace UI.Managers
             textFade.Kill();
         }
 
-        private void OnMenuButtonClicked()
+        private void OnHomeButtonClicked()
         {
-           
+            CheckPosition(homeButton);
         }
 
         private void OnShopButtonClicked()
         {
             CheckPosition(shopButton);
-        }
-
-        private void OnHomeButtonClicked()
-        {
-            CheckPosition(homeButton);
         }
 
         private void OnSettingsButtonClicked()
@@ -129,40 +112,39 @@ namespace UI.Managers
 
         private void CheckPosition(Button button)
         {
-            if(button.GetComponent<RectTransform>().anchoredPosition != new Vector2(0, -650))
+            RectTransform rect = button.GetComponent<RectTransform>();
+
+            if(rect.anchoredPosition == MENU_MIDDLE_POSITION)
             {
-                RectTransform rect = button.GetComponent<RectTransform>();
-                Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
-                                          
-                Sequence s = DOTween.Sequence();
-                s.Append(button.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -650), 1));
+                return;
+            }
 
-                foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition == new Vector2(0, -650)))
-                {
-                    s.Join(btn.GetComponent<RectTransform>().DOAnchorPos(vec2, 1));
-                }
+            Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
+                                      
+            Sequence s = DOTween.Sequence();
+            s.Append(rect.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
+            s.Join(rect.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 1));
 
-                foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition != new Vector2(0, -650)))
+            foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition == MENU_MIDDLE_POSITION))
+            {
+                s.Join(btn.GetComponent<RectTransform>().DOAnchorPos(vec2, 1));
+                s.Join(btn.GetComponent<RectTransform>().DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
+            }
+
+            foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition != MENU_MIDDLE_POSITION))
+            {
+                if(btn != button)
                 {
-                    if(btn != button)
-                    {
-                        s.Join(btn.GetComponent<Image>().DOFade(0, 1));
-                        s.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(vec2.x * -1), vec2.y), 0.1f));
-                        s.Append(btn.GetComponent<Image>().DOFade(1, 1));
-                    }
-                        
+                    s.Join(btn.GetComponent<Image>().DOFade(0, 1));
+                    s.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(vec2.x * -1), vec2.y), 0.1f));
+                    s.Append(btn.GetComponent<Image>().DOFade(1, 1));
                 }
             }
         }
 
-        protected override void StopScreen()
+        private void OnDisable()
         {
             
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
         }
     }
 }
