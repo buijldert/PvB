@@ -6,9 +6,8 @@ namespace UI.Controllers
 {
     public enum MenuState
     {
-        Menu,
-        Play,
-        Tutorial,
+        Home,
+        Shop,
     }
 
     public class UIController : MonoBehaviour
@@ -47,19 +46,14 @@ namespace UI.Controllers
         }
 
         #region GoTo methods
-        public void GoToMenuScreen()
+        public void GoToHomeScreen()
         {
-            SetState(MenuState.Menu);
+            SetState(MenuState.Home);
         }
 
-        public void GoToPlayScreen()
+        public void GoToShopScreen()
         {
-            SetState(MenuState.Play);
-        }
-
-        public void GoToTutorialScreen()
-        {
-            SetState(MenuState.Tutorial);
+            SetState(MenuState.Shop);
         }
         #endregion
     }

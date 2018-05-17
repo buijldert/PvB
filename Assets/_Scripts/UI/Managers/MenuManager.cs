@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
+using UI.Controllers;
 
 namespace UI.Managers
 {
@@ -10,22 +11,17 @@ namespace UI.Managers
         public static MenuManager instance;
 
         private static Vector2 MENU_MIDDLE_POSITION = new Vector2(0f, -650f);
-
         private static Vector2 MENU_BIG_BUTTON_SIZE = new Vector2(235f, 270f);
         private static Vector2 MENU_SMALL_BUTTON_SIZE = new Vector2(215f, 250f);
 
         [SerializeField] private Image hexagonImage;
-
-        [SerializeField] private Button homeButton;
-        [SerializeField] private Button shopButton;
-        [SerializeField] private Button settingsButton;
         [SerializeField] private Text pressToPlayText;
 
         [SerializeField] private Button demoButton;
 
         [SerializeField] private Button[] menuButtons;
 
-        Sequence textFade;
+        private Sequence textFade;
 
         private void OnEnable()
         {
@@ -78,14 +74,14 @@ namespace UI.Managers
             openingSequence.AppendCallback(() =>
             {
                 hexagonImage.gameObject.SetActive(false);
-                homeButton.gameObject.SetActive(true);
-                shopButton.gameObject.SetActive(true);
-                settingsButton.gameObject.SetActive(true);
+                menuButtons[0].gameObject.SetActive(true);
+                menuButtons[1].gameObject.SetActive(true);
+                menuButtons[2].gameObject.SetActive(true);
             });
 
-            openingSequence.Append(homeButton.GetComponent<Image>().DOFade(1, 1));
-            openingSequence.Append(shopButton.GetComponent<Image>().DOFade(1, 2));
-            openingSequence.Join(settingsButton.GetComponent<Image>().DOFade(1, 2));
+            openingSequence.Append(menuButtons[0].GetComponent<Image>().DOFade(1, 1));
+            openingSequence.Append(menuButtons[1].GetComponent<Image>().DOFade(1, 2));
+            openingSequence.Join(menuButtons[2].GetComponent<Image>().DOFade(1, 2));
         }
 
         private void OnDemoButtonClicked()
@@ -95,59 +91,50 @@ namespace UI.Managers
             textFade.Kill();
         }
 
-        private void DoButtonAnimation(Button button)
-        {
-            Transform VFX = button.transform.GetChild(0);
-            RectTransform rect = VFX.GetComponent<RectTransform>();
-            Image img = VFX.GetComponent<Image>();
-
-            Sequence s = DOTween.Sequence();
-
-            s.Append(img.DOFade(1, 0.1f));
-            s.Append(rect.DOSizeDelta(new Vector2(rect.sizeDelta.x * 1.5f, rect.sizeDelta.y * 1.5f), 1));
-            s.Join(img.DOFade(0, 1));
-            s.Append(rect.DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
-
-        }
-
         private void OnHomeButtonClicked()
         {
-            CheckPosition(homeButton);
+            DoButtonAnimation(menuButtons[0]);
+            UIController.instance.GoToHomeScreen();
         }
 
         private void OnShopButtonClicked()
         {
-            CheckPosition(shopButton);
+            DoButtonAnimation(menuButtons[1]);
+            UIController.instance.GoToShopScreen();
         }
 
         private void OnSettingsButtonClicked()
         {
-            CheckPosition(settingsButton);
+            DoButtonAnimation(menuButtons[2]);
         }
 
-        private void CheckPosition(Button button)
+        private void DoButtonAnimation(Button button)
         {
             RectTransform rect = button.GetComponent<RectTransform>();
-
-            Transform VFX = button.transform.GetChild(0);
-            RectTransform r = VFX.GetComponent<RectTransform>();
-            Image img = VFX.GetComponent<Image>();
-
             if (rect.anchoredPosition == MENU_MIDDLE_POSITION)
             {
                 return;
             }
 
-            Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
+            // Get components for the VFX
+            Transform VFX = button.transform.GetChild(0);
+            RectTransform r = VFX.GetComponent<RectTransform>();
+            Image img = VFX.GetComponent<Image>();
 
+            Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
             Sequence s = DOTween.Sequence();
+
+            // Move the button we clikced to the middle and scale it
             s.Append(rect.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
             s.Join(rect.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 1));
 
             foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition == MENU_MIDDLE_POSITION))
             {
+                btn.interactable = false;
+
                 s.Join(btn.GetComponent<RectTransform>().DOAnchorPos(vec2, 1));
                 s.Join(btn.GetComponent<RectTransform>().DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
+
                 s.Join(img.DOFade(1, 0.1f));
                 s.Join(r.DOSizeDelta(new Vector2(MENU_BIG_BUTTON_SIZE.x * 1.5f, MENU_BIG_BUTTON_SIZE.y * 1.5f), 1));
                 s.Join(img.DOFade(0, 1));
@@ -155,15 +142,25 @@ namespace UI.Managers
 
             foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition != MENU_MIDDLE_POSITION))
             {
+                btn.interactable = false;
+
                 if (btn != button)
                 {
-                    s.Join(btn.GetComponent<Image>().DOFade(0, 1));
+                    s.Join(btn.GetComponent<Image>().DOFade(0, 0.5f));
                     s.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(vec2.x * -1), vec2.y), 0.01f));
-                    s.Append(btn.GetComponent<Image>().DOFade(1, 1));
+                    s.Append(btn.GetComponent<Image>().DOFade(1, 0.5f));
                 }
             }
 
             s.Append(r.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 0.1f));
+
+            s.AppendCallback(() => 
+            {
+                foreach (Button btn in menuButtons)
+                {
+                    btn.interactable = true;
+                }
+            });
         }
 
         private void OnDisable()

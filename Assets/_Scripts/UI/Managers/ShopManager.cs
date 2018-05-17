@@ -17,7 +17,7 @@ public class ShopManager : ScreenManager
         }
         instance = this;
 
-        //screenState = MenuState.Shop;
+        screenState = MenuState.Shop;
     }
 
     protected override void StartScreen()
@@ -26,12 +26,17 @@ public class ShopManager : ScreenManager
 
         foreach (Image img in images)
         {
-            s.Append(img.DOFade(1, 0));
+            s.Append(img.DOFade(1, 0.1f));
         }
     }
 
     protected override void StopScreen()
     {
-        
+        Sequence s = DOTween.Sequence();
+
+        foreach (Image img in images)
+        {
+            s.Append(img.DOFade(0, 0.1f));
+        }
     }
 }
