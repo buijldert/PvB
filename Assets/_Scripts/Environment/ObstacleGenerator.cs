@@ -27,13 +27,13 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopSpawning;
-            ObstacleCollector.OnObstacleCollection += RemoveObstacleFromList;
+            PoolOverTime.OnObstacleCollection += RemoveObstacleFromList;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
-            ObstacleCollector.OnObstacleCollection -= RemoveObstacleFromList;
+            PoolOverTime.OnObstacleCollection -= RemoveObstacleFromList;
         }
 
         private void Start()
