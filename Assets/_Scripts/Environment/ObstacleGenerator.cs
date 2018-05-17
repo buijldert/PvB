@@ -27,13 +27,13 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopSpawning;
-            //RestartGameButton.OnRestartGame += StartSpawning;
+            ObstacleCollector.OnObstacleCollection += RemoveObstacleFromList;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
-            //RestartGameButton.OnRestartGame -= StartSpawning;
+            ObstacleCollector.OnObstacleCollection -= RemoveObstacleFromList;
         }
 
         private void Start()
@@ -54,6 +54,11 @@ namespace Environment
                 OnOnbeatDetected();
             }
 
+        }
+
+        private void RemoveObstacleFromList(GameObject obstacleToCollect)
+        {
+            obstacleClones.Remove(obstacleToCollect);
         }
 
         /// <summary>

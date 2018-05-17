@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65193117876021968}
   - component: {fileID: 54688567377294112}
   - component: {fileID: 114121973365996608}
+  - component: {fileID: 114529140308675004}
   m_Layer: 0
   m_Name: SM_Obstacle_Gate_White_Prefab
   m_TagString: WhiteObstacle
@@ -100,7 +101,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65193117876021968
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -122,5 +123,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1a527ee6f1a17b458d2c52e89a8995f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114529140308675004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393731956495662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072c193de6fcad841a670302f16116e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
