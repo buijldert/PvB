@@ -95,6 +95,21 @@ namespace UI.Managers
             textFade.Kill();
         }
 
+        private void DoButtonAnimation(Button button)
+        {
+            Transform VFX = button.transform.GetChild(0);
+            RectTransform rect = VFX.GetComponent<RectTransform>();
+            Image img = VFX.GetComponent<Image>();
+
+            Sequence s = DOTween.Sequence();
+
+            s.Append(img.DOFade(1, 0.1f));
+            s.Append(rect.DOSizeDelta(new Vector2(rect.sizeDelta.x * 1.5f, rect.sizeDelta.y * 1.5f), 1));
+            s.Join(img.DOFade(0, 1));
+            s.Append(rect.DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
+
+        }
+
         private void OnHomeButtonClicked()
         {
             CheckPosition(homeButton);
@@ -114,13 +129,17 @@ namespace UI.Managers
         {
             RectTransform rect = button.GetComponent<RectTransform>();
 
-            if(rect.anchoredPosition == MENU_MIDDLE_POSITION)
+            Transform VFX = button.transform.GetChild(0);
+            RectTransform r = VFX.GetComponent<RectTransform>();
+            Image img = VFX.GetComponent<Image>();
+
+            if (rect.anchoredPosition == MENU_MIDDLE_POSITION)
             {
                 return;
             }
 
             Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
-                                      
+
             Sequence s = DOTween.Sequence();
             s.Append(rect.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
             s.Join(rect.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 1));
@@ -129,17 +148,22 @@ namespace UI.Managers
             {
                 s.Join(btn.GetComponent<RectTransform>().DOAnchorPos(vec2, 1));
                 s.Join(btn.GetComponent<RectTransform>().DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
+                s.Join(img.DOFade(1, 0.1f));
+                s.Join(r.DOSizeDelta(new Vector2(MENU_BIG_BUTTON_SIZE.x * 1.5f, MENU_BIG_BUTTON_SIZE.y * 1.5f), 1));
+                s.Join(img.DOFade(0, 1));
             }
 
             foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition != MENU_MIDDLE_POSITION))
             {
-                if(btn != button)
+                if (btn != button)
                 {
                     s.Join(btn.GetComponent<Image>().DOFade(0, 1));
-                    s.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(vec2.x * -1), vec2.y), 0.1f));
+                    s.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(vec2.x * -1), vec2.y), 0.01f));
                     s.Append(btn.GetComponent<Image>().DOFade(1, 1));
                 }
             }
+
+            s.Append(r.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 0.1f));
         }
 
         private void OnDisable()
