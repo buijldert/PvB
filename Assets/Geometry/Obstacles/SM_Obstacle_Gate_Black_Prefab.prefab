@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65248027369036356}
   - component: {fileID: 54839722843870800}
   - component: {fileID: 114298588796730030}
+  - component: {fileID: 114771787934716290}
   m_Layer: 0
   m_Name: SM_Obstacle_Gate_Black_Prefab
   m_TagString: BlackObstacle
@@ -100,7 +101,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65248027369036356
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -111,7 +112,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.4, y: 3.3999999, z: 0.59999996}
+  m_Size: {x: 5.5, y: 3.5, z: 0.7}
   m_Center: {x: 0, y: 1.6999999, z: 0}
 --- !u!114 &114298588796730030
 MonoBehaviour:
@@ -124,3 +125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a527ee6f1a17b458d2c52e89a8995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114771787934716290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595639631869090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43eacba8487cdc45881a3d1d2a845a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolTime: 5
