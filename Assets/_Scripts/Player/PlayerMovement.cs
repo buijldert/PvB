@@ -89,34 +89,39 @@ namespace Player
         /// Changes the player's position and color to the given values.
         /// </summary>
         /// <param name="_positionToMove">The position that the player will move to.</param>
-        /// <param name="colorToMake">The color that the player will be made.</param>
         /// <param name="_color">The PlayerColor that the player will be made.</param>
-        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _color, PlayerModel _model, Vector3 particlePosition, Vector3 particleRotation)
+        /// <param name="_particlePosition">The position that the switch particle needs to be in.</param>
+        /// <param name="_particleRotation">The rotation that the switch particle needs to be in.</param>
+        /// <param name="_isReset">Whether the player is being reset to its normal position.</param>
+        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _color, PlayerModel _model, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
         {
-            boxCollider.enabled = false;
-            meshRenderer.enabled = false;
-
-            particleSystemGO.transform.position = particlePosition;
-            particleSystemGO.transform.rotation = Quaternion.Euler(particleRotation);
-            particleSystemGO.SetActive(true);
-
             transform.position = _positionToMove;
             playerColor = _color;
             meshFilter.mesh = _model.PlayerMeshFilter.sharedMesh;
             meshRenderer.material = _model.PlayerMeshRenderer.sharedMaterial;
 
-            if (_appearDelayCoroutine != null)
-                StopCoroutine(_appearDelayCoroutine);
-            _appearDelayCoroutine = StartCoroutine(AppearDelay());
+            canMove = false;
+            if(!_isReset)
+            {
+                particleSystemGO.transform.position = _particlePosition;
+                particleSystemGO.transform.rotation = Quaternion.Euler(_particleRotation);
+                particleSystemGO.SetActive(true);
+                boxCollider.enabled = false;
+                meshRenderer.enabled = false;
+                if (_appearDelayCoroutine != null)
+                    StopCoroutine(_appearDelayCoroutine);
+                _appearDelayCoroutine = StartCoroutine(AppearDelay());
+            }
         }
 
         private IEnumerator AppearDelay()
         {
-            float particleSystemTime = .25f;
+            float particleSystemTime = 0.25f;
             yield return new WaitForSeconds(particleSystemTime);
             meshRenderer.enabled = true;
             boxCollider.enabled = true;
             particleSystemGO.SetActive(false);
+            canMove = true;
         }
 
         /// <summary>
@@ -124,8 +129,7 @@ namespace Player
         /// </summary>
         private void ResetPlayer()
         {
-            canMove = false;
-            ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel, particleRightPos, particleRightRotation);
+            ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel, particleLeftPos, particleLeftRotation, true);
         }
     }
 }

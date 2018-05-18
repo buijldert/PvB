@@ -36,7 +36,7 @@ namespace Audio
 
         private IEnumerator PlayMusicDelay()
         {
-            yield return new WaitForSeconds(2.25f);
+            yield return new WaitForSeconds(5f);
             nonMutedSource.Play();
         }
 

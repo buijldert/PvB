@@ -12,7 +12,7 @@ namespace Environment
         [SerializeField] private GameObject[] obstaclePrefabs;
         private List<GameObject> obstacleClones = new List<GameObject>();
         
-        private float backPosZ = 200f;
+        private float backPosZ = 400f;
 
         private Coroutine spawningCoroutine;
 
