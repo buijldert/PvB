@@ -2,6 +2,7 @@
 using System.Collections;
 using UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility;
 
 namespace Player
@@ -20,7 +21,6 @@ namespace Player
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
         private BoxCollider boxCollider;
-
         [SerializeField] private Vector3 leftPos, rightPos;
         [SerializeField] private Vector3 particleLeftPos, particleRightPos;
         [SerializeField] private Vector3 particleLeftRotation, particleRightRotation;
@@ -31,7 +31,9 @@ namespace Player
 
         private Coroutine _appearDelayCoroutine;
 
-        [SerializeField] private GameObject particleSystemGO;
+        [FormerlySerializedAs("particleSystemGO")]
+        [SerializeField] private GameObject particleSystemGameObject;
+        [SerializeField] private GameObject bikeGameObject;
 
         public PlayerColor GetPlayerColor()
         {
@@ -103,9 +105,10 @@ namespace Player
             canMove = false;
             if(!_isReset)
             {
-                particleSystemGO.transform.position = _particlePosition;
-                particleSystemGO.transform.rotation = Quaternion.Euler(_particleRotation);
-                particleSystemGO.SetActive(true);
+                particleSystemGameObject.transform.position = _particlePosition;
+                particleSystemGameObject.transform.rotation = Quaternion.Euler(_particleRotation);
+                particleSystemGameObject.SetActive(true);
+                bikeGameObject.SetActive(false);
                 boxCollider.enabled = false;
                 meshRenderer.enabled = false;
                 if (_appearDelayCoroutine != null)
@@ -120,8 +123,9 @@ namespace Player
             yield return new WaitForSeconds(particleSystemTime);
             meshRenderer.enabled = true;
             boxCollider.enabled = true;
-            particleSystemGO.SetActive(false);
+            particleSystemGameObject.SetActive(false);
             canMove = true;
+            bikeGameObject.SetActive(true);
         }
 
         /// <summary>

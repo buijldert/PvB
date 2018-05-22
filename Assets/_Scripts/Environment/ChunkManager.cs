@@ -9,12 +9,14 @@ public class ChunkManager : MonoBehaviour
     private List<GameObject> chunkClones = new List<GameObject>();
     
     [SerializeField] private float movementSpeed = 30f;
+    private float outOfScreenPosZ = 400f;
 
     private bool canmove;
+    [SerializeField] private bool isLeftChunkManager;
 
     private void Start ()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30f; i++)
         {
             chunkClones.Add(GetRandomChunk(Vector3.zero));
         }
@@ -51,7 +53,7 @@ public class ChunkManager : MonoBehaviour
         for (int i = 0; i < chunkClones.Count; i++)
         {
             MoveChunk(chunkClones[i], movementSpeed);
-            if (chunkClones[chunkClones.Count - 1].transform.position.z < 200f)
+            if (chunkClones[chunkClones.Count - 1].transform.position.z < outOfScreenPosZ)
             {
                 chunkClones.Add(GetRandomChunk(Vector3.zero));
             }
@@ -112,6 +114,10 @@ public class ChunkManager : MonoBehaviour
         GameObject chunkClone = ObjectPool.Instance.GetObjectForType(chunk.name, false);
         chunkClone.transform.position = position;
         chunkClone.transform.SetParent(transform);
+        if (isLeftChunkManager)
+            chunkClone.transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            chunkClone.transform.rotation = Quaternion.Euler(0, 0, 0);
         return chunkClone;
     }
 
