@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 4030350bda248f84cbdeabbaad19e6a9
-timeCreated: 1527087736
+guid: 5a5fd89dafd03be45919533c26733bd0
+timeCreated: 1526284740
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: SM_Road_Gate_palette1
+    2100000: SM_Road_JMGatePink_palette1
     2100002: Pink_window
     2300000: //RootNode
     3300000: //RootNode
-    4300000: SM_Road_Gate2
+    4300000: SM_Road_JMGatePink1
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pink_window
-    second: {fileID: 2100000, guid: c1ee098b1ddae4840ab7118cbe51a726, type: 2}
+    second: {fileID: 2100000, guid: 335b1e9dc6eda074095ad11a44304a95, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SM_Road_Gate_palette1
-    second: {fileID: 2100000, guid: 9d410d4e3c0a7cf47b97e460a1047447, type: 2}
+      name: SM_Road_JMGatePink_palette1
+    second: {fileID: 2100000, guid: b1b2385e12d13b04b94759f9da54555a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -57,8 +57,8 @@ ModelImporter:
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -77,7 +77,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
