@@ -105,7 +105,7 @@ namespace Player
             canMove = false;
             if(!_isReset)
             {
-                //particleSystemGameObject.transform.position = _particlePosition;
+                particleSystemGameObject.transform.position = _particlePosition;
                 particleSystemGameObject.transform.rotation = Quaternion.Euler(_particleRotation);
                 particleSystemGameObject.SetActive(true);
                 bikeGameObject.SetActive(false);

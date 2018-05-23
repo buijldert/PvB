@@ -27,7 +27,7 @@ MonoBehaviour:
   fog:
     m_Enabled: 1
     m_Settings:
-      excludeSkybox: 0
+      excludeSkybox: 1
   antialiasing:
     m_Enabled: 0
     m_Settings:
@@ -100,7 +100,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.03
+        intensity: 0.02
         threshold: 1.1
         softKnee: 0.5
         radius: 1.98
