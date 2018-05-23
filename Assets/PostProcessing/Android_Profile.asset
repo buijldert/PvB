@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: PostProcess_Profile
+  m_Name: Android_Profile
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   fog:
     m_Enabled: 1
     m_Settings:
-      excludeSkybox: 0
+      excludeSkybox: 1
   antialiasing:
     m_Enabled: 0
     m_Settings:
@@ -100,11 +100,11 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.03
-        threshold: 1.1
-        softKnee: 0.5
-        radius: 1.98
-        antiFlicker: 0
+        intensity: 15
+        threshold: 1.15
+        softKnee: 0.428
+        radius: 1.96
+        antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
         intensity: 3
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.1
+      intensity: 1
   grain:
     m_Enabled: 0
     m_Settings:
@@ -293,7 +293,7 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
