@@ -6,5 +6,4 @@ public class LevelData : ScriptableObject
 {
     public string LevelName;
     public AudioClip LevelAudio;
-    public BeatValue[] BeatPattern;
 }
