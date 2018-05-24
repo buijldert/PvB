@@ -122,6 +122,7 @@ namespace UI.Managers
             Image img = VFX.GetComponent<Image>();
 
             Vector2 vec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
+
             Sequence s = DOTween.Sequence();
 
             // Move the button we clikced to the middle and scale it
@@ -135,6 +136,7 @@ namespace UI.Managers
                 s.Join(btn.GetComponent<RectTransform>().DOAnchorPos(vec2, 1));
                 s.Join(btn.GetComponent<RectTransform>().DOSizeDelta(MENU_SMALL_BUTTON_SIZE, 1));
 
+                // VFX 
                 s.Join(img.DOFade(1, 0.1f));
                 s.Join(r.DOSizeDelta(new Vector2(MENU_BIG_BUTTON_SIZE.x * 1.5f, MENU_BIG_BUTTON_SIZE.y * 1.5f), 1));
                 s.Join(img.DOFade(0, 1));
