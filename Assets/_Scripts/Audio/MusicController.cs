@@ -5,11 +5,19 @@ using Utility;
 
 namespace Audio
 {
-    [RequireComponent(typeof(AudioSource))]
     public class MusicController : MonoBehaviour
     {
-        private AudioSource mutedSource;
-        [SerializeField]private AudioSource nonMutedSource;
+        [SerializeField] private LevelData currentLevelData;
+
+        [SerializeField] private AudioSource mutedSource;
+        [SerializeField] private AudioSource nonMutedSource;
+
+        private Coroutine musicDelayCoroutine;
+
+        public void SetCurrentLevelData(LevelData levelData)
+        {
+            currentLevelData = levelData;
+        }
 
         private void OnEnable()
         {
@@ -25,23 +33,35 @@ namespace Audio
 
         void Start()
         {
-            mutedSource = GetComponent<AudioSource>();
+            mutedSource.clip = currentLevelData.LevelAudio;
+            nonMutedSource.clip = currentLevelData.LevelAudio;
         }
 
+        /// <summary>
+        /// Plays the background music.
+        /// </summary>
         private void StartMusic()
         {
             mutedSource.Play();
-            StartCoroutine(PlayMusicDelay());
+            musicDelayCoroutine = StartCoroutine(PlayMusicDelay());
         }
 
+        /// <summary>
+        /// Plays the real music at a delay.
+        /// </summary>
         private IEnumerator PlayMusicDelay()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(6f);
             nonMutedSource.Play();
         }
 
+        /// <summary>
+        /// Stops the music and music delay coroutine 
+        /// </summary>
         private void StopMusic()
         {
+            if (musicDelayCoroutine != null)
+                StopCoroutine(musicDelayCoroutine);
             mutedSource.Stop();
             nonMutedSource.Stop();
         }

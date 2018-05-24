@@ -6,7 +6,7 @@ namespace Environment
     public class ObstacleMovement : MonoBehaviour
     {
         private Rigidbody rb;
-        private float movementSpeed = 75f;
+        private float movementSpeed = 60f;
 
         private void Start()
         {

@@ -12,29 +12,24 @@ namespace Player
         Black,
         White
     }
-
-    [RequireComponent(typeof(MeshRenderer))]
+    
     public class PlayerMovement : MonoBehaviour
     {
         private PlayerColor playerColor = PlayerColor.Black;
 
-        private MeshFilter meshFilter;
-        private MeshRenderer meshRenderer;
         private BoxCollider boxCollider;
+        [Header("Positions")]
         [SerializeField] private Vector3 leftPos, rightPos;
         [SerializeField] private Vector3 particleLeftPos, particleRightPos;
         [SerializeField] private Vector3 particleLeftRotation, particleRightRotation;
 
-        [SerializeField] private PlayerModel blackPlayerModel, whitePlayerModel;
-
         private bool canMove;
 
         private Coroutine _appearDelayCoroutine;
-
-        [FormerlySerializedAs("particleSystemGO")]
+        [Header("GameObjects")]
         [SerializeField] private GameObject particleSystemGameObject;
-        [SerializeField] private GameObject bikeGameObject;
-
+        [SerializeField] private GameObject blackPlayer, whitePlayer;
+        
         public PlayerColor GetPlayerColor()
         {
             return playerColor;
@@ -56,8 +51,6 @@ namespace Player
 
         private void Start()
         {
-            meshRenderer = GetComponent<MeshRenderer>();
-            meshFilter = GetComponent<MeshFilter>();
             boxCollider = GetComponent<BoxCollider>();
         }
         
@@ -78,11 +71,11 @@ namespace Player
             {
                 if (playerColor == PlayerColor.Black)
                 {
-                    ChangePlayer(leftPos, PlayerColor.White, whitePlayerModel, particleRightPos, particleRightRotation);
+                    ChangePlayer(leftPos, PlayerColor.White, particleRightPos, particleRightRotation);
                 }
                 else
                 {
-                    ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel, particleLeftPos, particleLeftRotation);
+                    ChangePlayer(rightPos, PlayerColor.Black, particleLeftPos, particleLeftRotation);
                 }
             }
         }
@@ -95,37 +88,50 @@ namespace Player
         /// <param name="_particlePosition">The position that the switch particle needs to be in.</param>
         /// <param name="_particleRotation">The rotation that the switch particle needs to be in.</param>
         /// <param name="_isReset">Whether the player is being reset to its normal position.</param>
-        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _color, PlayerModel _model, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
+        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _color, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
         {
             transform.position = _positionToMove;
             playerColor = _color;
-            meshFilter.mesh = _model.PlayerMeshFilter.sharedMesh;
-            meshRenderer.material = _model.PlayerMeshRenderer.sharedMaterial;
 
             canMove = false;
-            if(!_isReset)
+            if(_isReset)
+            {
+                blackPlayer.SetActive(true);
+                whitePlayer.SetActive(false);
+            }
+            else
             {
                 particleSystemGameObject.transform.position = _particlePosition;
                 particleSystemGameObject.transform.rotation = Quaternion.Euler(_particleRotation);
                 particleSystemGameObject.SetActive(true);
-                bikeGameObject.SetActive(false);
+
+                blackPlayer.SetActive(false);
+                whitePlayer.SetActive(false);
+
                 boxCollider.enabled = false;
-                meshRenderer.enabled = false;
                 if (_appearDelayCoroutine != null)
                     StopCoroutine(_appearDelayCoroutine);
-                _appearDelayCoroutine = StartCoroutine(AppearDelay());
+                _appearDelayCoroutine = StartCoroutine(AppearDelay(_color));
             }
         }
 
-        private IEnumerator AppearDelay()
+        private IEnumerator AppearDelay(PlayerColor _playerColor)
         {
             float particleSystemTime = 0.25f;
             yield return new WaitForSeconds(particleSystemTime);
-            meshRenderer.enabled = true;
+
+            if (_playerColor == PlayerColor.White)
+            {
+                whitePlayer.SetActive(true);
+            }
+            else
+            {
+                blackPlayer.SetActive(true);
+            }
+
             boxCollider.enabled = true;
             particleSystemGameObject.SetActive(false);
             canMove = true;
-            bikeGameObject.SetActive(true);
         }
 
         /// <summary>
@@ -133,7 +139,7 @@ namespace Player
         /// </summary>
         private void ResetPlayer()
         {
-            ChangePlayer(rightPos, PlayerColor.Black, blackPlayerModel, particleLeftPos, particleLeftRotation, true);
+            ChangePlayer(rightPos, PlayerColor.Black, particleLeftPos, particleLeftRotation, true);
         }
     }
 }

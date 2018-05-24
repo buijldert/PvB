@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43eacba8487cdc45881a3d1d2a845a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolTime: 5
+  poolTime: 10
