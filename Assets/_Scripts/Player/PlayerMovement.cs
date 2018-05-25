@@ -18,14 +18,20 @@ namespace Player
         private PlayerColor playerColor = PlayerColor.Black;
 
         private BoxCollider boxCollider;
-        [Header("Positions")]
-        [SerializeField] private Vector3 leftPos, rightPos;
-        [SerializeField] private Vector3 particleLeftPos, particleRightPos;
-        [SerializeField] private Vector3 particleLeftRotation, particleRightRotation;
 
         private bool canMove;
 
         private Coroutine _appearDelayCoroutine;
+
+        [Header("Positions")]
+        [SerializeField] private Vector3 leftPos;
+        [SerializeField] private Vector3 rightPos;
+        [SerializeField] private Vector3 particleLeftPos;
+        [SerializeField] private Vector3 particleRightPos;
+        [SerializeField] private Vector3 particleLeftRotation;
+        [SerializeField] private Vector3 particleRightRotation;
+
+        
         [Header("GameObjects")]
         [SerializeField] private GameObject particleSystemGameObject;
         [SerializeField] private GameObject blackPlayer, whitePlayer;
@@ -114,6 +120,7 @@ namespace Player
                 _appearDelayCoroutine = StartCoroutine(AppearDelay(_color));
             }
         }
+
 
         private IEnumerator AppearDelay(PlayerColor _playerColor)
         {
