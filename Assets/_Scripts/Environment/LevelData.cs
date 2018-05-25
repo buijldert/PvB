@@ -1,9 +1,14 @@
-﻿using SynchronizerData;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/LevelData")]
-public class LevelData : ScriptableObject
+namespace Environment
 {
-    public string LevelName;
-    public AudioClip LevelAudio;
+    /// <summary>
+    /// This class is responsible for holding the level data of one level.
+    /// </summary>
+    [CreateAssetMenu(menuName = "Data/LevelData")]
+    public class LevelData : ScriptableObject
+    {
+        public string LevelName;
+        public AudioClip LevelAudio;
+    }
 }

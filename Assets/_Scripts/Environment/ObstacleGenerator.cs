@@ -1,21 +1,21 @@
-﻿using SynchronizerData;
-using System.Collections;
+﻿using Audio;
 using System.Collections.Generic;
-using UI;
 using UnityEngine;
 using Utility;
 
 namespace Environment
 {
+    /// <summary>
+    /// This class is responsible for spawning obstacles when the signal(beat) is given.
+    /// </summary>
     public class ObstacleGenerator : MonoBehaviour
     {
         [SerializeField] private GameObject[] obstaclePrefabs;
         private List<GameObject> obstacleClones = new List<GameObject>();
-        
-        private float backPosZ = 400f;
 
         private Coroutine spawningCoroutine;
 
+        private float backPosZ = 400f;
         private float[] xOffsets = new float[2] { -3f, 3f };
 
         private BeatObserver beatObserver;
@@ -95,6 +95,10 @@ namespace Environment
             obstacleClones.Add(obstacleClone);
         }
 
+        /// <summary>
+        /// Checks if there have been too many gates on one side of the road in other words makes random feel a little more fair.
+        /// </summary>
+        /// <returns>Returns the index of the obstacle that will be spawned.</returns>
         private int MakeRandomCheck()
         {
             int randomLane = Random.Range(0, 2);

@@ -5,6 +5,9 @@ using Utility;
 
 namespace UI
 {
+    /// <summary>
+    /// This class is responsible (re)starting and stopping the game.
+    /// </summary>
     public class RestartGameButton : MonoBehaviour
     {
         public static Action OnRestartGame;
@@ -31,9 +34,11 @@ namespace UI
             restartButton.interactable = false;
             buttonImage.enabled = false;
             buttonImage.sprite = resetButtonSprite;
-                
+
             if (OnRestartGame != null)
+            {
                 OnRestartGame();
+            }
         }
 
         /// <summary>

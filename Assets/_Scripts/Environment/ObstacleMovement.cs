@@ -2,6 +2,9 @@
 
 namespace Environment
 {
+    /// <summary>
+    /// This class is responsible for moving the obstacle backwards at a certain movment speed.
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     public class ObstacleMovement : MonoBehaviour
     {
@@ -19,7 +22,7 @@ namespace Environment
         }
 
         /// <summary>
-        /// Moves the obstacle towards the player.
+        /// Moves the obstacle backwards.
         /// </summary>
         private void MoveObstacle()
         {

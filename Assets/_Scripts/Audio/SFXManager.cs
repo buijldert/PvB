@@ -5,9 +5,11 @@ using UnityEngine.Audio;
 
 namespace Audio
 {
+    /// <summary>
+    /// This class is responsible for playing sound FX when needed and changing the volume of different audiomixer channels.
+    /// </summary>
     public class SFXManager : MonoBehaviour
     {
-        //Instance of this script.
         private static SFXManager s_Instance = null;
 
         private AudioMixer masterAudioMixer;
@@ -40,7 +42,7 @@ namespace Audio
         /// <summary>
         /// Removes the instance of the SoundManager 
         /// </summary>
-        void OnApplicationQuit()
+        private void OnApplicationQuit()
         {
             s_Instance = null;
         }
@@ -62,39 +64,39 @@ namespace Audio
             masterAudioMixer = Resources.Load<AudioMixer>("Mixer");
         }
 
-        public void ChangeGroupVolume(string groupVolumeName, float volumeValue)
+        public void ChangeGroupVolume(string _groupVolumeName, float _volumeValue)
         {
-            masterAudioMixer.SetFloat(groupVolumeName, volumeValue);
+            masterAudioMixer.SetFloat(_groupVolumeName, _volumeValue);
         }
         
         /// <summary>
         /// Plays the given at default volume and pitch if no volume and pitch are given.
         /// </summary>
-        /// <param name="clipToPlay">The clip that will be played.</param>
-        /// <param name="volume">The volume at which the clip will be played.</param>
-        /// <param name="pitch">The pitch at which the clip will be played.</param>
-        public void PlaySound(AudioClip clipToPlay, float volume = 1f, float pitch = 1f)
+        /// <param name="_clipToPlay">The clip that will be played.</param>
+        /// <param name="_volume">The volume at which the clip will be played.</param>
+        /// <param name="_pitch">The pitch at which the clip will be played.</param>
+        public void PlaySound(AudioClip _clipToPlay, float _volume = 1f, float _pitch = 1f)
         {
-            StartCoroutine(SimultaneousSound(clipToPlay, volume, pitch));
+            StartCoroutine(SimultaneousSound(_clipToPlay, _volume, _pitch));
         }
 
         /// <summary>
         /// Plays the given at default volume and pitch if no volume and pitch are given.
         /// Plays simultaneously with other sounds.
         /// </summary>
-        /// <param name="clipToPlay">The clip that will be played.</param>
-        /// <param name="volume">The volume at which the clip will be played.</param>
-        /// <param name="pitch">The pitch at which the clip will be played.</param>
-        private IEnumerator SimultaneousSound(AudioClip clipToPlay, float volume = 1f, float pitch = 1f)
+        /// <param name="_clipToPlay">The clip that will be played.</param>
+        /// <param name="_volume">The volume at which the clip will be played.</param>
+        /// <param name="_pitch">The pitch at which the clip will be played.</param>
+        private IEnumerator SimultaneousSound(AudioClip _clipToPlay, float _volume = 1f, float _pitch = 1f)
         {
             AudioSource tempAS = gameObject.AddComponent<AudioSource>();
-            tempAS.clip = clipToPlay;
-            tempAS.volume = volume;
-            tempAS.pitch = pitch;
-            tempAS.outputAudioMixerGroup = masterAudioMixer.FindMatchingGroups("SFX")[0];//masterAudioMixer.outputAudioMixerGroup;
+            tempAS.clip = _clipToPlay;
+            tempAS.volume = _volume;
+            tempAS.pitch = _pitch;
+            tempAS.outputAudioMixerGroup = masterAudioMixer.FindMatchingGroups("SFX")[0];
             tempAS.Play();
 
-            yield return new WaitForSeconds(clipToPlay.length);
+            yield return new WaitForSeconds(_clipToPlay.length);
             Destroy(tempAS);
         }
     }

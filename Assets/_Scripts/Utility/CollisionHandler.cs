@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utility
 {
+    /// <summary>
+    /// This class is responsible for handling the collision between the player and the gates.
+    /// </summary>
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {

@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using Environment;
+using System.Collections;
 using UI;
 using UnityEngine;
 using Utility;
 
 namespace Audio
 {
+    /// <summary>
+    /// This class is responsible for setting the current level through song and stopping/starting the background and spawning music.
+    /// </summary>
     public class MusicController : MonoBehaviour
     {
         [SerializeField] private LevelData currentLevelData;
@@ -14,9 +18,13 @@ namespace Audio
 
         private Coroutine musicDelayCoroutine;
 
-        public void SetCurrentLevelData(LevelData levelData)
+        /// <summary>
+        /// Sets the current leveldata to the given value.
+        /// </summary>
+        /// <param name="_levelData"></param>
+        public void SetCurrentLevelData(LevelData _levelData)
         {
-            currentLevelData = levelData;
+            currentLevelData = _levelData;
         }
 
         private void OnEnable()
@@ -31,7 +39,7 @@ namespace Audio
             RestartGameButton.OnRestartGame -= StartMusic;
         }
 
-        void Start()
+        private void Start()
         {
             mutedSource.clip = currentLevelData.LevelAudio;
             nonMutedSource.clip = currentLevelData.LevelAudio;
@@ -61,7 +69,9 @@ namespace Audio
         private void StopMusic()
         {
             if (musicDelayCoroutine != null)
+            {
                 StopCoroutine(musicDelayCoroutine);
+            }
             mutedSource.Stop();
             nonMutedSource.Stop();
         }

@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/LevelDataHolder")]
-public class LevelDataHolder : ScriptableObject
+namespace Environment
 {
-    public LevelData[] LevelData;
+    /// <summary>
+    /// This class is responsible for holding the leveldata of all levels.
+    /// </summary>
+    [CreateAssetMenu(menuName = "Data/LevelDataHolder")]
+    public class LevelDataHolder : ScriptableObject
+    {
+        public LevelData[] LevelData;
+    }
 }

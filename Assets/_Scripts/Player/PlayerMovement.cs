@@ -1,18 +1,22 @@
-﻿using DG.Tweening;
-using System.Collections;
+﻿using System.Collections;
 using UI;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utility;
 
 namespace Player
 {
+    /// <summary>
+    /// The PlayerColor enum is used to differentiate between the players alter egos.
+    /// </summary>
     public enum PlayerColor
     {
         Black,
         White
     }
-    
+
+    /// <summary>
+    /// This class is responsible for moving the player from right to left and the other way around with all the visuals that come with it.
+    /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
         private PlayerColor playerColor = PlayerColor.Black;
@@ -90,14 +94,14 @@ namespace Player
         /// Changes the player's position and color to the given values.
         /// </summary>
         /// <param name="_positionToMove">The position that the player will move to.</param>
-        /// <param name="_color">The PlayerColor that the player will be made.</param>
+        /// <param name="_playerColor">The PlayerColor that the player will be made.</param>
         /// <param name="_particlePosition">The position that the switch particle needs to be in.</param>
         /// <param name="_particleRotation">The rotation that the switch particle needs to be in.</param>
         /// <param name="_isReset">Whether the player is being reset to its normal position.</param>
-        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _color, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
+        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _playerColor, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
         {
             transform.position = _positionToMove;
-            playerColor = _color;
+            playerColor = _playerColor;
 
             canMove = false;
             if(_isReset)
@@ -116,12 +120,18 @@ namespace Player
 
                 boxCollider.enabled = false;
                 if (_appearDelayCoroutine != null)
+                {
                     StopCoroutine(_appearDelayCoroutine);
-                _appearDelayCoroutine = StartCoroutine(AppearDelay(_color));
+                }
+                _appearDelayCoroutine = StartCoroutine(AppearDelay(_playerColor));
             }
         }
 
-
+        /// <summary>
+        /// Makes the player appear after a certain delay to make the visuals more interesting.
+        /// </summary>
+        /// <param name="_playerColor"></param>
+        /// <returns></returns>
         private IEnumerator AppearDelay(PlayerColor _playerColor)
         {
             float particleSystemTime = 0.25f;

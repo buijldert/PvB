@@ -1,10 +1,9 @@
-﻿using System.Collections;
-
-namespace SynchronizerData {
-
+﻿namespace Audio
+{
 	// BeatValue determines which beat to synchronize with, and is specified for each BeatCounter instance.
 	// (A sequence of beat values are specified for PatternCounter instances).
-	public enum BeatValue {
+	public enum BeatValue
+    {
 		None,
 		SixteenthBeat,
 		SixteenthDottedBeat,
@@ -22,7 +21,8 @@ namespace SynchronizerData {
 	// This value is sent along with the notify message when a beat occurs so that different action
 	// may be taken for the different beat types.
 	// This information is stored in a beatMask field in each BeatObserver instance.
-	public enum BeatType {
+	public enum BeatType
+    {
 		None		= 0,
 		OffBeat		= 1,
 		OnBeat		= 2,
@@ -33,9 +33,11 @@ namespace SynchronizerData {
 	// The decimal values associated with each beat value are used in calculating the sample position in the audio
 	// where the beat will occur. The values array acts as a LUT, with index positions corresponding to BeatValue.
 	// These values are relative to quarter beats (which have a value of 1).
-	public struct BeatDecimalValues {
+	public struct BeatDecimalValues
+    {
 		private static float dottedBeatModifier = 1.5f;
-		public static float[] values = {
+		public static float[] values = 
+            {
 			0f,
 			4f, 4f/dottedBeatModifier,			// sixteenth, dotted sixteenth
 			2f, 2f/dottedBeatModifier,			// eighth, dotted eighth
@@ -44,5 +46,4 @@ namespace SynchronizerData {
 			0.25f, 0.25f/dottedBeatModifier		// whole, dotted whole
 		};
 	}
-
 }

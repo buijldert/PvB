@@ -24,7 +24,9 @@ namespace Utility
         {
             yield return new WaitForSeconds(poolTime);
             if (OnObstacleCollection != null)
+            {
                 OnObstacleCollection(gameObject);
+            }
             ObjectPool.Instance.PoolObject(gameObject);
         }
     }
