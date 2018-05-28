@@ -8,6 +8,7 @@ namespace UI.Controllers
     {
         Home,
         Shop,
+        Code,
     }
 
     public class UIController : MonoBehaviour
