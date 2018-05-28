@@ -11,21 +11,11 @@ namespace Audio
     /// </summary>
     public class MusicController : MonoBehaviour
     {
-        [SerializeField] private LevelData currentLevelData;
 
         [SerializeField] private AudioSource mutedSource;
         [SerializeField] private AudioSource nonMutedSource;
 
         private Coroutine musicDelayCoroutine;
-
-        /// <summary>
-        /// Sets the current leveldata to the given value.
-        /// </summary>
-        /// <param name="_levelData"></param>
-        public void SetCurrentLevelData(LevelData _levelData)
-        {
-            currentLevelData = _levelData;
-        }
 
         private void OnEnable()
         {
@@ -39,10 +29,10 @@ namespace Audio
             RestartGameButton.OnRestartGame -= StartMusic;
         }
 
-        private void Start()
+        private void ChangeAudio(AudioClip _clipToPlay)
         {
-            mutedSource.clip = currentLevelData.LevelAudio;
-            nonMutedSource.clip = currentLevelData.LevelAudio;
+            mutedSource.clip = _clipToPlay;
+            nonMutedSource.clip = _clipToPlay;
         }
 
         /// <summary>

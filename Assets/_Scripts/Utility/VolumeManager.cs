@@ -1,6 +1,4 @@
 ﻿using Audio;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +11,19 @@ namespace Utility
         [SerializeField] private Slider sfxVolumeSlider;
         [SerializeField] private Slider musicVolumeSlider;
 
-        [Header("Volumes")]
-        [Range(0, 100)]
-        [SerializeField] private int masterVolume;
-        [Range(0, 100)]
-        [SerializeField] private int sfxVolume;
-        [Range(0, 100)]
-        [SerializeField] private int musicVolume;
-
         public void ChangeMasterVolume()
         {
             SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(masterVolumeSlider.value));
+        }
+
+        public void ChangeSFXVolume()
+        {
+            SFXManager.instance.ChangeGroupVolume("SFXVolume", SoundHelper.VolumeToDecibel(sfxVolumeSlider.value));
+        }
+
+        public void ChangeMusicVolume()
+        {
+            SFXManager.instance.ChangeGroupVolume("MusicVolume", SoundHelper.VolumeToDecibel(musicVolumeSlider.value));
         }
     }
 }
