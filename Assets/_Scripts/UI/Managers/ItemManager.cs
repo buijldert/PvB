@@ -1,22 +1,50 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 
 public class ItemManager : MonoBehaviour 
 {
+    public static ItemManager instance;
+
     [SerializeField] private Item[] items;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        instance = this;
+    }
 
     public void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        UpdateItemEntries();
+    }
 
-        //for (int i = 0; i < items.Length; i++)
-        //{
-        //    PlayerPrefHelper.SetBool(items[i].Key, items[i].Unlocked);
-        //}
+    public void SetItemSelected(string key)
+    {
+        foreach(Item item in GetItemArray().Where(item => item.Key != key))
+        {
+            PlayerPrefHelper.SetBool(item.Key + "_Selected", false);
+        }
 
+        PlayerPrefHelper.SetBool(key + "_Selected", true);
+        UpdateItemEntries();
+    }
+
+    private void UpdateItemEntries()
+    {
         for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log("AAAHHH: " + items[i].Key + " - "+ PlayerPrefHelper.GetBool(items[i].Key));
+            items[i].Unlocked = PlayerPrefHelper.GetBool(items[i].Key);
+            items[i].Selected = PlayerPrefHelper.GetBool(items[i].Key + "_Selected");
         }
+    }
+
+    public Item[] GetItemArray()
+    {
+        return items;
     }
 }
 
@@ -25,4 +53,10 @@ public struct Item
 {
     public string Key;
     public bool Unlocked;
+    public bool Selected;
+
+    public void SetSelected(bool isSelected)
+    {
+        Selected = isSelected;
+    }
 }
