@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UI.Base;
 using UnityEngine;
+using System;
 
 public class CodeManager : ScreenManager 
 {
@@ -9,11 +10,7 @@ public class CodeManager : ScreenManager
 
     [SerializeField] private InputField codeInput;
 
-    //REMOVE
-    private void OnEnable()
-    {
-        codeInput.onEndEdit.AddListener((x) => OnCodeInputEditEnd(x));
-    }
+    public static Action onNewCodeUsed;
 
     protected override void Awake()
     {
@@ -37,7 +34,7 @@ public class CodeManager : ScreenManager
         {
             PlayerPrefHelper.SetBool(code, true);
 
-            Debug.Log("Test");
+            ItemManager.instance.UpdateItemEntries();
         }
         else if (PlayerPrefs.HasKey(code) && PlayerPrefHelper.GetBool(code) == true)
         {

@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &74763971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2007,6 +2007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114699616}
   - component: {fileID: 2114699615}
+  - component: {fileID: 2114699620}
   - component: {fileID: 2114699614}
   - component: {fileID: 2114699617}
   - component: {fileID: 2114699618}
@@ -2050,6 +2051,7 @@ MonoBehaviour:
   holders:
   - {fileID: 74763970}
   - {fileID: 2136552339}
+  - {fileID: 294228371}
 --- !u!4 &2114699616
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,6 +2077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemHolder: {fileID: 327014784}
+  codeInput: {fileID: 1703961513}
 --- !u!114 &2114699618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2102,9 +2105,26 @@ MonoBehaviour:
   - Key: Don
     Unlocked: 0
     Selected: 0
+    ItemTexture: {fileID: 0}
   - Key: Diablo
     Unlocked: 0
     Selected: 0
+    ItemTexture: {fileID: 0}
+  - Key: Hex
+    Unlocked: 0
+    Selected: 0
+    ItemTexture: {fileID: 0}
+--- !u!114 &2114699620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2114699613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4141c6b26c834769a7204d7b7e155d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136552339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2136552340
 RectTransform:
   m_ObjectHideFlags: 0

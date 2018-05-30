@@ -106,6 +106,7 @@ namespace UI.Managers
         private void OnSettingsButtonClicked()
         {
             DoButtonAnimation(menuButtons[2]);
+            UIController.instance.GoToSettingsScreen();
         }
 
         private void DoButtonAnimation(Button button)
@@ -125,7 +126,7 @@ namespace UI.Managers
 
             Sequence s = DOTween.Sequence();
 
-            // Move the button we clikced to the middle and scale it
+            // Move the button we clicked to the middle and scale it
             s.Append(rect.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
             s.Join(rect.DOSizeDelta(MENU_BIG_BUTTON_SIZE, 1));
 
@@ -158,7 +159,7 @@ namespace UI.Managers
 
             s.AppendCallback(() => 
             {
-                foreach (Button btn in menuButtons)
+                foreach (Button btn in menuButtons.Where(btn => btn.GetComponent<RectTransform>().anchoredPosition != MENU_MIDDLE_POSITION))
                 {
                     btn.interactable = true;
                 }

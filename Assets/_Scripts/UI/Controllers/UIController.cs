@@ -9,6 +9,7 @@ namespace UI.Controllers
         Home,
         Shop,
         Code,
+        Settings,
     }
 
     public class UIController : MonoBehaviour
@@ -55,6 +56,16 @@ namespace UI.Controllers
         public void GoToShopScreen()
         {
             SetState(MenuState.Shop);
+        }
+
+        public void GoToCodeScreen()
+        {
+            SetState(MenuState.Code);
+        }
+
+        public void GoToSettingsScreen()
+        {
+            SetState(MenuState.Settings);
         }
         #endregion
     }

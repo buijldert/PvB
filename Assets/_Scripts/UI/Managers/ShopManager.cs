@@ -14,6 +14,14 @@ public class ShopManager : ScreenManager
 
     private List<Item> unlockedItems = new List<Item>();
 
+    [SerializeField] private Button codeInput;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        codeInput.onClick.AddListener(() => OnCodeInputButtonClicked());
+    }
+
     protected override void Awake()
     {
         if (instance != null && instance != this)
@@ -27,6 +35,12 @@ public class ShopManager : ScreenManager
 
     private void Start()
     {
+        UpdateUnlockedItemsList();
+    }
+
+    private void UpdateUnlockedItemsList()
+    {
+        unlockedItems.Clear();
         foreach (Item item in ItemManager.instance.GetItemArray().Where(item => item.Unlocked == true))
         {
             unlockedItems.Add(item);
@@ -35,6 +49,7 @@ public class ShopManager : ScreenManager
 
     protected override void StartScreen()
     {
+        UpdateUnlockedItemsList();
         DoStartupAnimation();
     }
 
@@ -71,11 +86,21 @@ public class ShopManager : ScreenManager
         }
     }
 
+    private void OnCodeInputButtonClicked()
+    {
+        UIController.instance.GoToCodeScreen();
+    }
+
     protected override void StopScreen()
     {
         foreach (Transform child in itemHolder)
         {
             Destroy(child.gameObject);
         }
+    }
+
+    protected override void OnDisable()
+    {
+        codeInput.onClick.RemoveAllListeners();
     }
 }

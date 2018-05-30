@@ -15,11 +15,19 @@ public class ItemManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         instance = this;
+
+        UpdateItemEntries();
     }
 
     public void Start()
     {
-        UpdateItemEntries();
+        //PlayerPrefs.DeleteAll();
+
+        //for (int i = 0; i < items.Length; i++)
+        //{
+        //    PlayerPrefHelper.SetBool(items[i].Key, false);
+        //    PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
+        //}
     }
 
     public void SetItemSelected(string key)
@@ -33,7 +41,7 @@ public class ItemManager : MonoBehaviour
         UpdateItemEntries();
     }
 
-    private void UpdateItemEntries()
+    public void UpdateItemEntries()
     {
         for (int i = 0; i < items.Length; i++)
         {
@@ -54,6 +62,7 @@ public struct Item
     public string Key;
     public bool Unlocked;
     public bool Selected;
+    public Texture ItemTexture;
 
     public void SetSelected(bool isSelected)
     {
