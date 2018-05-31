@@ -19,13 +19,13 @@ namespace Utility
 
         private void OnEnable()
         {
-            RestartGameButton.OnRestartGame += PlayPlaylist;
+            HomeManager.OnRestartGame += PlayPlaylist;
             CollisionHandler.OnDeadlyCollision += StopPlaylist;
         }
 
         private void OnDisable()
         {
-            RestartGameButton.OnRestartGame -= PlayPlaylist;
+            HomeManager.OnRestartGame -= PlayPlaylist;
             CollisionHandler.OnDeadlyCollision -= StopPlaylist;
         }
 

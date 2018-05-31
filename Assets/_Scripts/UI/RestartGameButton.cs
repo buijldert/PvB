@@ -10,7 +10,7 @@ namespace UI
     /// </summary>
     public class RestartGameButton : MonoBehaviour
     {
-        public static Action OnRestartGame;
+        //public static Action OnRestartGame;
         
         [SerializeField] private Sprite resetButtonSprite;
         [SerializeField] private Image buttonImage;
@@ -35,10 +35,10 @@ namespace UI
             buttonImage.enabled = false;
             buttonImage.sprite = resetButtonSprite;
 
-            if (OnRestartGame != null)
-            {
-                OnRestartGame();
-            }
+            //if (OnRestartGame != null)
+            //{
+            //    OnRestartGame();
+            //}
         }
 
         /// <summary>

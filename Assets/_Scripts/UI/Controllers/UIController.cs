@@ -10,6 +10,7 @@ namespace UI.Controllers
         Shop,
         Code,
         Settings,
+        GameView,
     }
 
     public class UIController : MonoBehaviour
@@ -66,6 +67,11 @@ namespace UI.Controllers
         public void GoToSettingsScreen()
         {
             SetState(MenuState.Settings);
+        }
+
+        public void GoToGameView()
+        {
+            SetState(MenuState.GameView);
         }
         #endregion
     }
