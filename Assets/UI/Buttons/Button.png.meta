@@ -145,7 +145,7 @@ TextureImporter:
     21300276: Button_138
     21300278: Button_139
     21300280: Button_140
-    21300282: Button_141
+    21300282: PauseButton
     21300284: Button_142
     21300286: Button_143
     21300288: Button_144
@@ -2259,7 +2259,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Button_141
+      name: PauseButton
       rect:
         serializedVersion: 2
         x: 194

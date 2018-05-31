@@ -14,52 +14,45 @@ namespace Audio
         public delegate void AudioStartAction();
         public static event AudioStartAction OnAudioStart;
 
-        [SerializeField] private AudioSource mutedSource;
-        [SerializeField] private AudioSource nonMutedSource;
-
-        private Coroutine musicDelayCoroutine;
+        [SerializeField] private AudioSource audioSource;
 
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
-            //RestartGameButton.OnRestartGame += StartMusic;
             PlaylistManager.OnChangeSong += ChangeAudio;
+            PauseGameManager.OnPauseGame += PauseMusic;
+            PauseGameManager.OnResumeGame += PlayMusic;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;
-            //RestartGameButton.OnRestartGame -= StartMusic;
             PlaylistManager.OnChangeSong -= ChangeAudio;
+            PauseGameManager.OnPauseGame -= PauseMusic;
+            PauseGameManager.OnResumeGame -= PlayMusic;
         }
 
         private void ChangeAudio(AudioClip _clipToPlay)
         {
-            mutedSource.clip = _clipToPlay;
-            nonMutedSource.clip = _clipToPlay;
-            StartMusic();
+            audioSource.clip = _clipToPlay;
+            PlayMusic();
         }
 
         /// <summary>
         /// Plays the background music.
         /// </summary>
-        private void StartMusic()
+        private void PlayMusic()
         {
-            musicDelayCoroutine = StartCoroutine(PlayMusicDelay());
-        }
-
-        /// <summary>
-        /// Plays the real music at a delay.
-        /// </summary>
-        private IEnumerator PlayMusicDelay()
-        {
-            mutedSource.Play();
+            audioSource.Play();
             if (OnAudioStart != null)
             {
                 OnAudioStart();
             }
-            yield return new WaitForSeconds(6f);
-            nonMutedSource.Play();
+        }
+
+        private void PauseMusic()
+        {
+            audioSource.Pause();
         }
 
         /// <summary>
@@ -67,12 +60,7 @@ namespace Audio
         /// </summary>
         private void StopMusic()
         {
-            if (musicDelayCoroutine != null)
-            {
-                StopCoroutine(musicDelayCoroutine);
-            }
-            mutedSource.Stop();
-            nonMutedSource.Stop();
+            audioSource.Stop();
         }
     }
 }
