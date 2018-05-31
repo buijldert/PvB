@@ -10,7 +10,17 @@ public class SettingScreenManager : ScreenManager
 {
     public static SettingScreenManager instance;
 
-    [SerializeField] private GameObject[] settingsButtons;
+    [SerializeField] private Button[] settingsButtons;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        settingsButtons[0].onClick.AddListener(() => OnSoundButtonClicked());
+        settingsButtons[1].onClick.AddListener(() => OnVibrationButtonClicked());
+        settingsButtons[2].onClick.AddListener(() => OnAchievementButtonClicked());
+        settingsButtons[3].onClick.AddListener(() => OnCreditsButtonClicked());
+    }
 
     protected override void Awake()
     {
@@ -32,15 +42,38 @@ public class SettingScreenManager : ScreenManager
     {
         int index = 0;
 
-        foreach (GameObject button in settingsButtons)
+        foreach (Button button in settingsButtons)
         {
             Sequence s = DOTween.Sequence();
 
-            s.Append(button.GetComponent<Image>().DOFade(1, 0.2f));
-            s.Join(button.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (index * -325)), 1f / settingsButtons.Length));
+            button.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
+
+            s.Append(button.GetComponent<Image>().DOFade(1, 0.75f));
+            s.Join(button.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (index * -325)), 0.5f));
 
             index++;
         }
+    }
+
+    private void OnSoundButtonClicked()
+    {
+        
+    }
+
+    private void OnVibrationButtonClicked()
+    {
+        
+    }
+
+    private void OnAchievementButtonClicked()
+    {
+        
+    }
+
+    private void OnCreditsButtonClicked()
+    {
+        
     }
 
     protected override void StopScreen()

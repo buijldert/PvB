@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour 
@@ -17,17 +16,6 @@ public class ItemManager : MonoBehaviour
         instance = this;
 
         UpdateItemEntries();
-    }
-
-    public void Start()
-    {
-        //PlayerPrefs.DeleteAll();
-
-        //for (int i = 0; i < items.Length; i++)
-        //{
-        //    PlayerPrefHelper.SetBool(items[i].Key, false);
-        //    PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
-        //}
     }
 
     public void SetItemSelected(string key)
