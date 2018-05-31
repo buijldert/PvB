@@ -18,6 +18,10 @@ namespace UI.Controllers
         public static UIController instance;
         public static Action<MenuState> OnScreenChanged;
 
+        [SerializeField] private GameObject background;
+        [SerializeField] private GameObject codeScreen;
+        [SerializeField] private GameObject controller;
+
         [SerializeField] private GameObject[] holders;
 
         private void Awake()
@@ -33,6 +37,19 @@ namespace UI.Controllers
         {
             TurnHoldersInactive();
             holders[(int)state].SetActive(true);
+
+            if(state == MenuState.Code)
+            {
+                background.SetActive(false);
+                codeScreen.SetActive(true);
+                controller.SetActive(false);
+            }
+            else
+            {
+                background.SetActive(true);
+                codeScreen.SetActive(false);
+                controller.SetActive(true);
+            }
 
             if (OnScreenChanged != null)
             {
