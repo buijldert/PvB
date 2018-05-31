@@ -57,6 +57,7 @@ public class ShopManager : ScreenManager
     private void DoStartupAnimation()
     {
         int index = 0;
+        unlockedItemObjects.Clear();
 
         foreach (Item item in unlockedItems)
         {
