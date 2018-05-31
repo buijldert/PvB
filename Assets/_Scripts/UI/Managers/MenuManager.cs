@@ -83,10 +83,17 @@ namespace UI.Managers
             openingSequence.Append(menuButtons[0].GetComponent<Image>().DOFade(1, 1));
             openingSequence.Append(menuButtons[1].GetComponent<Image>().DOFade(1, 2));
             openingSequence.Join(menuButtons[2].GetComponent<Image>().DOFade(1, 2));
+
+            openingSequence.AppendCallback(() => 
+            {
+                HomeManager.instance.DoAnimation();
+            });
         }
 
         private void OnDemoButtonClicked()
         {
+            UIController.instance.GoToHomeScreen();
+
             textFade.Append(pressToPlayText.DOFade(0, 2));
             textFade.AppendInterval(0.2f);
             textFade.Kill();

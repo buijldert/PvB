@@ -3,6 +3,7 @@ using UI.Base;
 using UI.Controllers;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class HomeManager : ScreenManager 
 {
@@ -16,8 +17,12 @@ public class HomeManager : ScreenManager
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject objectPool;
 
+    [SerializeField] private Image logo;
+
+
     protected override void OnEnable()
     {
+        base.OnEnable();
         startbutton.onClick.AddListener(() => OnStartButtonClicked());
     }
 
@@ -40,7 +45,17 @@ public class HomeManager : ScreenManager
 
     protected override void StartScreen()
     {
-        
+        Debug.Log("start");
+
+        DoAnimation();
+    }
+
+    public void DoAnimation()
+    {
+        Sequence s = DOTween.Sequence();
+
+        s.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
+        s.Join(logo.DOFade(1, 1));
     }
 
     private void OnStartButtonClicked()
@@ -64,6 +79,15 @@ public class HomeManager : ScreenManager
 
     protected override void StopScreen()
     {
-        
+        Sequence s = DOTween.Sequence();
+
+        s.Append(startbutton.GetComponent<Image>().DOFade(0, 0.1f));
+        s.Join(logo.DOFade(0, 0.1f));
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        startbutton.onClick.RemoveAllListeners();
     }
 }
