@@ -19,33 +19,40 @@ namespace Audio
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
-            //RestartGameButton.OnRestartGame += StartMusic;
             PlaylistManager.OnChangeSong += ChangeAudio;
+            PauseGameManager.OnPauseGame += PauseMusic;
+            PauseGameManager.OnResumeGame += PlayMusic;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;
-            //RestartGameButton.OnRestartGame -= StartMusic;
             PlaylistManager.OnChangeSong -= ChangeAudio;
+            PauseGameManager.OnPauseGame -= PauseMusic;
+            PauseGameManager.OnResumeGame -= PlayMusic;
         }
 
         private void ChangeAudio(AudioClip _clipToPlay)
         {
             audioSource.clip = _clipToPlay;
-            StartMusic();
+            PlayMusic();
         }
 
         /// <summary>
         /// Plays the background music.
         /// </summary>
-        private void StartMusic()
+        public void PlayMusic()
         {
             audioSource.Play();
             if (OnAudioStart != null)
             {
                 OnAudioStart();
             }
+        }
+
+        public void PauseMusic()
+        {
+            audioSource.Pause();
         }
 
         /// <summary>
