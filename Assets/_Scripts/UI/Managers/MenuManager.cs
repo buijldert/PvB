@@ -60,6 +60,7 @@ namespace UI.Managers
             textFade.OnKill(() =>
             {
                 pressToPlayText.gameObject.SetActive(false);
+                demoButton.gameObject.SetActive(false);
                 DoOpeningSequence();
             });
         }

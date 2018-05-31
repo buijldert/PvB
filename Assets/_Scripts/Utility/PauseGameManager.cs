@@ -10,20 +10,28 @@ namespace Utility
     /// </summary>
     public class PauseGameManager : MonoBehaviour
     {
+        public static PauseGameManager instance;
+
         public delegate void PauseGameAction();
         public static event PauseGameAction OnPauseGame;
 
         public delegate void ResumeGameAction();
         public static event ResumeGameAction OnResumeGame;
 
-        [SerializeField] private GameObject pauseScreen;
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
+        }
 
         /// <summary>
         /// Pauses the game.
         /// </summary>
         public void PauseGame()
         {
-            pauseScreen.SetActive(true);
             if (OnPauseGame != null)
             {
                 OnPauseGame();
@@ -41,7 +49,6 @@ namespace Utility
             {
                 OnResumeGame();
             }
-            pauseScreen.SetActive(false);
         }
     }
 }

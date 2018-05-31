@@ -12,9 +12,12 @@ public class GameviewManager : ScreenManager
     [SerializeField] private Text scoreText;
 
     private int score;
+    private bool b;
 
     protected override void OnEnable()
     {
+        pauseButton.onClick.AddListener(() => OnPauseButtonClicked());
+
         CollisionHandler.OnFadeThroughCollision += UpdateScore;
     }
 
@@ -46,6 +49,20 @@ public class GameviewManager : ScreenManager
         scoreText.text = score.ToString();
     }
 
+    private void OnPauseButtonClicked()
+    {
+        b = !b;
+
+        if(b)
+        {
+            PauseGameManager.instance.PauseGame();
+        }
+        else
+        {
+            PauseGameManager.instance.ResumeGame();
+        }
+    }
+
     protected override void StopScreen()
     {
         
@@ -53,6 +70,8 @@ public class GameviewManager : ScreenManager
 
     protected override void OnDisable()
     {
+        pauseButton.onClick.RemoveAllListeners();
+
         CollisionHandler.OnFadeThroughCollision -= UpdateScore;
     }
 }
