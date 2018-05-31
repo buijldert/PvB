@@ -43,17 +43,17 @@ namespace Audio
         /// Initializes and starts the coroutine that checks for beat occurrences in the pattern. The nextBeatSample field is initialized to 
         /// exactly match up with the sample that corresponds to the time the audioSource clip started playing (via PlayScheduled).
         /// </summary>
-        /// <param name="syncTime">Equal to the audio system's dsp time plus the specified delay time.</param>
-        void StartPatternCheck(double syncTime)
+        /// <param name="_syncTime">Equal to the audio system's dsp time plus the specified delay time.</param>
+        private void StartPatternCheck(double _syncTime)
         {
-            nextBeatSample = (float)syncTime * audioSource.clip.frequency;
+            nextBeatSample = (float)_syncTime * audioSource.clip.frequency;
             StartCoroutine(PatternCheck());
         }
 
         /// <summary>
         /// Subscribe the PatternCheck() coroutine to the beat synchronizer's event.
         /// </summary>
-        void OnEnable()
+        private void OnEnable()
         {
             BeatSynchronizer.OnAudioStart += StartPatternCheck;
         }
@@ -65,7 +65,7 @@ namespace Audio
         /// This should NOT (and does not) call StopCoroutine. It simply removes the function that was added to the
         /// event delegate in OnEnable().
         /// </remarks>
-        void OnDisable()
+        private void OnDisable()
         {
             BeatSynchronizer.OnAudioStart -= StartPatternCheck;
         }
@@ -80,9 +80,9 @@ namespace Audio
         /// required, WaitForSeconds() can be replaced by WaitForFixedUpdate(), which will place this coroutine's execution
         /// right after FixedUpdate().
         /// </remarks>
-        IEnumerator PatternCheck()
+        private IEnumerator PatternCheck()
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.1f);
             while (audioSource.isPlaying)
             {
                 currentSample = (float)AudioSettings.dspTime * audioSource.clip.frequency;
@@ -101,6 +101,5 @@ namespace Audio
                 yield return new WaitForSeconds(loopTime / 1000f);
             }
         }
-
     }
 }

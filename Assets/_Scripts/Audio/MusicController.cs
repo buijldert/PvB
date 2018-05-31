@@ -11,6 +11,8 @@ namespace Audio
     /// </summary>
     public class MusicController : MonoBehaviour
     {
+        public delegate void AudioStartAction();
+        public static event AudioStartAction OnAudioStart;
 
         [SerializeField] private AudioSource mutedSource;
         [SerializeField] private AudioSource nonMutedSource;
@@ -20,19 +22,22 @@ namespace Audio
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
-            RestartGameButton.OnRestartGame += StartMusic;
+            //RestartGameButton.OnRestartGame += StartMusic;
+            PlaylistManager.OnChangeSong += ChangeAudio;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;
-            RestartGameButton.OnRestartGame -= StartMusic;
+            //RestartGameButton.OnRestartGame -= StartMusic;
+            PlaylistManager.OnChangeSong -= ChangeAudio;
         }
 
         private void ChangeAudio(AudioClip _clipToPlay)
         {
             mutedSource.clip = _clipToPlay;
             nonMutedSource.clip = _clipToPlay;
+            StartMusic();
         }
 
         /// <summary>
@@ -40,7 +45,6 @@ namespace Audio
         /// </summary>
         private void StartMusic()
         {
-            mutedSource.Play();
             musicDelayCoroutine = StartCoroutine(PlayMusicDelay());
         }
 
@@ -49,6 +53,11 @@ namespace Audio
         /// </summary>
         private IEnumerator PlayMusicDelay()
         {
+            mutedSource.Play();
+            if (OnAudioStart != null)
+            {
+                OnAudioStart();
+            }
             yield return new WaitForSeconds(6f);
             nonMutedSource.Play();
         }

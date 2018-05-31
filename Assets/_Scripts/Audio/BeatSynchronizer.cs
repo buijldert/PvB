@@ -18,12 +18,14 @@ namespace Audio
 
         private void OnEnable()
         {
-            RestartGameButton.OnRestartGame += StartBeatCheck;
+            //RestartGameButton.OnRestartGame += StartBeatCheck;
+            MusicController.OnAudioStart += StartBeatCheck;
         }
 
         private void OnDisable()
         {
-            RestartGameButton.OnRestartGame -= StartBeatCheck;
+            //RestartGameButton.OnRestartGame -= StartBeatCheck;
+            MusicController.OnAudioStart -= StartBeatCheck;
         }
 
         private void StartBeatCheck()

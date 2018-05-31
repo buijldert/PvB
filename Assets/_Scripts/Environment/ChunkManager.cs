@@ -13,7 +13,7 @@ namespace Environment
         [SerializeField] private GameObject[] chunkPrefabs;
         private List<GameObject> chunkClones = new List<GameObject>();
 
-        [SerializeField] private float movementSpeed = 30f;
+        [SerializeField] private float movementSpeed = 60f;
         private float outOfScreenPosZ = 400f;
 
         private bool canMove;

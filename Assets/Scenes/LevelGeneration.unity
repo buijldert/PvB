@@ -876,7 +876,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243105015664019816, guid: b3f32fa90a7850d45bfd6a973f4b612b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3af9719ec128cca4fad4205209ec60e6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1099,7 +1099,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243105015664019816, guid: b3f32fa90a7850d45bfd6a973f4b612b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 930689e07324b004fb4baff9de148a94, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3af9719ec128cca4fad4205209ec60e6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1414,7 +1414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1444247348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef19db52c83a394e892ab63cda0aafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelData: {fileID: 0}
   mutedSource: {fileID: 905325564}
   nonMutedSource: {fileID: 1135757770}
 --- !u!1 &1738962272
@@ -1811,7 +1810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: a6a14dd98180c9c4cbcd5181814fbb74, type: 2}
+  profile: {fileID: 11400000, guid: 76c868a00ba9bb945b13fa98b5ec7196, type: 2}
 --- !u!114 &1738962278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,6 +1917,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1853824711}
+--- !u!1 &1939519817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1939519819}
+  - component: {fileID: 1939519818}
+  m_Layer: 0
+  m_Name: PlaylistManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1939519818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1939519817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02825af73be4dbe48b4d91720b5ad3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songs:
+  - {fileID: 8300000, guid: 2aea2adb2cd10a44fb1533cc2242f941, type: 3}
+  - {fileID: 8300000, guid: 4ae333177e0ffc6498423aef45054597, type: 3}
+  - {fileID: 8300000, guid: 7ac291380cdd2e94f920fd996c22e3de, type: 3}
+  - {fileID: 8300000, guid: 1e7b671bbc3c3b347a6996094d3afb9a, type: 3}
+  - {fileID: 8300000, guid: 6efd6fb1f3e9efd469a2de1c051baa93, type: 3}
+  - {fileID: 8300000, guid: 7b4478777868aa24ab023d018f6905a4, type: 3}
+  - {fileID: 8300000, guid: e51289d8a78ef6848bef3fb46ce6eede, type: 3}
+  - {fileID: 8300000, guid: 90af3849b4e16214bae85362e0b94c51, type: 3}
+  - {fileID: 8300000, guid: 046c08ff5a2ae494eb9db5aac4c32be7, type: 3}
+  - {fileID: 8300000, guid: ac29be4aa87dd1640bf2448a9a71ee7f, type: 3}
+  - {fileID: 8300000, guid: f01c7751b33144942a332d75c2fd361a, type: 3}
+  - {fileID: 8300000, guid: c070bbf2e9be4b246ba4bde1a87e2f43, type: 3}
+  - {fileID: 8300000, guid: 90bf0a00bb1526b46903940ff21480b2, type: 3}
+  - {fileID: 8300000, guid: b7a31e3e766e98347b5ffb6cd0dfdf32, type: 3}
+  - {fileID: 8300000, guid: 1586170a78c2f1442afa502c3ae84482, type: 3}
+  - {fileID: 8300000, guid: b8bbf5a56f08d0845982c7e76d4505ed, type: 3}
+  - {fileID: 8300000, guid: 7ca7a22362766254ead0e72ed8c419ca, type: 3}
+  - {fileID: 8300000, guid: c951e3d81f3174e4396e98039665b59e, type: 3}
+--- !u!4 &1939519819
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1939519817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2036798740
 Prefab:
   m_ObjectHideFlags: 0
