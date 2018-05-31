@@ -2198,7 +2198,7 @@ MonoBehaviour:
         m_MethodName: SwitchOutfit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 0e2f0a2ff6ec74d4f89ae09247f876f2,
+          m_ObjectArgument: {fileID: 2100000, guid: b1b2385e12d13b04b94759f9da54555a,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
