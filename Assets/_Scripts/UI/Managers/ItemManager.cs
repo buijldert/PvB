@@ -18,6 +18,17 @@ public class ItemManager : MonoBehaviour
         UpdateItemEntries();
     }
 
+    private void Start()
+    {
+        //PlayerPrefs.DeleteAll();
+
+        //for (int i = 0; i < items.Length; i++)
+        //{
+        //    PlayerPrefHelper.SetBool(items[i].Key, false);
+        //    PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
+        //}
+    }
+
     public void SetItemSelected(string key)
     {
         foreach(Item item in GetItemArray().Where(item => item.Key != key))

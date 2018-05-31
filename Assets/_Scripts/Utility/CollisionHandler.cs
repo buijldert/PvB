@@ -31,7 +31,15 @@ namespace Utility
                 (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.White))
             {
                 if (OnDeadlyCollision != null)
+                {
                     OnDeadlyCollision();
+
+                    if(SettingsController.GetVibrationState())
+                    {
+                        Handheld.Vibrate();
+                    }
+                }
+                    
             }
             else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
             {

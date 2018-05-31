@@ -19,7 +19,14 @@ namespace Utility
         /// </summary>
         public void ChangeMasterVolume()
         {
-            SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(masterVolumeSlider.value));
+            if(SettingsController.GetMuteState())
+            {
+                SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(0));
+            }
+            else
+            {
+                SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(1));
+            }
         }
 
         /// <summary>

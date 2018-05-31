@@ -58,12 +58,12 @@ public class SettingScreenManager : ScreenManager
 
     private void OnSoundButtonClicked()
     {
-        
+        SettingsController.SetMute(!SettingsController.GetMuteState());
     }
 
     private void OnVibrationButtonClicked()
     {
-        
+        SettingsController.SetVibration(!SettingsController.GetVibrationState());
     }
 
     private void OnAchievementButtonClicked()
