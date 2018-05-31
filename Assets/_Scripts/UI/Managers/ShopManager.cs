@@ -77,7 +77,7 @@ public class ShopManager : ScreenManager
 
             RectTransform rect = g.GetComponent<RectTransform>();
 
-            txt.text = item.Key;
+            txt.text = item.ItemName;
             g.transform.SetParent(itemHolder);
 
             rect.localScale = new Vector3(1, 1, 1);
