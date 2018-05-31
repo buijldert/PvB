@@ -5,9 +5,11 @@ using Utility;
 
 namespace Player
 {
+    /// <summary>
+    /// This class is respnsible for keeping of -and displaying the score that the player has scored.
+    /// </summary>
     public class PlayerScore : MonoBehaviour
     {
-
         private int score;
         
         [SerializeField]private Text scoreText;

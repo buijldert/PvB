@@ -1,11 +1,12 @@
 ﻿using Player;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Utility
 {
+    /// <summary>
+    /// This class is responsible for handling the collision between the player and the gates.
+    /// </summary>
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {
@@ -21,13 +22,13 @@ namespace Utility
         }
 
         /// <summary>
-        /// Handles the collision of the player with the differenc obstacles.
+        /// Handles the collision of the player with the different obstacles.
         /// </summary>
         /// <param name="_collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider _collision)
         {
-            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
-                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Blue))
+            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Black) || 
+                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.White))
             {
                 if (OnDeadlyCollision != null)
                     OnDeadlyCollision();

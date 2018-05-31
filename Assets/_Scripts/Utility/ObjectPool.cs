@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Utility
 {
     /// <summary>
-    /// Repository of commonly used prefabs.
+    /// This class is a repository of commonly used prefabs.
     /// </summary>
     [AddComponentMenu("Gameplay/ObjectPool")]
     public class ObjectPool : MonoBehaviour
@@ -65,13 +66,17 @@ namespace Utility
         private void Awake()
         {
             if (instance == null)
+            {
                 instance = this;
+            }
             else if (instance != this)
+            {
                 Destroy(gameObject);
+            }
 
             DontDestroyOnLoad(gameObject);
 
-            containerObject = this.gameObject;
+            containerObject = gameObject;
 
             //Loop through the object prefabs and make a new list for each one.
             //We do this because the pool can only support prefabs set to it in the editor,
@@ -121,7 +126,9 @@ namespace Utility
                 var prefab = entries[i].prefab;
 
                 if (prefab.name != _objectType)
+                {
                     continue;
+                }  
 
                 if (pool[i].Count > 0)
                 {
@@ -151,22 +158,24 @@ namespace Utility
         /// <summary>
         /// Pools the object specified.  Will not be pooled if there is no prefab of that type.
         /// </summary>
-        /// <param name='obj'>
+        /// <param name='_obj'>
         /// Object to be pooled.
         /// </param>
-        public void PoolObject(GameObject obj)
+        public void PoolObject(GameObject _obj)
         {
 
             for (int i = 0; i < entries.Length; i++)
             {
-                if (entries[i].prefab.name != obj.name)
+                if (entries[i].prefab.name != _obj.name)
+                {
                     continue;
+                }
 
-                pool[i].Add(obj);
+                pool[i].Add(_obj);
 
-                obj.transform.SetParent(containerObject.transform, false);
+                _obj.transform.SetParent(containerObject.transform, false);
 
-                obj.SetActive(false);
+                _obj.SetActive(false);
 
                 return;
             }

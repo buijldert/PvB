@@ -5,24 +5,28 @@ namespace Utility
 {
     public class PoolOverTime : MonoBehaviour
     {
-        [SerializeField] private float poolTime;
-        private Coroutine poolDelayCoroutine;
+        public delegate void ObstacleCollectionAction(GameObject obstacleToCollect);
+        public static event ObstacleCollectionAction OnObstacleCollection;
 
-        private bool isApplicationQuitting;
+        [SerializeField] private float poolTime;
+
+        private Coroutine poolCoroutine;
 
         private void OnEnable()
         {
-            if (poolDelayCoroutine != null)
-                StopCoroutine(poolDelayCoroutine);
-            poolDelayCoroutine = StartCoroutine(PoolDelay());
+            if (poolCoroutine != null)
+                StopCoroutine(poolCoroutine);
+
+            poolCoroutine = StartCoroutine(PoolDelay());
         }
 
-        /// <summary>
-        /// Pools the gameObject after the given time.
-        /// </summary>
         private IEnumerator PoolDelay()
         {
             yield return new WaitForSeconds(poolTime);
+            if (OnObstacleCollection != null)
+            {
+                OnObstacleCollection(gameObject);
+            }
             ObjectPool.Instance.PoolObject(gameObject);
         }
     }

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Player
 {
+    /// <summary>
+    /// This class is responsible for sending out a message when certain inputs are given.
+    /// </summary>
     public class PlayerInput : MonoBehaviour
     {
         public static Action OnLeftMouseButtonDown;
@@ -20,7 +23,9 @@ namespace Player
             if (Input.GetMouseButtonDown(0))
             {
                 if (OnLeftMouseButtonDown != null)
+                {
                     OnLeftMouseButtonDown();
+                }
             }
         }
     }

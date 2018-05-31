@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
-using SynchronizerData;
+using Audio;
 
 [CustomEditor(typeof(BeatCounter))]
 public class BeatCounterEditor : Editor {
