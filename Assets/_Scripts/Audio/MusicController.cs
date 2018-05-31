@@ -14,10 +14,7 @@ namespace Audio
         public delegate void AudioStartAction();
         public static event AudioStartAction OnAudioStart;
 
-        [SerializeField] private AudioSource mutedSource;
-        [SerializeField] private AudioSource nonMutedSource;
-
-        private Coroutine musicDelayCoroutine;
+        [SerializeField] private AudioSource audioSource;
 
         private void OnEnable()
         {
@@ -35,8 +32,7 @@ namespace Audio
 
         private void ChangeAudio(AudioClip _clipToPlay)
         {
-            mutedSource.clip = _clipToPlay;
-            nonMutedSource.clip = _clipToPlay;
+            audioSource.clip = _clipToPlay;
             StartMusic();
         }
 
@@ -45,21 +41,11 @@ namespace Audio
         /// </summary>
         private void StartMusic()
         {
-            musicDelayCoroutine = StartCoroutine(PlayMusicDelay());
-        }
-
-        /// <summary>
-        /// Plays the real music at a delay.
-        /// </summary>
-        private IEnumerator PlayMusicDelay()
-        {
-            mutedSource.Play();
+            audioSource.Play();
             if (OnAudioStart != null)
             {
                 OnAudioStart();
             }
-            yield return new WaitForSeconds(6f);
-            nonMutedSource.Play();
         }
 
         /// <summary>
@@ -67,12 +53,7 @@ namespace Audio
         /// </summary>
         private void StopMusic()
         {
-            if (musicDelayCoroutine != null)
-            {
-                StopCoroutine(musicDelayCoroutine);
-            }
-            mutedSource.Stop();
-            nonMutedSource.Stop();
+            audioSource.Stop();
         }
     }
 }
