@@ -41,7 +41,7 @@ namespace Audio
         /// <summary>
         /// Plays the background music.
         /// </summary>
-        public void PlayMusic()
+        private void PlayMusic()
         {
             audioSource.Play();
             if (OnAudioStart != null)
@@ -50,7 +50,7 @@ namespace Audio
             }
         }
 
-        public void PauseMusic()
+        private void PauseMusic()
         {
             audioSource.Pause();
         }
