@@ -13,6 +13,7 @@ public class ShopManager : ScreenManager
     public Transform itemHolder;
 
     private List<Item> unlockedItems = new List<Item>();
+    private List<GameObject> unlockedItemObjects = new List<GameObject>();
 
     [SerializeField] private Button codeInput;
 
@@ -62,6 +63,13 @@ public class ShopManager : ScreenManager
             Sequence s = DOTween.Sequence();
 
             GameObject g = Instantiate(Resources.Load<GameObject>("btn_ItemHolder"));
+            unlockedItemObjects.Add(g);
+
+            if(!item.Selected)
+            {
+                g.transform.GetChild(2).gameObject.SetActive(false);
+            }
+
             Button btn = g.GetComponent<Button>();
             Image img = g.GetComponent<Image>();
             Text txt = g.GetComponentInChildren<Text>();
@@ -77,6 +85,7 @@ public class ShopManager : ScreenManager
             btn.onClick.AddListener(() =>
             {
                 ItemManager.instance.SetItemSelected(item.Key);
+                SetSelectionSign(g);
             });
 
             s.Append(img.DOFade(1, 0.2f));
@@ -84,6 +93,16 @@ public class ShopManager : ScreenManager
 
             index++;
         }
+    }
+
+    private void SetSelectionSign(GameObject gameobject)
+    {
+        for (int i = 0; i < unlockedItemObjects.Count; i++)
+        {
+            unlockedItemObjects[i].transform.GetChild(2).gameObject.SetActive(false);
+        }
+
+        gameobject.transform.GetChild(2).gameObject.SetActive(true);
     }
 
     private void OnCodeInputButtonClicked()
