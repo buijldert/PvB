@@ -16,6 +16,7 @@ public class HomeManager : ScreenManager
     [SerializeField] private Image background;
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject objectPool;
+    [SerializeField] private GameObject menu;
 
     [SerializeField] private Image logo;
 
@@ -45,17 +46,18 @@ public class HomeManager : ScreenManager
 
     protected override void StartScreen()
     {
-        Debug.Log("start");
-
         DoAnimation();
     }
 
     public void DoAnimation()
     {
         Sequence s = DOTween.Sequence();
-
         s.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
         s.Join(logo.DOFade(1, 1));
+
+        //s.AppendCallback(() => {
+        //    startbutton.interactable = true;
+        //});
     }
 
     private void OnStartButtonClicked()
@@ -65,11 +67,12 @@ public class HomeManager : ScreenManager
         background.gameObject.SetActive(false);
         gameManager.SetActive(true);
         objectPool.SetActive(true);
+        menu.SetActive(false);
 
         StartGame();
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         if (OnRestartGame != null)
         {

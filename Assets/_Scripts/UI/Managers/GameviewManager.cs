@@ -11,6 +11,9 @@ public class GameviewManager : ScreenManager
     [SerializeField] private Button pauseButton;
     [SerializeField] private Text scoreText;
 
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject gameOverScreen;
+
     private int score;
     private bool b;
 
@@ -19,6 +22,8 @@ public class GameviewManager : ScreenManager
         pauseButton.onClick.AddListener(() => OnPauseButtonClicked());
 
         CollisionHandler.OnFadeThroughCollision += UpdateScore;
+
+        CollisionHandler.OnDeadlyCollision += ShowGameOver;
     }
 
     protected override void Awake()
@@ -34,7 +39,7 @@ public class GameviewManager : ScreenManager
 
     protected override void StartScreen()
     {
-        
+        ResetScore();
     }
 
     private void UpdateScore(int _scoreMutation)
@@ -43,29 +48,32 @@ public class GameviewManager : ScreenManager
         scoreText.text = score.ToString();
     }
 
-    private void ResetScore()
+    public void ResetScore()
     {
         score = 0;
         scoreText.text = score.ToString();
     }
 
+    private void ShowGameOver()
+    {
+        gameOverScreen.SetActive(true);
+        GameOverScreenManager.instance.UpdateScore();
+    }
+
     private void OnPauseButtonClicked()
     {
-        b = !b;
-
-        if(b)
-        {
-            PauseGameManager.instance.PauseGame();
-        }
-        else
-        {
-            PauseGameManager.instance.ResumeGame();
-        }
+        PauseGameManager.instance.PauseGame();
+        pauseScreen.SetActive(true);
     }
 
     protected override void StopScreen()
     {
-        
+        pauseScreen.SetActive(false);
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     protected override void OnDisable()

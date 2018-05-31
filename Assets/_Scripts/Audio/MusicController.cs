@@ -22,6 +22,7 @@ namespace Audio
             PlaylistManager.OnChangeSong += ChangeAudio;
             PauseGameManager.OnPauseGame += PauseMusic;
             PauseGameManager.OnResumeGame += PlayMusic;
+            PauseScreenManager.onQuit += StopMusic;
         }
 
         private void OnDisable()
@@ -30,6 +31,7 @@ namespace Audio
             PlaylistManager.OnChangeSong -= ChangeAudio;
             PauseGameManager.OnPauseGame -= PauseMusic;
             PauseGameManager.OnResumeGame -= PlayMusic;
+            PauseScreenManager.onQuit -= StopMusic;
         }
 
         private void ChangeAudio(AudioClip _clipToPlay)

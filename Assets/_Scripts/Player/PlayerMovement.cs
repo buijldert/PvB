@@ -48,15 +48,19 @@ namespace Player
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += ResetPlayer;
+            HomeManager.OnRestartGame += ResetPlayer;
             HomeManager.OnRestartGame += StartMovement;
+
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= ResetPlayer;
+            HomeManager.OnRestartGame -= ResetPlayer;
             HomeManager.OnRestartGame -= StartMovement;
             PlayerInput.OnLeftMouseButtonDown -= TogglePlayer;
+
         }
 
         private void Start()
