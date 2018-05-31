@@ -16,10 +16,15 @@ namespace Player
         /// Switches the players outfit material to the given material.
         /// </summary>
         /// <param name="outfitMaterial">The given outfit material.</param>
-        private void SwitchOutfit(Material outfitMaterial)
+        public void SwitchOutfit(Material outfitMaterial)
         {
-            blackPlayerMeshRenderer.sharedMaterials[1] = outfitMaterial;
-            whitePlayerMeshRenderer.sharedMaterials[1] = outfitMaterial;
+            Material[] blackMaterials = blackPlayerMeshRenderer.materials;
+            blackMaterials[1] = outfitMaterial;
+            blackPlayerMeshRenderer.materials = blackMaterials;
+
+            Material[] whiteMaterials = whitePlayerMeshRenderer.materials;
+            whiteMaterials[1] = outfitMaterial;
+            whitePlayerMeshRenderer.materials = whiteMaterials;
         }
     }
 }
