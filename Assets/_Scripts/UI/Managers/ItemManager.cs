@@ -15,18 +15,18 @@ public class ItemManager : MonoBehaviour
         }
         instance = this;
 
-        UpdateItemEntries();
+        //UpdateItemEntries();
     }
 
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
-        //for (int i = 0; i < items.Length; i++)
-        //{
-        //    PlayerPrefHelper.SetBool(items[i].Key, false);
-        //    PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
-        //}
+        for (int i = 0; i < items.Length; i++)
+        {
+            PlayerPrefHelper.SetBool(items[i].Key, false);
+            PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
+        }
     }
 
     public void SetItemSelected(string key)

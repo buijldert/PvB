@@ -17,6 +17,7 @@ public class HomeManager : ScreenManager
     [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject objectPool;
     [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private Image logo;
 
@@ -47,6 +48,7 @@ public class HomeManager : ScreenManager
     protected override void StartScreen()
     {
         DoAnimation();
+        player.SetActive(false);
     }
 
     public void DoAnimation()
@@ -68,6 +70,7 @@ public class HomeManager : ScreenManager
         gameManager.SetActive(true);
         objectPool.SetActive(true);
         menu.SetActive(false);
+        player.SetActive(true);
 
         StartGame();
     }

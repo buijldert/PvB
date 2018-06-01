@@ -56,19 +56,18 @@ public class ShopManager : ScreenManager
 
     private void DoStartupAnimation()
     {
-        int index = 0;
         unlockedItemObjects.Clear();
 
-        foreach (Item item in unlockedItems)
+        for (int i = unlockedItems.Count - 1; i >= 0; i--)
         {
             Sequence s = DOTween.Sequence();
 
             GameObject g = Instantiate(Resources.Load<GameObject>("btn_ItemHolder"));
             unlockedItemObjects.Add(g);
 
-            if(!item.Selected)
+            if (unlockedItems[i].Selected)
             {
-                g.transform.GetChild(2).gameObject.SetActive(false);
+                g.transform.GetChild(1).gameObject.SetActive(true);
             }
 
             Button btn = g.GetComponent<Button>();
@@ -77,22 +76,20 @@ public class ShopManager : ScreenManager
 
             RectTransform rect = g.GetComponent<RectTransform>();
 
-            txt.text = item.ItemName;
+            txt.text = unlockedItems[i].ItemName;
             g.transform.SetParent(itemHolder);
 
             rect.localScale = new Vector3(1, 1, 1);
             rect.anchoredPosition = new Vector2(0, -350);
 
+            s.Append(rect.DOAnchorPos(new Vector2(0, (i * 325)), 0.5f));
+            s.Join(img.DOFade(1, 3));
+
             btn.onClick.AddListener(() =>
             {
-                ItemManager.instance.SetItemSelected(item.Key);
+                ItemManager.instance.SetItemSelected(unlockedItems[i].Key);
                 SetSelectionSign(g);
             });
-
-            s.Append(img.DOFade(1, 0.2f));
-            s.Join(rect.DOAnchorPos(new Vector2(0, 750 + (index * -325)), 1f / unlockedItems.Count));
-
-            index++;
         }
     }
 
@@ -100,10 +97,10 @@ public class ShopManager : ScreenManager
     {
         for (int i = 0; i < unlockedItemObjects.Count; i++)
         {
-            unlockedItemObjects[i].transform.GetChild(2).gameObject.SetActive(false);
+            unlockedItemObjects[i].transform.GetChild(1).gameObject.SetActive(false);
         }
 
-        gameobject.transform.GetChild(2).gameObject.SetActive(true);
+        gameobject.transform.GetChild(1).gameObject.SetActive(true);
     }
 
     private void OnCodeInputButtonClicked()

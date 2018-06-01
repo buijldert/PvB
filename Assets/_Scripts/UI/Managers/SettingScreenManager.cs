@@ -40,19 +40,15 @@ public class SettingScreenManager : ScreenManager
 
     private void DoStartupAnimation()
     {
-        int index = 0;
-
-        foreach (Button button in settingsButtons)
-        {
+        for (int i = settingsButtons.Length - 1; i >= 0; i--)
+        { 
             Sequence s = DOTween.Sequence();
 
-            button.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            button.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
+            settingsButtons[i].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            settingsButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
 
-            s.Append(button.GetComponent<Image>().DOFade(1, 0.75f));
-            s.Join(button.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (index * -325)), 0.5f));
-
-            index++;
+            s.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
+            s.Join(settingsButtons[i].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (i * -325)), 0.5f));
         }
     }
 
