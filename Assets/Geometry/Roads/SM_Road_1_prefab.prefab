@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33324918488582282}
   - component: {fileID: 23217453385961088}
   m_Layer: 0
-  m_Name: SM_Road_1_prefab
+  m_Name: SM_Road_1_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

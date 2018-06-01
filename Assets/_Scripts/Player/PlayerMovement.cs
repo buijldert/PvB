@@ -10,8 +10,8 @@ namespace Player
     /// </summary>
     public enum PlayerColor
     {
-        Black,
-        White
+        Pink,
+        Blue
     }
 
     /// <summary>
@@ -19,7 +19,7 @@ namespace Player
     /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerColor playerColor = PlayerColor.Black;
+        private PlayerColor playerColor = PlayerColor.Pink;
 
         private BoxCollider boxCollider;
 
@@ -30,15 +30,19 @@ namespace Player
         [Header("Positions")]
         [SerializeField] private Vector3 leftPos;
         [SerializeField] private Vector3 rightPos;
-        [SerializeField] private Vector3 particleLeftPos;
-        [SerializeField] private Vector3 particleRightPos;
-        [SerializeField] private Vector3 particleLeftRotation;
-        [SerializeField] private Vector3 particleRightRotation;
 
         
         [Header("GameObjects")]
         [SerializeField] private GameObject particleSystemGameObject;
-        [SerializeField] private GameObject blackPlayer, whitePlayer;
+        [SerializeField] private GameObject pinkPlayer;
+        [SerializeField] private GameObject bluePlayer;
+
+        [Header("Particle Systems")]
+        [SerializeField] private ParticleSystem[] switchParticleSystems;
+
+        [Header("Colors")]
+        [SerializeField] private Color pinkColor;
+        [SerializeField] private Color blueColor;
         
         public PlayerColor GetPlayerColor()
         {
@@ -83,13 +87,13 @@ namespace Player
         {
             if (canMove)
             {
-                if (playerColor == PlayerColor.Black)
+                if (playerColor == PlayerColor.Pink)
                 {
-                    ChangePlayer(leftPos, PlayerColor.White, particleRightPos, particleRightRotation);
+                    ChangePlayer(leftPos, PlayerColor.Blue, blueColor);
                 }
                 else
                 {
-                    ChangePlayer(rightPos, PlayerColor.Black, particleLeftPos, particleLeftRotation);
+                    ChangePlayer(rightPos, PlayerColor.Pink, pinkColor);
                 }
             }
         }
@@ -99,10 +103,8 @@ namespace Player
         /// </summary>
         /// <param name="_positionToMove">The position that the player will move to.</param>
         /// <param name="_playerColor">The PlayerColor that the player will be made.</param>
-        /// <param name="_particlePosition">The position that the switch particle needs to be in.</param>
-        /// <param name="_particleRotation">The rotation that the switch particle needs to be in.</param>
         /// <param name="_isReset">Whether the player is being reset to its normal position.</param>
-        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _playerColor, Vector3 _particlePosition, Vector3 _particleRotation, bool _isReset = false)
+        private void ChangePlayer(Vector3 _positionToMove, PlayerColor _playerColor, Color _color, bool _isReset = false)
         {
             transform.position = _positionToMove;
             playerColor = _playerColor;
@@ -110,17 +112,21 @@ namespace Player
             canMove = false;
             if(_isReset)
             {
-                blackPlayer.SetActive(true);
-                whitePlayer.SetActive(false);
+                pinkPlayer.SetActive(true);
+                bluePlayer.SetActive(false);
             }
             else
             {
-                particleSystemGameObject.transform.position = _particlePosition;
-                particleSystemGameObject.transform.rotation = Quaternion.Euler(_particleRotation);
                 particleSystemGameObject.SetActive(true);
 
-                blackPlayer.SetActive(false);
-                whitePlayer.SetActive(false);
+                for (int i = 0; i < switchParticleSystems.Length; i++)
+                {
+                    var main = switchParticleSystems[i].main;
+                    main.startColor = _color;
+                }
+
+                pinkPlayer.SetActive(false);
+                bluePlayer.SetActive(false);
 
                 boxCollider.enabled = false;
                 if (_appearDelayCoroutine != null)
@@ -141,13 +147,13 @@ namespace Player
             float particleSystemTime = 0.25f;
             yield return new WaitForSeconds(particleSystemTime);
 
-            if (_playerColor == PlayerColor.White)
+            if (_playerColor == PlayerColor.Blue)
             {
-                whitePlayer.SetActive(true);
+                bluePlayer.SetActive(true);
             }
             else
             {
-                blackPlayer.SetActive(true);
+                pinkPlayer.SetActive(true);
             }
 
             boxCollider.enabled = true;
@@ -160,7 +166,7 @@ namespace Player
         /// </summary>
         private void ResetPlayer()
         {
-            ChangePlayer(rightPos, PlayerColor.Black, particleLeftPos, particleLeftRotation, true);
+            ChangePlayer(rightPos, PlayerColor.Pink, pinkColor, true);
         }
     }
 }

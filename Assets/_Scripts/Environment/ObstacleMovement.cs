@@ -30,7 +30,7 @@ namespace Environment
             rb = GetComponent<Rigidbody>();
         }
         
-        private void FixedUpdate()
+        private void Update()
         {
             MoveObstacle();
         }

@@ -10,23 +10,26 @@ namespace Environment
     /// </summary>
     public class ChunkManager : MonoBehaviour
     {
+        private Dictionary<string, Vector3> sizeDatabase = new Dictionary<string, Vector3>();
+
         [SerializeField] private GameObject[] chunkPrefabs;
         private List<GameObject> chunkClones = new List<GameObject>();
 
         [SerializeField] private float movementSpeed = 60f;
-        private float outOfScreenPosZ = 400f;
+        private float outOfScreenPosZ = 300f;
 
         private bool canMove;
         [SerializeField] private bool isLeftChunkManager;
 
         private void Start()
         {
-            for (int i = 0; i < 30f; i++)
+            FillSizeDatabase();
+            for (int i = 0; i < 10f; i++)
             {
                 chunkClones.Add(GetRandomChunk(Vector3.zero));
             }
 
-            chunkClones[0].transform.position = new Vector3(0, 0, transform.position.z + GetSize(chunkClones[0]).z);
+            chunkClones[0].transform.position = new Vector3(0, 0, transform.position.z + sizeDatabase[chunkClones[0].name].z);
             SortChunks();
         }
 
@@ -87,15 +90,13 @@ namespace Environment
             canMove = false;
         }
 
-        /// <summary>
-        /// Gets the size of the given chunk.
-        /// </summary>
-        /// <param name="_chunk">The chunk of which the size will be retuned.</param>
-        /// <returns>The size of the given chunk.</returns>
-        private Vector3 GetSize(GameObject _chunk)
+        private void FillSizeDatabase()
         {
-            Vector3 size = _chunk.GetComponent<MeshRenderer>().bounds.extents * 2f;
-            return size;
+            for (int i = 0; i < chunkPrefabs.Length; i++)
+            {
+                Vector3 size = chunkPrefabs[i].GetComponent<MeshRenderer>().bounds.extents * 2f;
+                sizeDatabase.Add(chunkPrefabs[i].name, size);
+            }
         }
 
         /// <summary>
@@ -146,10 +147,10 @@ namespace Environment
             {
                 if (i > 0)
                 {
-                    previousChunkPos.z += (GetSize(chunkClones[i]).z / 2f);
+                    previousChunkPos.z += (sizeDatabase[chunkClones[i].name].z * .5f);
                 }
                 chunkClones[i].transform.position = new Vector3(transform.position.x, 0f, previousChunkPos.z);
-                previousChunkPos.z += (GetSize(chunkClones[i]).z / 2f);
+                previousChunkPos.z += (sizeDatabase[chunkClones[i].name].z * .5f);
             }
         }
 

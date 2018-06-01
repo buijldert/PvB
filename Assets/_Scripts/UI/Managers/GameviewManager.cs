@@ -50,12 +50,14 @@ public class GameviewManager : ScreenManager
 
     public void ResetScore()
     {
+        pauseButton.interactable = true;
         score = 0;
         scoreText.text = score.ToString();
     }
 
     private void ShowGameOver()
     {
+        pauseButton.interactable = false;
         gameOverScreen.SetActive(true);
         GameOverScreenManager.instance.UpdateScore();
     }
