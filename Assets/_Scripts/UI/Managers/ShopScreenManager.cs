@@ -123,14 +123,14 @@ namespace UI.Managers
         /// Also turns of the selection sign of all other items.
         /// </summary>
         /// <param name="itemHolder">Ithemholder which is selected.</param>
-        private void SetSelectionSign(GameObject itemHolder)
+        private void SetSelectionSign(GameObject _itemHolder)
         {
             for (int i = 0; i < unlockedItemObjects.Count; i++)
             {
                 unlockedItemObjects[i].transform.GetChild(1).gameObject.SetActive(false);
             }
 
-            itemHolder.transform.GetChild(1).gameObject.SetActive(true);
+            _itemHolder.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         /// <summary>

@@ -110,7 +110,6 @@ namespace UI.Managers
         }
         #endregion // UI Events
 
-
         /// <summary>
         /// Will be called when we are not on this particular screen
         /// </summary>

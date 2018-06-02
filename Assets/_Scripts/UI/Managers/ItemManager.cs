@@ -35,14 +35,14 @@ public class ItemManager : MonoBehaviour
     /// Sets the item as selected in the playerprefs.
     /// </summary>
     /// <param name="key">Key we want to change the value of.</param>
-    public void SetItemSelected(string key)
+    public void SetItemSelected(string _key)
     {
-        foreach(ItemModel item in GetItemArray().Where(item => item.Key != key))
+        foreach(ItemModel item in GetItemArray().Where(item => item.Key != _key))
         {
             PlayerPrefHelper.SetBool(item.Key + "_Selected", false);
         }
 
-        PlayerPrefHelper.SetBool(key + "_Selected", true);
+        PlayerPrefHelper.SetBool(_key + "_Selected", true);
         UpdateItemEntries();
     }
 

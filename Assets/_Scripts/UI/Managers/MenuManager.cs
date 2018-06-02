@@ -127,17 +127,17 @@ namespace UI.Managers
         /// Animates the menu
         /// </summary>
         /// <param name="button">The button we clicked on.</param>
-        private void DoButtonAnimation(Button button)
+        private void DoButtonAnimation(Button _button)
         {
             // If the button we click is the middle button, just return
-            RectTransform rect = button.GetComponent<RectTransform>();
+            RectTransform rect = _button.GetComponent<RectTransform>();
             if (rect.anchoredPosition == MENU_MIDDLE_POSITION)
             {
                 return;
             }
 
             // Get components for the VFX
-            RectTransform rectTransform = button.transform.GetChild(0).GetComponent<RectTransform>();
+            RectTransform rectTransform = _button.transform.GetChild(0).GetComponent<RectTransform>();
             Image VFXImage = rectTransform.GetComponent<Image>();
             Vector2 oppositeVec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
 
@@ -170,7 +170,7 @@ namespace UI.Managers
             {
                 btn.interactable = false;
 
-                if (btn != button)
+                if (btn != _button)
                 {
                     menuSequence.Join(btn.GetComponent<Image>().DOFade(0, 0.5f));
                     menuSequence.Append(btn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(Mathf.CeilToInt(oppositeVec2.x * -1), oppositeVec2.y), 0.01f));
