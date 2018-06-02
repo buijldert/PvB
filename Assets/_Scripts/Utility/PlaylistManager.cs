@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UI;
+using UI.Managers;
 using UnityEngine;
 
 
@@ -19,13 +20,13 @@ namespace Utility
 
         private void OnEnable()
         {
-            HomeManager.OnRestartGame += PlayPlaylist;
+            HomeScreenManager.OnRestartGame += PlayPlaylist;
             CollisionHandler.OnDeadlyCollision += StopPlaylist;
         }
 
         private void OnDisable()
         {
-            HomeManager.OnRestartGame -= PlayPlaylist;
+            HomeScreenManager.OnRestartGame -= PlayPlaylist;
             CollisionHandler.OnDeadlyCollision -= StopPlaylist;
         }
 

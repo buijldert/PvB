@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UI;
+using UI.Managers;
 using UnityEngine;
 using Utility;
 
@@ -36,13 +37,13 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMovement;
-            HomeManager.OnRestartGame += StartMovement;
+            HomeScreenManager.OnRestartGame += StartMovement;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMovement;
-            HomeManager.OnRestartGame -= StartMovement;
+            HomeScreenManager.OnRestartGame -= StartMovement;
         }
 
         private void Update()

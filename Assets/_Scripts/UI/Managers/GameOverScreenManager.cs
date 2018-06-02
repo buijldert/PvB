@@ -1,65 +1,95 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UI.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
+using UI.Controllers;
 
-public class GameOverScreenManager : MonoBehaviour 
+namespace UI.Managers
 {
-    public static GameOverScreenManager instance;
-
-    [SerializeField] private Button resume;
-   
-    [SerializeField] private Button quit;
-
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private Image background;
-    [SerializeField] private GameObject menu;
-    [SerializeField] private Text score;
-
-    public static Action onQuit;
-
-    private void OnEnable()
+    /// <summary>
+    /// This class controlls the UI elements on the GameOver-Screen
+    /// </summary>
+    public class GameOverScreenManager : MonoBehaviour
     {
-        resume.onClick.AddListener(() => OnResumeButtonClicked());
-        quit.onClick.AddListener(() => OnQuitButtonClicked());
-    }
+        public static GameOverScreenManager instance;
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
+        [SerializeField] private Button resume;
+
+        [SerializeField] private Button quit;
+
+        [SerializeField] private GameObject gameOverScreen;
+        [SerializeField] private Image background;
+        [SerializeField] private GameObject menu;
+        [SerializeField] private Text score;
+
+        public static Action onQuit;
+
+        /// <summary>
+        /// Subscribes to alle the events we want to react on.
+        /// </summary>
+        private void OnEnable()
         {
-            Destroy(this.gameObject);
+            resume.onClick.AddListener(() => OnResumeButtonClicked());
+            quit.onClick.AddListener(() => OnQuitButtonClicked());
         }
-        instance = this;
-    }
 
-    public void UpdateScore()
-    {
-        score.text = GameviewManager.instance.GetScore().ToString();
-    }
-
-    private void OnResumeButtonClicked()
-    {
-        HomeManager.instance.StartGame();
-        gameOverScreen.SetActive(false);
-        GameviewManager.instance.ResetScore();
-    }
-
-    private void OnQuitButtonClicked()
-    {
-        UIController.instance.GoToHomeScreen();
-        gameOverScreen.SetActive(false);
-        background.gameObject.SetActive(true);
-        menu.SetActive(true);
-        GameviewManager.instance.ResetScore();
-
-
-        if (onQuit != null)
+        /// <summary>
+        /// Singleton implementation
+        /// </summary>
+        private void Awake()
         {
-            onQuit();
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
+        }
+
+        #region UI Events
+        /// <summary>
+        /// Updates the score
+        /// </summary>
+        public void UpdateScore()
+        {
+            score.text = GameviewManager.instance.GetScore().ToString();
+        }
+
+        /// <summary>
+        /// Will fire when the resume-button is clicked
+        /// </summary>
+        private void OnResumeButtonClicked()
+        {
+            gameOverScreen.SetActive(false);
+
+            HomeScreenManager.instance.StartGame();
+            GameviewManager.instance.ResetScore();
+        }
+
+        /// <summary>
+        /// Will fire when the quit-button is clicked
+        /// </summary>
+        private void OnQuitButtonClicked()
+        {
+            menu.SetActive(true);
+            gameOverScreen.SetActive(false);
+            background.gameObject.SetActive(true);
+
+            UIController.instance.GoToHomeScreen();
+            GameviewManager.instance.ResetScore();
+
+            if (onQuit != null)
+            {
+                onQuit();
+            }
+        }
+        #endregion // UI Events
+
+        /// <summary>
+        /// Unubscribes to alle the events we used.
+        /// </summary>
+        private void OnDisable()
+        {
+            resume.onClick.RemoveAllListeners();
+            quit.onClick.RemoveAllListeners();
         }
     }
 }

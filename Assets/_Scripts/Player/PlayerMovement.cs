@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UI;
+using UI.Managers;
 using UnityEngine;
 using Utility;
 
@@ -52,8 +53,8 @@ namespace Player
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += ResetPlayer;
-            HomeManager.OnRestartGame += ResetPlayer;
-            HomeManager.OnRestartGame += StartMovement;
+            HomeScreenManager.OnRestartGame += ResetPlayer;
+            HomeScreenManager.OnRestartGame += StartMovement;
 
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
         }
@@ -61,8 +62,8 @@ namespace Player
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= ResetPlayer;
-            HomeManager.OnRestartGame -= ResetPlayer;
-            HomeManager.OnRestartGame -= StartMovement;
+            HomeScreenManager.OnRestartGame -= ResetPlayer;
+            HomeScreenManager.OnRestartGame -= StartMovement;
             PlayerInput.OnLeftMouseButtonDown -= TogglePlayer;
 
         }

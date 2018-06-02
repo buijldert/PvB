@@ -1,29 +1,29 @@
-﻿using UnityEngine;
+﻿using UI.Managers;
+using UnityEngine;
 
 public class ShirtPreviewManager : MonoBehaviour 
 {
-    public static ShirtPreviewManager instance;
+    private MeshRenderer meshRenderer;
+    private Material material;
 
-    private MeshRenderer meshR;
-    private Material m;
-
-    private void Awake()
+    private void OnEnable()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        instance = this;
+        CodeScreenManager.onNewCodeUsed += SetSkin;
     }
 
     private void Start()
     {
-        meshR = GetComponent<MeshRenderer>();
-        m = meshR.materials[0];
+        meshRenderer = GetComponent<MeshRenderer>();
+        material = meshRenderer.materials[0];
     }
 
-    public void SetSkin(Texture texture)
+    public void SetSkin(ItemModel item)
     {
-        m.SetTexture("_MainTex", texture);
+        material.SetTexture("_MainTex", item.ItemTexture);
+    }
+
+    private void OnDisable()
+    {
+        CodeScreenManager.onNewCodeUsed -= SetSkin;
     }
 }

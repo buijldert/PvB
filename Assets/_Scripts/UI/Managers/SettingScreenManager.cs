@@ -1,79 +1,135 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UI.Base;
-using DG.Tweening;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UI.Base;
 using UI.Controllers;
+using DG.Tweening;
 
-public class SettingScreenManager : ScreenManager 
+namespace UI.Managers
 {
-    public static SettingScreenManager instance;
-
-    [SerializeField] private Button[] settingsButtons;
-
-    protected override void OnEnable()
+    /// <summary>
+    /// This class controlls the UI Elements on the Settings-Screen
+    /// </summary>
+    public class SettingScreenManager : ScreenManager
     {
-        base.OnEnable();
+        public static SettingScreenManager instance;
 
-        settingsButtons[0].onClick.AddListener(() => OnSoundButtonClicked());
-        settingsButtons[1].onClick.AddListener(() => OnVibrationButtonClicked());
-        settingsButtons[2].onClick.AddListener(() => OnAchievementButtonClicked());
-        settingsButtons[3].onClick.AddListener(() => OnCreditsButtonClicked());
-    }
-
-    protected override void Awake()
-    {
-        if (instance != null && instance != this)
+        private enum ButtonType
         {
-            Destroy(this.gameObject);
+            Sound,
+            Vibration,
+            Achievement,
+            Credits
         }
-        instance = this;
 
-        screenState = MenuState.Settings;
-    }
+        [SerializeField] private Button[] settingsButtons;
 
-    protected override void StartScreen()
-    {
-        DoStartupAnimation();
-    }
+        /// <summary>
+        /// Subscribes to the different events we want to react on
+        /// </summary>
+        protected override void OnEnable()
+        {
+            base.OnEnable();
 
-    private void DoStartupAnimation()
-    {
-        for (int i = settingsButtons.Length - 1; i >= 0; i--)
-        { 
-            Sequence s = DOTween.Sequence();
-
-            settingsButtons[i].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            settingsButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
-
-            s.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
-            s.Join(settingsButtons[i].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (i * -325)), 0.5f));
+            settingsButtons[(int)ButtonType.Sound].onClick.AddListener(() => OnSoundButtonClicked());
+            settingsButtons[(int)ButtonType.Vibration].onClick.AddListener(() => OnVibrationButtonClicked());
+            settingsButtons[(int)ButtonType.Achievement].onClick.AddListener(() => OnAchievementButtonClicked());
+            settingsButtons[(int)ButtonType.Credits].onClick.AddListener(() => OnCreditsButtonClicked());
         }
-    }
 
-    private void OnSoundButtonClicked()
-    {
-        SettingsController.SetMute(!SettingsController.GetMuteState());
-    }
+        /// <summary>
+        /// Singleton Implementation.
+        /// Also sets the screenstate to the state this script represents.
+        /// </summary>
+        protected override void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
 
-    private void OnVibrationButtonClicked()
-    {
-        SettingsController.SetVibration(!SettingsController.GetVibrationState());
-    }
+            screenState = MenuState.Settings;
+        }
 
-    private void OnAchievementButtonClicked()
-    {
-        
-    }
+        /// <summary>
+        /// Will be called when we are on this particular screen
+        /// </summary>
+        protected override void StartScreen()
+        {
+            DoStartupAnimation();
+        }
 
-    private void OnCreditsButtonClicked()
-    {
-        
-    }
+        /// <summary>
+        /// This function will do the start animation of this screen
+        /// </summary>
+        private void DoStartupAnimation()
+        {
+            for (int i = settingsButtons.Length - 1; i >= 0; i--)
+            {
+                Sequence s = DOTween.Sequence();
 
-    protected override void StopScreen()
-    {
-        
+                settingsButtons[i].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+                settingsButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
+
+                s.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
+                s.Join(settingsButtons[i].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (i * -325)), 0.5f));
+            }
+        }
+
+        #region UI Events
+        /// <summary>
+        /// Will fire when the sound-button is clicked
+        /// </summary>
+        private void OnSoundButtonClicked()
+        {
+            SettingsController.SetMute(!SettingsController.GetMuteState());
+        }
+
+        /// <summary>
+        /// Will fire when the vibration-button is clicked
+        /// </summary>
+        private void OnVibrationButtonClicked()
+        {
+            SettingsController.SetVibration(!SettingsController.GetVibrationState());
+        }
+
+        /// <summary>
+        /// Will fire when the achievement-button is clicked
+        /// </summary>
+        private void OnAchievementButtonClicked()
+        {
+
+        }
+
+        /// <summary>
+        /// Will fire when the credits-button is clicked
+        /// </summary>
+        private void OnCreditsButtonClicked()
+        {
+
+        }
+        #endregion // UI Events
+
+
+        /// <summary>
+        /// Will be called when we are not on this particular screen
+        /// </summary>
+        protected override void StopScreen()
+        {
+
+        }
+
+        /// <summary>
+        /// Subscribes to the different events we want to react on
+        /// </summary>
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            settingsButtons[(int)ButtonType.Sound].onClick.RemoveAllListeners();
+            settingsButtons[(int)ButtonType.Vibration].onClick.RemoveAllListeners();
+            settingsButtons[(int)ButtonType.Achievement].onClick.RemoveAllListeners();
+            settingsButtons[(int)ButtonType.Credits].onClick.RemoveAllListeners();
+        }
     }
 }
