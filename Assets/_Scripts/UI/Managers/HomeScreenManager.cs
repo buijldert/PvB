@@ -19,6 +19,8 @@ namespace UI.Managers
         [SerializeField] private Button startbutton;
         [SerializeField] private Image logo;
 
+        private bool isFirstStarup = true;
+
         /// <summary>
         /// Subscribes to different events we want react on
         /// </summary>
@@ -49,7 +51,10 @@ namespace UI.Managers
         /// </summary>
         protected override void StartScreen()
         {
-            //
+            if (!isFirstStarup)
+            {
+                DoAnimation();
+            }
         }
 
         #region DOTween Animations
@@ -61,6 +66,8 @@ namespace UI.Managers
             Sequence s = DOTween.Sequence();
             s.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
             s.Join(logo.DOFade(1, 1));
+
+            isFirstStarup = false;
         }
         #endregion // DOTween Animations
 
