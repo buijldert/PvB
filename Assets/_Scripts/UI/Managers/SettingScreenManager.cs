@@ -64,15 +64,17 @@ namespace UI.Managers
         /// </summary>
         private void DoStartupAnimation()
         {
+            Sequence s = DOTween.Sequence();
             for (int i = settingsButtons.Length - 1; i >= 0; i--)
             {
-                Sequence s = DOTween.Sequence();
+                RectTransform rect = settingsButtons[i].GetComponent<RectTransform>();
+                Text buttonText = settingsButtons[i].GetComponentInChildren<Text>();
 
-                settingsButtons[i].GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                settingsButtons[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -350);
+                rect.localScale = new Vector3(1, 1, 1);
+                rect.anchoredPosition = new Vector2(0, 750 - (i * 325));
 
                 s.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
-                s.Join(settingsButtons[i].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 750 + (i * -325)), 0.5f));
+                s.Join(buttonText.DOFade(1, 0.75f));
             }
         }
 
@@ -115,7 +117,13 @@ namespace UI.Managers
         /// </summary>
         protected override void StopScreen()
         {
+            for (int i = settingsButtons.Length - 1; i >= 0; i--)
+            {
+                Text buttonText = settingsButtons[i].GetComponentInChildren<Text>();
 
+                settingsButtons[i].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                buttonText.color = new Color(1, 1, 1, 0);
+            }
         }
 
         /// <summary>
