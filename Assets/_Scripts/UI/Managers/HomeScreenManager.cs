@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UI.Base;
 using UI.Controllers;
 using DG.Tweening;
+using Utility;
 
 namespace UI.Managers
 {
@@ -14,7 +15,7 @@ namespace UI.Managers
     {
         public static HomeScreenManager instance;
 
-        public static Action OnRestartGame;
+        //public static Action OnRestartGame;
 
         [SerializeField] private Button startbutton;
         [SerializeField] private Image logo;
@@ -29,7 +30,7 @@ namespace UI.Managers
         {
             base.OnEnable();
             startbutton.onClick.AddListener(() => OnStartButtonClicked());
-            //MenuManager.onOpeningSequenceEnded += DoAnimation;
+            MenuManager.onOpeningSequenceEnded += DoAnimation;
         }
 
         /// <summary>
@@ -78,19 +79,10 @@ namespace UI.Managers
         /// </summary>
         private void OnStartButtonClicked()
         {
-            StartGame();
             UIController.instance.GoToGameView();
+            GameController.instance.StartGame();
         }
         #endregion // UI Events
-
-        // TODO: Move this to a GameController
-        public void StartGame()
-        {
-            if (OnRestartGame != null)
-            {
-                OnRestartGame();
-            }
-        }
 
         /// <summary>
         /// Will be called when we are not on this particular screen
@@ -110,7 +102,7 @@ namespace UI.Managers
         {
             base.OnDisable();
             startbutton.onClick.RemoveAllListeners();
-            //MenuManager.onOpeningSequenceEnded -= DoAnimation;
+            MenuManager.onOpeningSequenceEnded -= DoAnimation;
         }
     }
 }

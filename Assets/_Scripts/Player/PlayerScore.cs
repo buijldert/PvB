@@ -18,13 +18,11 @@ namespace Player
         private void OnEnable()
         {
             CollisionHandler.OnFadeThroughCollision += UpdateScore;
-            HomeScreenManager.OnRestartGame += ResetScore;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnFadeThroughCollision -= UpdateScore;
-            HomeScreenManager.OnRestartGame -= ResetScore;
         }
 
         /// <summary>

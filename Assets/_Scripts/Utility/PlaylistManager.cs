@@ -20,24 +20,14 @@ namespace Utility
 
         private void OnEnable()
         {
-<<<<<<< HEAD
-            HomeScreenManager.OnRestartGame += PlayPlaylist;
-=======
->>>>>>> Development_branch
             CollisionHandler.OnDeadlyCollision += StopPlaylist;
-
             GameController.OnStartGame += PlayPlaylist;
             GameController.OnStopGame += StopPlaylist;
         }
 
         private void OnDisable()
         {
-<<<<<<< HEAD
-            HomeScreenManager.OnRestartGame -= PlayPlaylist;
-=======
->>>>>>> Development_branch
             CollisionHandler.OnDeadlyCollision -= StopPlaylist;
-
             GameController.OnStartGame -= PlayPlaylist;
             GameController.OnStopGame -= StopPlaylist;
         }

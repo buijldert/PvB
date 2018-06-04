@@ -53,14 +53,7 @@ namespace Player
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += ResetPlayer;
-<<<<<<< HEAD
-            HomeScreenManager.OnRestartGame += ResetPlayer;
-            HomeScreenManager.OnRestartGame += StartMovement;
-
-=======
->>>>>>> Development_branch
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
-
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += ResetPlayer;
         }
@@ -68,13 +61,7 @@ namespace Player
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= ResetPlayer;
-<<<<<<< HEAD
-            HomeScreenManager.OnRestartGame -= ResetPlayer;
-            HomeScreenManager.OnRestartGame -= StartMovement;
-=======
->>>>>>> Development_branch
-            PlayerInput.OnLeftMouseButtonDown -= TogglePlayer;
-            
+            PlayerInput.OnLeftMouseButtonDown -= TogglePlayer; 
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= ResetPlayer;
         }
