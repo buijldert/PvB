@@ -22,6 +22,8 @@ namespace Player
         {
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("Input");
+
                 if (OnLeftMouseButtonDown != null)
                 {
                     OnLeftMouseButtonDown();

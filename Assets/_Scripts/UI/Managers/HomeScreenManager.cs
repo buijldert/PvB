@@ -19,6 +19,7 @@ namespace UI.Managers
         [SerializeField] private Button startbutton;
         [SerializeField] private Image logo;
 
+        private Sequence startUpSequence;
         private bool isFirstStarup = true;
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace UI.Managers
         {
             base.OnEnable();
             startbutton.onClick.AddListener(() => OnStartButtonClicked());
-            MenuManager.onOpeningSequenceEnded += DoAnimation;
+            //MenuManager.onOpeningSequenceEnded += DoAnimation;
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace UI.Managers
         /// </summary>
         protected override void StartScreen()
         {
-            if (!isFirstStarup)
+            if(!isFirstStarup)
             {
                 DoAnimation();
             }
@@ -63,9 +64,9 @@ namespace UI.Managers
         /// </summary>
         public void DoAnimation()
         {
-            Sequence s = DOTween.Sequence();
-            s.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
-            s.Join(logo.DOFade(1, 1));
+            startUpSequence = DOTween.Sequence();
+            startUpSequence.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
+            startUpSequence.Join(logo.DOFade(1, 1));
 
             isFirstStarup = false;
         }
@@ -98,6 +99,8 @@ namespace UI.Managers
         {
             startbutton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             logo.color = new Color(1, 1, 1, 0);
+
+            startUpSequence.Kill();
         }
 
         /// <summary>
@@ -107,7 +110,7 @@ namespace UI.Managers
         {
             base.OnDisable();
             startbutton.onClick.RemoveAllListeners();
-            MenuManager.onOpeningSequenceEnded -= DoAnimation;
+            //MenuManager.onOpeningSequenceEnded -= DoAnimation;
         }
     }
 }

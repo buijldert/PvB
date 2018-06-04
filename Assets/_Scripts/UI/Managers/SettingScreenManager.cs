@@ -23,6 +23,8 @@ namespace UI.Managers
 
         [SerializeField] private Button[] settingsButtons;
 
+        private Sequence startUpSequence; 
+
         /// <summary>
         /// Subscribes to the different events we want to react on
         /// </summary>
@@ -64,7 +66,7 @@ namespace UI.Managers
         /// </summary>
         private void DoStartupAnimation()
         {
-            Sequence s = DOTween.Sequence();
+            startUpSequence = DOTween.Sequence();
             for (int i = settingsButtons.Length - 1; i >= 0; i--)
             {
                 RectTransform rect = settingsButtons[i].GetComponent<RectTransform>();
@@ -73,8 +75,8 @@ namespace UI.Managers
                 rect.localScale = new Vector3(1, 1, 1);
                 rect.anchoredPosition = new Vector2(0, 750 - (i * 325));
 
-                s.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
-                s.Join(buttonText.DOFade(1, 0.75f));
+                startUpSequence.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
+                startUpSequence.Join(buttonText.DOFade(1, 0.75f));
             }
         }
 
@@ -117,6 +119,8 @@ namespace UI.Managers
         /// </summary>
         protected override void StopScreen()
         {
+            startUpSequence.Kill();
+
             for (int i = settingsButtons.Length - 1; i >= 0; i--)
             {
                 Text buttonText = settingsButtons[i].GetComponentInChildren<Text>();

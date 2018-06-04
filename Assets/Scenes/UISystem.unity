@@ -5826,8 +5826,8 @@ MonoBehaviour:
   resume: {fileID: 914207676}
   quit: {fileID: 976740987}
   gameOverScreen: {fileID: 1278157132}
-  background: {fileID: 0}
-  menu: {fileID: 0}
+  background: {fileID: 341334251}
+  menu: {fileID: 1928636029}
   score: {fileID: 122868852}
 --- !u!1 &2136552339
 GameObject:

@@ -13,15 +13,10 @@ namespace UI.Managers
         public static GameOverScreenManager instance;
 
         [SerializeField] private Button resume;
-
         [SerializeField] private Button quit;
-
-        [SerializeField] private GameObject gameOverScreen;
-        [SerializeField] private Image background;
-        [SerializeField] private GameObject menu;
         [SerializeField] private Text score;
 
-        public static Action onQuit;
+        [SerializeField] private GameObject gameOverScreen;
 
         /// <summary>
         /// Subscribes to alle the events we want to react on.
@@ -69,17 +64,10 @@ namespace UI.Managers
         /// </summary>
         private void OnQuitButtonClicked()
         {
-            menu.SetActive(true);
             gameOverScreen.SetActive(false);
-            background.gameObject.SetActive(true);
 
-            UIController.instance.GoToHomeScreen();
             GameviewManager.instance.ResetScore();
-
-            if (onQuit != null)
-            {
-                onQuit();
-            }
+            UIController.instance.GoToHomeScreen();
         }
         #endregion // UI Events
 

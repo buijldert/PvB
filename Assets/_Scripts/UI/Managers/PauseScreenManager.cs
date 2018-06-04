@@ -19,8 +19,6 @@ namespace UI.Managers
         [SerializeField] private Button quit;
 
         [SerializeField] private GameObject pauseScreen;
-        [SerializeField] private Image background;
-        [SerializeField] private GameObject menu;
 
         public static Action onQuit;
 
@@ -79,10 +77,9 @@ namespace UI.Managers
         /// </summary>
         private void OnQuitButtonClicked()
         {
-            menu.SetActive(true);
             pauseScreen.SetActive(false);
-            background.gameObject.SetActive(true);
 
+            GameviewManager.instance.ResetScore();
             UIController.instance.GoToHomeScreen();
 
             if (onQuit != null)

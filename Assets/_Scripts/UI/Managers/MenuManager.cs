@@ -36,6 +36,7 @@ namespace UI.Managers
         [SerializeField] private Button[] menuButtons;
 
         private Sequence textFade;
+        private Sequence menuSequence;
 
         /// <summary>
         /// Subscribes to the menu methods
@@ -142,7 +143,7 @@ namespace UI.Managers
             Vector2 oppositeVec2 = new Vector2(rect.anchoredPosition.x * -1, rect.anchoredPosition.y);
 
             // The Sequence 
-            Sequence menuSequence = DOTween.Sequence();
+            menuSequence = DOTween.Sequence();
 
             // Move the button we clicked to the middle and scale it
             menuSequence.Append(rect.DOAnchorPos(MENU_MIDDLE_POSITION, 1));
@@ -238,6 +239,7 @@ namespace UI.Managers
         /// </summary>
         private void OnDisable()
         {
+            menuSequence.Kill();
             demoButton.onClick.RemoveAllListeners();
 
             menuButtons[(int)ButtonType.HomeButton].onClick.RemoveAllListeners();
