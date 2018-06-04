@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UI;
+using UI.Managers;
 using UnityEngine;
 using Utility;
 
@@ -53,7 +54,6 @@ namespace Player
         {
             CollisionHandler.OnDeadlyCollision += ResetPlayer;
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
-
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += ResetPlayer;
         }
@@ -61,8 +61,7 @@ namespace Player
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= ResetPlayer;
-            PlayerInput.OnLeftMouseButtonDown -= TogglePlayer;
-            
+            PlayerInput.OnLeftMouseButtonDown -= TogglePlayer; 
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= ResetPlayer;
         }

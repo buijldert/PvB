@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UI;
+using UI.Managers;
 using UnityEngine;
 using Utility;
 
@@ -50,17 +51,17 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMovement;
-
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += StopMovement;
+
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMovement;
-
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= StopMovement;
+
         }
 
         private void Update()

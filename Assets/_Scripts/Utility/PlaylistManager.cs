@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UI;
+using UI.Managers;
 using UnityEngine;
 
 
@@ -20,7 +21,6 @@ namespace Utility
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopPlaylist;
-
             GameController.OnStartGame += PlayPlaylist;
             GameController.OnStopGame += StopPlaylist;
         }
@@ -28,7 +28,6 @@ namespace Utility
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopPlaylist;
-
             GameController.OnStartGame -= PlayPlaylist;
             GameController.OnStopGame -= StopPlaylist;
         }

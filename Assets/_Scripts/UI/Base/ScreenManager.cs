@@ -3,17 +3,23 @@ using UnityEngine;
 
 namespace UI.Base
 {
+    /// <summary>
+    /// This class acts as a BaseClass for all major UI screens the game has
+    /// </summary>
     public abstract class ScreenManager : MonoBehaviour
     {
         protected MenuState screenState;
 
+        /// <summary>
+        /// Subscribes to the events that every child class will use
+        /// </summary>
         protected virtual void OnEnable()
         {
             UIController.OnScreenChanged += PrepareScreen;
         }
 
         /// <summary>
-        /// Use this for the Singleton Implementation
+        /// Singleton Implementation
         /// </summary>
         protected abstract void Awake();
 
@@ -43,6 +49,9 @@ namespace UI.Base
         /// </summary>
         protected abstract void StopScreen();
 
+        /// <summary>
+        /// Unsubscribes to the events that every child class used
+        /// </summary>
         protected virtual void OnDisable()
         {
             UIController.OnScreenChanged -= PrepareScreen;

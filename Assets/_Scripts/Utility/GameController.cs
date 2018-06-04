@@ -26,7 +26,7 @@ namespace Utility
             instance = this;
         }
 
-        private void StartGame()
+        public void StartGame()
         {
             if(OnStartGame != null)
             {
@@ -34,7 +34,7 @@ namespace Utility
             }
         }
 
-        private void StopGame()
+        public void StopGame()
         {
             Time.timeScale = 1;
             if (OnStopGame != null)
@@ -43,7 +43,7 @@ namespace Utility
             } 
         }
 
-        private void PauseGame()
+        public void PauseGame()
         {
             if(OnPauseGame != null)
             {
@@ -52,7 +52,7 @@ namespace Utility
             Time.timeScale = 0;
         }
 
-        private void ResumeGame()
+        public void ResumeGame()
         {
             Time.timeScale = 1;
             if (OnResumeGame != null)

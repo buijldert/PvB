@@ -12,7 +12,7 @@ public class ShopManager : ScreenManager
 
     public Transform itemHolder;
 
-    private List<Item> unlockedItems = new List<Item>();
+    private List<ItemModel> unlockedItems = new List<ItemModel>();
     private List<GameObject> unlockedItemObjects = new List<GameObject>();
 
     [SerializeField] private Button codeInput;
@@ -42,7 +42,7 @@ public class ShopManager : ScreenManager
     private void UpdateUnlockedItemsList()
     {
         unlockedItems.Clear();
-        foreach (Item item in ItemManager.instance.GetItemArray().Where(item => item.Unlocked == true))
+        foreach (ItemModel item in ItemManager.instance.GetItemArray().Where(item => item.Unlocked == true))
         {
             unlockedItems.Add(item);
         }

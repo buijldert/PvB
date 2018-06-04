@@ -38,9 +38,12 @@ public class CodeManager : ScreenManager
             PlayerPrefHelper.SetBool(code, true);
             ItemManager.instance.UpdateItemEntries();
 
-            foreach (Item item in ItemManager.instance.GetItemArray().Where(item => item.Key == code))
+            foreach (ItemModel item in ItemManager.instance.GetItemArray().Where(item => item.Key == code))
             {
-                ShirtPreviewManager.instance.SetSkin(item.ItemTexture);
+                if(onNewCodeUsed != null)
+                {
+                    onNewCodeUsed();
+                }
             }
 
             DoAnimationSequence();

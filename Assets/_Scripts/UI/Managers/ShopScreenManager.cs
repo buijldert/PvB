@@ -1,0 +1,177 @@
+﻿using System.Linq;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UI.Base;
+using UI.Controllers;
+using DG.Tweening;
+
+namespace UI.Managers
+{
+    /// <summary>
+    /// This class controlls the UI Elements on the Shop-Screen
+    /// </summary>
+    public class ShopScreenManager : ScreenManager
+    {
+        public static ShopScreenManager instance;
+
+        private List<ItemModel> unlockedItems = new List<ItemModel>();
+        private List<GameObject> unlockedItemObjects = new List<GameObject>();
+
+        [SerializeField] private Button codeInput;
+
+        public Transform itemHolderContainer;
+
+        /// <summary>
+        /// Subscribes to the different events we want to react on
+        /// </summary>
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            codeInput.onClick.AddListener(() => OnCodeInputButtonClicked());
+        }
+
+        /// <summary>
+        /// Singleton Implementation.
+        /// Also sets the screenstate to the state this script represents.
+        /// </summary>
+        protected override void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
+
+            screenState = MenuState.Shop;
+        }
+
+        /// <summary>
+        /// Will update the UnlockedItem list
+        /// </summary>
+        private void Start()
+        {
+            UpdateUnlockedItemsList();
+        }
+
+        /// <summary>
+        /// Will be called when we are on this particular screen
+        /// </summary>
+        protected override void StartScreen()
+        {
+            UpdateUnlockedItemsList();
+            DoStartupAnimation();
+        }
+
+        /// <summary>
+        /// Does the start animation of this screen
+        /// </summary>
+        private void DoStartupAnimation()
+        {
+            unlockedItemObjects.Clear();
+
+            Sequence s = DOTween.Sequence();
+            for (int i = 0; i < unlockedItems.Count; i++)
+            {
+                GameObject itemHolder = Instantiate(Resources.Load<GameObject>("btn_ItemHolder"));
+
+                RectTransform rect = itemHolder.GetComponent<RectTransform>();
+                Text itemName = itemHolder.GetComponentInChildren<Text>();
+                Button button = itemHolder.GetComponent<Button>();
+
+                Image holderImage = itemHolder.GetComponent<Image>();
+                Image[] childImages = itemHolder.GetComponentsInChildren<Image>();
+
+                Image selectedImage = itemHolder.transform.GetChild(1).GetComponent<Image>();
+
+                string key = unlockedItems[i].Key;
+
+                if (unlockedItems[i].Selected)
+                {
+                    selectedImage.gameObject.SetActive(true);
+                }
+
+                button.onClick.AddListener(() =>
+                {
+                    ItemManager.instance.SetItemSelected(key);
+                    SetSelectionSign(itemHolder);
+                });
+
+                unlockedItemObjects.Add(itemHolder);
+
+                itemName.text = unlockedItems[i].ItemName;
+                itemHolder.transform.SetParent(itemHolderContainer);
+
+                rect.localScale = new Vector3(1, 1, 1);
+                rect.anchoredPosition = new Vector2(0, (i * 325));
+
+                s.Append(holderImage.DOColor(Color.white, 0.5f));
+                s.Join(holderImage.DOFade(1, 0.5f));
+                s.Join(itemName.DOFade(1, 0.5f));
+                s.Join(selectedImage.DOFade(1, 0.5f));
+
+                foreach (Image image in childImages)
+                {
+                    s.Join(image.DOColor(Color.white, 0.5f));
+                }
+            }
+        }
+
+        #region UI Events
+        /// <summary>
+        /// Sets the selection sign for the item we want to be selected.
+        /// Also turns of the selection sign of all other items.
+        /// </summary>
+        /// <param name="itemHolder">Ithemholder which is selected.</param>
+        private void SetSelectionSign(GameObject _itemHolder)
+        {
+            for (int i = 0; i < unlockedItemObjects.Count; i++)
+            {
+                unlockedItemObjects[i].transform.GetChild(1).gameObject.SetActive(false);
+            }
+
+            _itemHolder.transform.GetChild(1).gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Updates the unlockeditems list.
+        /// </summary>
+        private void UpdateUnlockedItemsList()
+        {
+            unlockedItems.Clear();
+            foreach (ItemModel item in ItemManager.instance.GetItemArray().Where(item => item.Unlocked == true))
+            {
+                unlockedItems.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Will fire when the codeInput-button is clicked
+        /// </summary>
+        private void OnCodeInputButtonClicked()
+        {
+            UIController.instance.GoToCodeScreen();
+        }
+        #endregion // UI Events
+
+
+        /// <summary>
+        /// Will be called when we are not on this particular screen
+        /// </summary>
+        protected override void StopScreen()
+        {
+            foreach (Transform child in itemHolderContainer)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        /// <summary>
+        /// Unsubscribes to the different events we used
+        /// </summary>
+        protected override void OnDisable()
+        {
+            codeInput.onClick.RemoveAllListeners();
+        }
+    } 
+}
