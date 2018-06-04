@@ -21,18 +21,21 @@ namespace Audio
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
             PlaylistManager.OnChangeSong += ChangeAudio;
-            PauseGameManager.OnPauseGame += PauseMusic;
-            PauseGameManager.OnResumeGame += PlayMusic;
             PauseScreenManager.onQuit += StopMusic;
+
+            GameController.OnPauseGame += PauseMusic;
+            GameController.OnResumeGame += PlayMusic;
+            GameController.OnStopGame += StopMusic;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;
             PlaylistManager.OnChangeSong -= ChangeAudio;
-            PauseGameManager.OnPauseGame -= PauseMusic;
-            PauseGameManager.OnResumeGame -= PlayMusic;
-            PauseScreenManager.onQuit -= StopMusic;
+
+            GameController.OnPauseGame -= PauseMusic;
+            GameController.OnResumeGame -= PlayMusic;
+            GameController.OnStopGame -= StopMusic;
         }
 
         private void ChangeAudio(AudioClip _clipToPlay)

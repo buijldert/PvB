@@ -6,6 +6,20 @@ using Utility;
 
 namespace Environment
 {
+    public enum ChunkID
+    {
+        StreetOne,
+        StreetTwo,
+        StreetThree,
+        StreetFour,
+        RoadOne,
+        RoadTwo,
+        RoadThree,
+        RoadFour,
+        RoadFive,
+        RoadSix
+    }
+
     /// <summary>
     /// This class is responsible for managing the various chunks in the game, including but not limited to buildings and roads).
     /// </summary>
@@ -37,13 +51,25 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMovement;
+<<<<<<< HEAD
             HomeScreenManager.OnRestartGame += StartMovement;
+=======
+
+            GameController.OnStartGame += StartMovement;
+            GameController.OnStopGame += StopMovement;
+>>>>>>> Development_branch
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMovement;
+<<<<<<< HEAD
             HomeScreenManager.OnRestartGame -= StartMovement;
+=======
+
+            GameController.OnStartGame -= StartMovement;
+            GameController.OnStopGame -= StopMovement;
+>>>>>>> Development_branch
         }
 
         private void Update()
@@ -65,8 +91,9 @@ namespace Environment
                 if (chunkClones[chunkClones.Count - 1].transform.position.z < outOfScreenPosZ)
                 {
                     chunkClones.Add(GetRandomChunk(Vector3.zero));
+                    SortChunks();
                 }
-                SortChunks();
+
                 if (ChunkOutOfBounds(chunkClones[i]))
                 {
                     ObjectPool.Instance.PoolObject(chunkClones[i]);
@@ -96,6 +123,7 @@ namespace Environment
             for (int i = 0; i < chunkPrefabs.Length; i++)
             {
                 Vector3 size = chunkPrefabs[i].GetComponent<MeshRenderer>().bounds.extents * 2f;
+                
                 sizeDatabase.Add(chunkPrefabs[i].name, size);
             }
         }

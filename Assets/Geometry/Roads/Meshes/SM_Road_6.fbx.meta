@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c91ee88f7b08d09449dcb11adc926d76
-timeCreated: 1527847313
+guid: 458d72595f15e1a45b62188ca34c8ba5
+timeCreated: 1528057250
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -13,12 +13,27 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Road_6
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_window
+    second: {fileID: 2100000, guid: 13880593299c339439a3500267202c52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pink_window
+    second: {fileID: 2100000, guid: c1ee098b1ddae4840ab7118cbe51a726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Weg_4_JM_palette1
+    second: {fileID: 2100000, guid: b1b2385e12d13b04b94759f9da54555a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -68,7 +83,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
