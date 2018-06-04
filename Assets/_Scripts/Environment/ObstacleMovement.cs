@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utility;
 
 namespace Environment
 {
@@ -10,13 +11,26 @@ namespace Environment
     {
         private Rigidbody rb;
         private float movementSpeed = 60f;
+        private void SetMovementSpeed(float _movementSpeedIncrease)
+        {
+            movementSpeed += _movementSpeedIncrease;
+        }
+        private void OnEnable()
+        {
+            DifficultyManager.OnChangeDifficulty += SetMovementSpeed;
+        }
+
+        private void OnDisable()
+        {
+            DifficultyManager.OnChangeDifficulty -= SetMovementSpeed;
+        }
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
         }
         
-        private void FixedUpdate()
+        private void Update()
         {
             MoveObstacle();
         }

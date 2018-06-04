@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fefaa1f877771f143890109ea6c69bac
-timeCreated: 1528057903
+guid: c66a3c3f88423194593cc2a632e17114
+timeCreated: 1527753669
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -13,27 +13,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: BikeDon:BikeDon
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BikeDon_palette1
-    second: {fileID: 2100000, guid: f7f65902eb1fd1d4fadef421f7cb96db, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Blue_window
-    second: {fileID: 2100000, guid: 778f2e298cea2c14e8c6a08d66ee58a8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Donmaterial
-    second: {fileID: 2100000, guid: f7f65902eb1fd1d4fadef421f7cb96db, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

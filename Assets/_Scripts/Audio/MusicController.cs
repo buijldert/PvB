@@ -11,56 +11,50 @@ namespace Audio
     /// </summary>
     public class MusicController : MonoBehaviour
     {
-        [SerializeField] private LevelData currentLevelData;
+        public delegate void AudioStartAction();
+        public static event AudioStartAction OnAudioStart;
 
-        [SerializeField] private AudioSource mutedSource;
-        [SerializeField] private AudioSource nonMutedSource;
-
-        private Coroutine musicDelayCoroutine;
-
-        /// <summary>
-        /// Sets the current leveldata to the given value.
-        /// </summary>
-        /// <param name="_levelData"></param>
-        public void SetCurrentLevelData(LevelData _levelData)
-        {
-            currentLevelData = _levelData;
-        }
+        [SerializeField] private AudioSource audioSource;
 
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
-            RestartGameButton.OnRestartGame += StartMusic;
+            PlaylistManager.OnChangeSong += ChangeAudio;
+            PauseGameManager.OnPauseGame += PauseMusic;
+            PauseGameManager.OnResumeGame += PlayMusic;
+            PauseScreenManager.onQuit += StopMusic;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;
-            RestartGameButton.OnRestartGame -= StartMusic;
+            PlaylistManager.OnChangeSong -= ChangeAudio;
+            PauseGameManager.OnPauseGame -= PauseMusic;
+            PauseGameManager.OnResumeGame -= PlayMusic;
+            PauseScreenManager.onQuit -= StopMusic;
         }
 
-        private void Start()
+        private void ChangeAudio(AudioClip _clipToPlay)
         {
-            mutedSource.clip = currentLevelData.LevelAudio;
-            nonMutedSource.clip = currentLevelData.LevelAudio;
+            audioSource.clip = _clipToPlay;
+            PlayMusic();
         }
 
         /// <summary>
         /// Plays the background music.
         /// </summary>
-        private void StartMusic()
+        private void PlayMusic()
         {
-            mutedSource.Play();
-            musicDelayCoroutine = StartCoroutine(PlayMusicDelay());
+            audioSource.Play();
+            if (OnAudioStart != null)
+            {
+                OnAudioStart();
+            }
         }
 
-        /// <summary>
-        /// Plays the real music at a delay.
-        /// </summary>
-        private IEnumerator PlayMusicDelay()
+        private void PauseMusic()
         {
-            yield return new WaitForSeconds(6f);
-            nonMutedSource.Play();
+            audioSource.Pause();
         }
 
         /// <summary>
@@ -68,12 +62,7 @@ namespace Audio
         /// </summary>
         private void StopMusic()
         {
-            if (musicDelayCoroutine != null)
-            {
-                StopCoroutine(musicDelayCoroutine);
-            }
-            mutedSource.Stop();
-            nonMutedSource.Stop();
+            audioSource.Stop();
         }
     }
 }

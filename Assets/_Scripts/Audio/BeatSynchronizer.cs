@@ -13,17 +13,17 @@ namespace Audio
 
         public float bpm = 120f;        // Tempo in beats per minute of the audio clip.
         public float startDelay = 0f;   // Number of seconds to delay the start of audio playback.
-        public delegate void AudioStartAction(double syncTime);
+        public delegate void AudioStartAction(double _syncTime);
         public static event AudioStartAction OnAudioStart;
 
         private void OnEnable()
         {
-            RestartGameButton.OnRestartGame += StartBeatCheck;
+            MusicController.OnAudioStart += StartBeatCheck;
         }
 
         private void OnDisable()
         {
-            RestartGameButton.OnRestartGame -= StartBeatCheck;
+            MusicController.OnAudioStart -= StartBeatCheck;
         }
 
         private void StartBeatCheck()

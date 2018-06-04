@@ -27,11 +27,19 @@ namespace Utility
         /// <param name="_collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider _collision)
         {
-            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Black) || 
-                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.White))
+            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
+                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Blue))
             {
                 if (OnDeadlyCollision != null)
+                {
                     OnDeadlyCollision();
+
+                    if(SettingsController.GetVibrationState())
+                    {
+                        Handheld.Vibrate();
+                    }
+                }
+                    
             }
             else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
             {
