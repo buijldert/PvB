@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33140015908201378}
   - component: {fileID: 23289437089487506}
   m_Layer: 0
-  m_Name: SM_Don_Bike_White_Prefab
+  m_Name: SM_Don_Bike_Blue_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885531054326894}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.5333333, y: -1.0666667, z: 40.300003}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,4 +83,4 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885531054326894}
-  m_Mesh: {fileID: 4300000, guid: c66a3c3f88423194593cc2a632e17114, type: 3}
+  m_Mesh: {fileID: 4300000, guid: fefaa1f877771f143890109ea6c69bac, type: 3}
