@@ -260,7 +260,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 145414607}
-  - component: {fileID: 145414606}
   - component: {fileID: 145414608}
   m_Layer: 0
   m_Name: GameController
@@ -269,17 +268,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &145414606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 145414605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307e77fa2d773514e8838398c39bf227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &145414607
 Transform:
   m_ObjectHideFlags: 0
@@ -15537,7 +15525,6 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
-  - {fileID: 1155358894112698, guid: 829e076a6f1ef0b44b9648134ad9fd6c, type: 2}
   - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 0
@@ -19265,7 +19252,6 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
-  - {fileID: 1155358894112698, guid: 829e076a6f1ef0b44b9648134ad9fd6c, type: 2}
   - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 1
