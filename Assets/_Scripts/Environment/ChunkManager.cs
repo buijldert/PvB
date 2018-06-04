@@ -50,13 +50,17 @@ namespace Environment
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMovement;
-            HomeManager.OnRestartGame += StartMovement;
+
+            GameController.OnStartGame += StartMovement;
+            GameController.OnStopGame += StopMovement;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMovement;
-            HomeManager.OnRestartGame -= StartMovement;
+
+            GameController.OnStartGame -= StartMovement;
+            GameController.OnStopGame -= StopMovement;
         }
 
         private void Update()

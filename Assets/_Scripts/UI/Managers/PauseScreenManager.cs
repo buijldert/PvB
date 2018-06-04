@@ -40,7 +40,7 @@ public class PauseScreenManager : MonoBehaviour
 
     private void OnResumeButtonClicked()
     {
-        PauseGameManager.instance.ResumeGame();
+        //PauseGameManager.instance.ResumeGame();
         pauseScreen.SetActive(false);
 
     }

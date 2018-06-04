@@ -64,7 +64,7 @@ public class GameviewManager : ScreenManager
 
     private void OnPauseButtonClicked()
     {
-        PauseGameManager.instance.PauseGame();
+        //PauseGameManager.instance.PauseGame();
         pauseScreen.SetActive(true);
     }
 

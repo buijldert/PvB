@@ -66,7 +66,6 @@ namespace Environment
         /// </summary>
         public void OnOnbeatDetected()
         {
-            //Debug.Log("beat");
             SpawnObstacle();
         }
 

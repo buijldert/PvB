@@ -261,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 145414607}
   - component: {fileID: 145414606}
+  - component: {fileID: 145414608}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -296,6 +297,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145414608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 145414605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14329b26c56a87240af0ede5d7cac706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &150175278
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,8 +627,8 @@ MonoBehaviour:
   leftPos: {x: -3, y: 0.75, z: 61}
   rightPos: {x: 3, y: 0.75, z: 61}
   particleSystemGameObject: {fileID: 168139656}
-  pinkPlayer: {fileID: 0}
-  bluePlayer: {fileID: 0}
+  pinkPlayer: {fileID: 339209087}
+  bluePlayer: {fileID: 1567304497}
   switchParticleSystems:
   - {fileID: 584862774}
   - {fileID: 255828166}
@@ -4561,6 +4573,11 @@ Prefab:
 --- !u!4 &339209086 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4870607914120396, guid: 574d105b6080e13499f29e51e1012995,
+    type: 2}
+  m_PrefabInternal: {fileID: 339209085}
+--- !u!1 &339209087 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1899117453708958, guid: 574d105b6080e13499f29e51e1012995,
     type: 2}
   m_PrefabInternal: {fileID: 339209085}
 --- !u!1 &378148700
@@ -14894,12 +14911,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1885531054326894, guid: 2313e0c19b71aed4f999a0b1041a257d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2313e0c19b71aed4f999a0b1041a257d, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1567304496 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4349727933482952, guid: 2313e0c19b71aed4f999a0b1041a257d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1567304495}
+--- !u!1 &1567304497 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1885531054326894, guid: 2313e0c19b71aed4f999a0b1041a257d,
     type: 2}
   m_PrefabInternal: {fileID: 1567304495}
 --- !u!1 &1584777727
