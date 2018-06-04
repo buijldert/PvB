@@ -4,6 +4,7 @@ using UI;
 using UnityEngine;
 using Utility;
 using UI.Managers;
+using System;
 
 namespace Audio
 {
@@ -12,8 +13,7 @@ namespace Audio
     /// </summary>
     public class MusicController : MonoBehaviour
     {
-        public delegate void AudioStartAction();
-        public static event AudioStartAction OnAudioStart;
+        public static Action OnAudioStart;
 
         [SerializeField] private AudioSource audioSource;
 
@@ -56,13 +56,16 @@ namespace Audio
             }
         }
 
+        /// <summary>
+        /// Pauses the music.
+        /// </summary>
         private void PauseMusic()
         {
             audioSource.Pause();
         }
 
         /// <summary>
-        /// Stops the music and music delay coroutine 
+        /// Stops the music. 
         /// </summary>
         private void StopMusic()
         {

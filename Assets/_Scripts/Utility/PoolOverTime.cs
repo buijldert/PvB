@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Utility
 {
     public class PoolOverTime : MonoBehaviour
     {
-        public delegate void ObstacleCollectionAction(GameObject obstacleToCollect);
-        public static event ObstacleCollectionAction OnObstacleCollection;
+        public static Action<GameObject> OnObstacleCollection;
 
         [SerializeField] private float poolTime;
 

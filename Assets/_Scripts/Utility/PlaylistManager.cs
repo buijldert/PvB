@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UI;
 using UI.Managers;
@@ -12,8 +13,7 @@ namespace Utility
     /// </summary>
     public class PlaylistManager : MonoBehaviour
     {
-        public delegate void ChangeSongAction(AudioClip _clipToPlay);
-        public static event ChangeSongAction OnChangeSong;
+        public static Action<AudioClip> OnChangeSong;
 
         [SerializeField] private List<AudioClip> songs;
         private Coroutine loopPlaylistCoroutine;
@@ -32,31 +32,33 @@ namespace Utility
             GameController.OnStopGame -= StopPlaylist;
         }
 
+        /// <summary>
+        /// Shuffles the list of the songs.
+        /// </summary>
         private void ShuffleSongs()
         {
             for (int i = 0; i < songs.Count; i++)
             {
                 var temp = songs[i];
-                int randomIndex = Random.Range(i, songs.Count);
+                int randomIndex = UnityEngine.Random.Range(i, songs.Count);
                 songs[i] = songs[randomIndex];
                 songs[randomIndex] = temp;
             }
         }
 
+        /// <summary>
+        /// Starts the playlist.
+        /// </summary>
         private void PlayPlaylist()
         {
             ShuffleSongs();
             loopPlaylistCoroutine = StartCoroutine(LoopPlaylist());
         }
 
-        private void StopPlaylist()
-        {
-            if(loopPlaylistCoroutine != null)
-            {
-                StopCoroutine(loopPlaylistCoroutine);
-            }
-        }
-
+        /// <summary>
+        /// Loops through the playlist and reshuffles and restarts it after going through all the songs.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator LoopPlaylist()
         {
             for (int i = 0; i < songs.Count; i++)
@@ -69,11 +71,24 @@ namespace Utility
             }
             ShuffleSongs();
 
-            if(DifficultyManager.IncreaseDifficulty != null)
+            if (DifficultyManager.IncreaseDifficulty != null)
             {
                 DifficultyManager.IncreaseDifficulty();
             }
             loopPlaylistCoroutine = StartCoroutine(LoopPlaylist());
         }
+
+        /// <summary>
+        /// Stops the playlist.
+        /// </summary>
+        private void StopPlaylist()
+        {
+            if(loopPlaylistCoroutine != null)
+            {
+                StopCoroutine(loopPlaylistCoroutine);
+            }
+        }
+
+        
     }
 }

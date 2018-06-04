@@ -19,13 +19,13 @@ namespace Environment
         private float backPosZ = 400f;
         private float[] xOffsets = new float[2] { -3f, 3f };
         private float timeTillChanceIncrease = 20f;
+        
 
         private BeatObserver beatObserver;
 
-        //private int counter;
-
         private int[] lastTwoLanes = new int[2];
         private int chanceToSpawnDoubleGates;
+        private float maxChance = 20;
 
         private Coroutine doubleGateChanceCoroutine;
 
@@ -57,28 +57,36 @@ namespace Environment
         {
             if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
             {
-                //counter++;
                 OnOnbeatDetected();
             }
-
         }
-
+        
+        /// <summary>
+        /// Starts calculating a new chance for the double gate to happen.
+        /// </summary>
         private void StartSpawning()
         {
             chanceToSpawnDoubleGates = 0;
             doubleGateChanceCoroutine = StartCoroutine(ChanceForDoubleGatesIncreases());
         }
 
+        /// <summary>
+        /// Adds more to the chance to get a double gate every X seconds.
+        /// </summary>
         private IEnumerator ChanceForDoubleGatesIncreases()
         {
             yield return new WaitForSeconds(timeTillChanceIncrease);
             chanceToSpawnDoubleGates += 1;
-            if(chanceToSpawnDoubleGates < 20)
+            if(chanceToSpawnDoubleGates < maxChance)
             {
                 doubleGateChanceCoroutine = StartCoroutine(ChanceForDoubleGatesIncreases());
             }
         }
 
+        /// <summary>
+        /// Removes the given obstacle from the active pool.
+        /// </summary>
+        /// <param name="obstacleToCollect">The obstacle that will be removed from the active pool.</param>
         private void RemoveObstacleFromList(GameObject obstacleToCollect)
         {
             obstacleClones.Remove(obstacleToCollect);

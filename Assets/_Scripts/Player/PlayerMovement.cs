@@ -116,8 +116,6 @@ namespace Player
             }
             else
             {
-                //particleSystemGameObject.SetActive(false);
-
                 for (int i = 0; i < switchParticleSystems.Length; i++)
                 {
                     var main = switchParticleSystems[i].main;

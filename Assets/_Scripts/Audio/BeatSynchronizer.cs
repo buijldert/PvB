@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UI;
+using System;
 
 namespace Audio
 {
@@ -13,8 +14,8 @@ namespace Audio
 
         public float bpm = 120f;        // Tempo in beats per minute of the audio clip.
         public float startDelay = 0f;   // Number of seconds to delay the start of audio playback.
-        public delegate void AudioStartAction(double _syncTime);
-        public static event AudioStartAction OnAudioStart;
+
+        public static Action<double> OnAudioStart;
 
         private void OnEnable()
         {

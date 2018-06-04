@@ -26,6 +26,9 @@ namespace Utility
             instance = this;
         }
 
+        /// <summary>
+        /// Starts the game.
+        /// </summary>
         public void StartGame()
         {
             if(OnStartGame != null)
@@ -34,6 +37,9 @@ namespace Utility
             }
         }
 
+        /// <summary>
+        /// Stops the game.
+        /// </summary>
         public void StopGame()
         {
             Time.timeScale = 1;
@@ -43,6 +49,9 @@ namespace Utility
             } 
         }
 
+        /// <summary>
+        /// Pasues the game.
+        /// </summary>
         public void PauseGame()
         {
             if(OnPauseGame != null)
@@ -52,6 +61,9 @@ namespace Utility
             Time.timeScale = 0;
         }
 
+        /// <summary>
+        /// Resumes the game.
+        /// </summary>
         public void ResumeGame()
         {
             Time.timeScale = 1;

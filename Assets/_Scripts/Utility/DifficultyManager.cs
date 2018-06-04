@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Utility
 {
@@ -10,8 +11,7 @@ namespace Utility
         public delegate void IncreaseDifficultyAction();
         public static IncreaseDifficultyAction IncreaseDifficulty;
 
-        public delegate void ChangeTheDifficultyAction(float movementSpeedIncrease);
-        public static event ChangeTheDifficultyAction OnChangeDifficulty;
+        public static Action<float> OnChangeDifficulty;
 
         private void OnEnable()
         {
