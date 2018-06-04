@@ -3865,7 +3865,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b13be11905cdf477f8222505b4bdc01c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27e65fbf982724bbbb284293db3ce7e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4067,7 +4067,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aee3e57a52081423a9c35a077283d836, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cea4f70cf9c94327bd6b4c49c6298e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4877,7 +4877,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6a7573e756282478189c6d72865254e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c6275e854724b059bfccd1c106c3b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5810,8 +5810,6 @@ MonoBehaviour:
   vibration: {fileID: 221168097}
   quit: {fileID: 784689021}
   pauseScreen: {fileID: 1110059423}
-  background: {fileID: 341334251}
-  menu: {fileID: 1928636029}
 --- !u!114 &2114699624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5825,10 +5823,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resume: {fileID: 914207676}
   quit: {fileID: 976740987}
-  gameOverScreen: {fileID: 1278157132}
-  background: {fileID: 341334251}
-  menu: {fileID: 1928636029}
   score: {fileID: 122868852}
+  gameOverScreen: {fileID: 1278157132}
 --- !u!1 &2136552339
 GameObject:
   m_ObjectHideFlags: 0
