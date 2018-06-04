@@ -1,4 +1,5 @@
 ﻿using Audio;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility;
@@ -17,23 +18,29 @@ namespace Environment
 
         private float backPosZ = 400f;
         private float[] xOffsets = new float[2] { -3f, 3f };
+        private float timeTillChanceIncrease = 20f;
 
         private BeatObserver beatObserver;
 
         //private int counter;
 
         private int[] lastTwoLanes = new int[2];
+        private int chanceToSpawnDoubleGates;
+
+        private Coroutine doubleGateChanceCoroutine;
 
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopSpawning;
             PoolOverTime.OnObstacleCollection += RemoveObstacleFromList;
+            GameController.OnStartGame += StartSpawning;
         }
 
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
             PoolOverTime.OnObstacleCollection -= RemoveObstacleFromList;
+            GameController.OnStartGame -= StartSpawning;
         }
 
         private void Start()
@@ -46,7 +53,7 @@ namespace Environment
             beatObserver = GetComponent<BeatObserver>();
         }
 
-        void Update()
+        private void Update()
         {
             if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)
             {
@@ -54,6 +61,22 @@ namespace Environment
                 OnOnbeatDetected();
             }
 
+        }
+
+        private void StartSpawning()
+        {
+            chanceToSpawnDoubleGates = 0;
+            doubleGateChanceCoroutine = StartCoroutine(ChanceForDoubleGatesIncreases());
+        }
+
+        private IEnumerator ChanceForDoubleGatesIncreases()
+        {
+            yield return new WaitForSeconds(timeTillChanceIncrease);
+            chanceToSpawnDoubleGates += 1;
+            if(chanceToSpawnDoubleGates < 20)
+            {
+                doubleGateChanceCoroutine = StartCoroutine(ChanceForDoubleGatesIncreases());
+            }
         }
 
         private void RemoveObstacleFromList(GameObject obstacleToCollect)
@@ -79,6 +102,10 @@ namespace Environment
                 ObjectPool.Instance.PoolObject(obstacleClones[i]);
             }
             obstacleClones.Clear();
+            if(doubleGateChanceCoroutine != null)
+            {
+                StopCoroutine(doubleGateChanceCoroutine);
+            }
         }
 
         /// <summary>
@@ -87,11 +114,24 @@ namespace Environment
         private void SpawnObstacle()
         {
             int randomObstacle = Random.Range(0, 2);
-            
-            GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
-            obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, backPosZ);
-            obstacleClone.transform.SetParent(transform);
-            obstacleClones.Add(obstacleClone);
+            int randomChance = Random.Range(0, 100);
+            if(randomChance < chanceToSpawnDoubleGates)
+            {
+                GameObject leftGate = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                GameObject rightGate = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                leftGate.transform.position = new Vector3(xOffsets[0], transform.position.y, backPosZ);
+                rightGate.transform.position = new Vector3(xOffsets[1], transform.position.y, backPosZ);
+                obstacleClones.Add(leftGate);
+                obstacleClones.Add(rightGate);
+            }
+            else
+            {
+
+                GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, backPosZ);
+                obstacleClone.transform.SetParent(transform);
+                obstacleClones.Add(obstacleClone);
+            }
         }
 
         /// <summary>

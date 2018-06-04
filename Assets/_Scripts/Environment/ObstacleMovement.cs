@@ -11,10 +11,12 @@ namespace Environment
     {
         private Rigidbody rb;
         private float movementSpeed = 60f;
+
         private void SetMovementSpeed(float _movementSpeedIncrease)
         {
             movementSpeed += _movementSpeedIncrease;
         }
+
         private void OnEnable()
         {
             DifficultyManager.OnChangeDifficulty += SetMovementSpeed;
