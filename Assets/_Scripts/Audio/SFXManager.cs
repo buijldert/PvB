@@ -12,7 +12,9 @@ namespace Audio
     {
         private static SFXManager s_Instance = null;
 
-        private AudioMixer masterAudioMixer;
+        [SerializeField] private AudioMixer masterMixer;
+
+        [SerializeField] private AudioMixerGroup outputMixerGroup;
 
         /// <summary>
         /// Instantiates a new SoundManager if one cannot be found.
@@ -60,13 +62,11 @@ namespace Audio
 
             s_Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            masterAudioMixer = Resources.Load<AudioMixer>("Mixer");
         }
 
         public void ChangeGroupVolume(string _groupVolumeName, float _volumeValue)
         {
-            masterAudioMixer.SetFloat(_groupVolumeName, _volumeValue);
+            masterMixer.SetFloat(_groupVolumeName, _volumeValue);
         }
         
         /// <summary>
@@ -93,7 +93,7 @@ namespace Audio
             tempAS.clip = _clipToPlay;
             tempAS.volume = _volume;
             tempAS.pitch = _pitch;
-            tempAS.outputAudioMixerGroup = masterAudioMixer.FindMatchingGroups("SFX")[0];
+            tempAS.outputAudioMixerGroup = outputMixerGroup;
             tempAS.Play();
 
             yield return new WaitForSeconds(_clipToPlay.length);

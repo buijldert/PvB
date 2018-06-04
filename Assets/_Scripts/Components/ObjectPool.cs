@@ -11,14 +11,14 @@ namespace Utility
     public class ObjectPool : MonoBehaviour
     {
 
-        public static ObjectPool Instance { get; private set; }
+        public static ObjectPool instance { get; private set; }
 
         #region member
         /// <summary>
         /// Member class for a prefab entered into the object pool
         /// </summary>
-        /// ObjectPool.instance.GetObjectForType("Cube", true/false); <---use to instantiate
-        /// ObjectPool.instance.PoolObject(gameObject) <---use to pool;
+        /// ObjectPool.instance.GetObjectForType("Cube", true/false); use to instantiate
+        /// ObjectPool.instance.PoolObject(gameObject); use to pool
         [Serializable]
         public class ObjectPoolEntry
         {
@@ -54,25 +54,14 @@ namespace Utility
         /// </summary>
         private GameObject containerObject;
 
-        private static ObjectPool instance = null;
-
-
-        private void OnEnable()
-        {
-            Instance = this;
-        }
-
         // Use this for initialization
         private void Awake()
         {
-            if (instance == null)
+            if (instance != null && instance != this)
             {
-                instance = this;
+                Destroy(this.gameObject);
             }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
-            }
+            instance = this;
 
             DontDestroyOnLoad(gameObject);
 

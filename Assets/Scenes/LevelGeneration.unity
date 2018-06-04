@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1059156959}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
@@ -5413,11 +5413,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114085755759372230, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
-        type: 2}
-      propertyPath: switchParticleSystems.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4995304944995198, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Audio;
+using System.Collections;
 using UI;
 using UI.Managers;
 using UnityEngine;
@@ -44,6 +45,9 @@ namespace Player
         [Header("Colors")]
         [SerializeField] private Color pinkColor;
         [SerializeField] private Color blueColor;
+
+        [Header("Audioclips")]
+        [SerializeField] private AudioClip switchSoundEffect;
         
         public PlayerColor GetPlayerColor()
         {
@@ -116,6 +120,7 @@ namespace Player
             }
             else
             {
+                SFXManager.instance.PlaySound(switchSoundEffect, _volume: 0.75f);
                 for (int i = 0; i < switchParticleSystems.Length; i++)
                 {
                     var main = switchParticleSystems[i].main;
