@@ -4652,6 +4652,8 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
+  - {fileID: 1155358894112698, guid: 829e076a6f1ef0b44b9648134ad9fd6c, type: 2}
+  - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 0
 --- !u!1 &1715478083
@@ -4820,6 +4822,8 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
+  - {fileID: 1155358894112698, guid: 829e076a6f1ef0b44b9648134ad9fd6c, type: 2}
+  - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 1
 --- !u!1 &1834507745
