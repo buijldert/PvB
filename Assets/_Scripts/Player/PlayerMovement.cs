@@ -116,13 +116,17 @@ namespace Player
             }
             else
             {
-                particleSystemGameObject.SetActive(true);
+                //particleSystemGameObject.SetActive(false);
 
                 for (int i = 0; i < switchParticleSystems.Length; i++)
                 {
                     var main = switchParticleSystems[i].main;
                     main.startColor = _color;
+
+                    switchParticleSystems[i].Clear();
+                    switchParticleSystems[i].Play();
                 }
+                particleSystemGameObject.SetActive(true);
 
                 pinkPlayer.SetActive(false);
                 bluePlayer.SetActive(false);
@@ -144,8 +148,9 @@ namespace Player
         private IEnumerator AppearDelay(PlayerColor _playerColor)
         {
             float particleSystemTime = 0.25f;
+            
             yield return new WaitForSeconds(particleSystemTime);
-
+            
             if (_playerColor == PlayerColor.Blue)
             {
                 bluePlayer.SetActive(true);
@@ -156,8 +161,13 @@ namespace Player
             }
 
             boxCollider.enabled = true;
-            particleSystemGameObject.SetActive(false);
+            
             canMove = true;
+
+            //yield return new WaitForSeconds(particleSystemTime);
+            particleSystemGameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+            yield return new WaitForSeconds(particleSystemTime * 2);
+            particleSystemGameObject.SetActive(false);
         }
 
         /// <summary>
