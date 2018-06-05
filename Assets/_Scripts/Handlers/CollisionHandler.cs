@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using Audio;
+using Player;
 using System;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ namespace Utility
         public static Action<int> OnFadeThroughCollision;
 
         private PlayerMovement playerMovement;
+        [Header("AudioClips")]
+        [SerializeField] private AudioClip fadeThroughSound;
+        [SerializeField] private AudioClip deathSound;
 
         private void Start()
         {
@@ -32,7 +36,7 @@ namespace Utility
                 if (OnDeadlyCollision != null)
                 {
                     OnDeadlyCollision();
-
+                    SFXManager.instance.PlaySound(deathSound);
                     if(SettingsController.GetVibrationState())
                     {
                         Handheld.Vibrate();
@@ -40,10 +44,11 @@ namespace Utility
                 }
                     
             }
-            else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
+            else
             {
                 if (OnFadeThroughCollision != null)
                 {
+                    SFXManager.instance.PlaySound(fadeThroughSound, _volume: 0.75f);
                     OnFadeThroughCollision(10);
                 }
             }

@@ -21,7 +21,7 @@ namespace Player
     /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerColor playerColor = PlayerColor.Pink;
+        [SerializeField] private PlayerColor playerColor = PlayerColor.Pink;
 
         private BoxCollider boxCollider;
 
@@ -120,7 +120,7 @@ namespace Player
             }
             else
             {
-                SFXManager.instance.PlaySound(switchSoundEffect, _volume: 0.75f);
+                SFXManager.instance.PlaySound(switchSoundEffect, _volume: 0.25f);
                 for (int i = 0; i < switchParticleSystems.Length; i++)
                 {
                     var main = switchParticleSystems[i].main;
