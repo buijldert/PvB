@@ -223,8 +223,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   pinkColor: {r: 1, g: 0.16078432, b: 0.9411765, a: 0.70980394}
   blueColor: {r: 0.16078432, g: 0.75686276, b: 1, a: 0.70980394}
+  switchSoundEffect: {fileID: 8300000, guid: bfcd4f4f015b5524b880129268ccf603, type: 3}
 --- !u!114 &114644380443102414
 MonoBehaviour:
   m_ObjectHideFlags: 1

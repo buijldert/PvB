@@ -11,7 +11,9 @@ namespace RR.Audio
     {
         public static SFXManager instance;
 
-        private AudioMixer masterAudioMixer;
+        [SerializeField] private AudioMixer masterMixer;
+
+        [SerializeField] private AudioMixerGroup outputMixerGroup;
 
         private void Awake()
         {
@@ -19,15 +21,21 @@ namespace RR.Audio
             {
                 Destroy(this.gameObject);
             }
+<<<<<<< HEAD
             instance = this;
 
             masterAudioMixer = Resources.Load<AudioMixer>("Mixer");
+=======
+
+            s_Instance = this;
+            DontDestroyOnLoad(gameObject);
+>>>>>>> Development_branch
         }
 
 
         public void ChangeGroupVolume(string _groupVolumeName, float _volumeValue)
         {
-            masterAudioMixer.SetFloat(_groupVolumeName, _volumeValue);
+            masterMixer.SetFloat(_groupVolumeName, _volumeValue);
         }
         
         /// <summary>
@@ -54,7 +62,7 @@ namespace RR.Audio
             tempAS.clip = _clipToPlay;
             tempAS.volume = _volume;
             tempAS.pitch = _pitch;
-            tempAS.outputAudioMixerGroup = masterAudioMixer.FindMatchingGroups("SFX")[0];
+            tempAS.outputAudioMixerGroup = outputMixerGroup;
             tempAS.Play();
 
             yield return new WaitForSeconds(_clipToPlay.length);

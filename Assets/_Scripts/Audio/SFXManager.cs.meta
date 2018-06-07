@@ -5,7 +5,10 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - masterMixer: {fileID: 24100000, guid: b3f32fa90a7850d45bfd6a973f4b612b, type: 2}
+  - outputMixerGroup: {fileID: 243618927175109246, guid: b3f32fa90a7850d45bfd6a973f4b612b,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

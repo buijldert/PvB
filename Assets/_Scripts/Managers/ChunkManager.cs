@@ -85,7 +85,7 @@ namespace RR.Managers
 
                 if (ChunkOutOfBounds(chunkClones[i]))
                 {
-                    ObjectPool.Instance.PoolObject(chunkClones[i]);
+                    ObjectPool.instance.PoolObject(chunkClones[i]);
                     chunkClones.RemoveAt(i);
                 }
             }
@@ -135,7 +135,7 @@ namespace RR.Managers
         /// <returns></returns>
         private GameObject SpawnChunk(GameObject _chunk, Vector3 _position)
         {
-            GameObject chunkClone = ObjectPool.Instance.GetObjectForType(_chunk.name, false);
+            GameObject chunkClone = ObjectPool.instance.GetObjectForType(_chunk.name, false);
             chunkClone.transform.position = _position;
             chunkClone.transform.SetParent(transform);
             if (isLeftChunkManager)

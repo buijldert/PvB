@@ -109,7 +109,7 @@ namespace RR.Generators
         {
             for (int i = 0; i < obstacleClones.Count; i++)
             {
-                ObjectPool.Instance.PoolObject(obstacleClones[i]);
+                ObjectPool.instance.PoolObject(obstacleClones[i]);
             }
             obstacleClones.Clear();
             if(doubleGateChanceCoroutine != null)
@@ -127,8 +127,8 @@ namespace RR.Generators
             int randomChance = Random.Range(0, 100);
             if(randomChance < chanceToSpawnDoubleGates)
             {
-                GameObject leftGate = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
-                GameObject rightGate = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                GameObject leftGate = ObjectPool.instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                GameObject rightGate = ObjectPool.instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
                 leftGate.transform.position = new Vector3(xOffsets[0], transform.position.y, backPosZ);
                 rightGate.transform.position = new Vector3(xOffsets[1], transform.position.y, backPosZ);
                 obstacleClones.Add(leftGate);
@@ -137,7 +137,7 @@ namespace RR.Generators
             else
             {
 
-                GameObject obstacleClone = ObjectPool.Instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
+                GameObject obstacleClone = ObjectPool.instance.GetObjectForType(obstaclePrefabs[randomObstacle].name, false);
                 obstacleClone.transform.position = new Vector3(xOffsets[MakeRandomCheck()], transform.position.y, backPosZ);
                 obstacleClone.transform.SetParent(transform);
                 obstacleClones.Add(obstacleClone);

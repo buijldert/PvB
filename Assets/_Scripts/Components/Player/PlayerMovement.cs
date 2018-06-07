@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 ﻿using System.Collections;
+=======
+﻿using Audio;
+using System.Collections;
+using UI;
+using UI.Managers;
+>>>>>>> Development_branch
 using UnityEngine;
 using RR.Controllers;
 using RR.Handlers;
@@ -35,12 +42,18 @@ namespace RR.Components.Player
         [SerializeField] private Color pinkColor;
         [SerializeField] private Color blueColor;
 
+<<<<<<< HEAD
         private PlayerColor playerColor = PlayerColor.Pink;
         private BoxCollider boxCollider;
         private Coroutine _appearDelayCoroutine;
 
         private bool canMove;
 
+=======
+        [Header("Audioclips")]
+        [SerializeField] private AudioClip switchSoundEffect;
+        
+>>>>>>> Development_branch
         public PlayerColor GetPlayerColor()
         {
             return playerColor;
@@ -112,6 +125,7 @@ namespace RR.Components.Player
             }
             else
             {
+                SFXManager.instance.PlaySound(switchSoundEffect, _volume: 0.75f);
                 for (int i = 0; i < switchParticleSystems.Length; i++)
                 {
                     var main = switchParticleSystems[i].main;

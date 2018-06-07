@@ -27,7 +27,7 @@ namespace RR.Components
             {
                 OnObstacleCollection(gameObject);
             }
-            ObjectPool.Instance.PoolObject(gameObject);
+            ObjectPool.instance.PoolObject(gameObject);
         }
     }
 }
