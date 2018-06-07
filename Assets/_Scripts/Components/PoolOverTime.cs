@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Utility
+namespace RR.Components
 {
     public class PoolOverTime : MonoBehaviour
     {

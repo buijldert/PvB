@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UI;
-using UI.Managers;
 using UnityEngine;
+using RR.Handlers;
+using RR.Controllers;
 
-
-namespace Utility
+namespace RR.Managers
 { 
     /// <summary>
     /// This class is responsible for managing the playlist that will dictate the level.
@@ -88,7 +87,5 @@ namespace Utility
                 StopCoroutine(loopPlaylistCoroutine);
             }
         }
-
-        
     }
 }

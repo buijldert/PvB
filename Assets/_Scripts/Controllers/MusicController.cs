@@ -1,12 +1,9 @@
-﻿using Environment;
-using System.Collections;
-using UI;
+﻿using System;
 using UnityEngine;
-using Utility;
-using UI.Managers;
-using System;
+using RR.Handlers;
+using RR.Managers;
 
-namespace Audio
+namespace RR.Controllers
 {
     /// <summary>
     /// This class is responsible for setting the current level through song and stopping/starting the background and spawning music.
@@ -21,7 +18,6 @@ namespace Audio
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
             PlaylistManager.OnChangeSong += ChangeAudio;
-            PauseScreenManager.onQuit += StopMusic;
 
             GameController.OnPauseGame += PauseMusic;
             GameController.OnResumeGame += PlayMusic;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Utility;
+using RR.Managers;
 
-namespace Environment
+namespace RR.Components
 {
     /// <summary>
     /// This class is responsible for moving the obstacle backwards at a certain movment speed.
@@ -9,7 +9,7 @@ namespace Environment
     [RequireComponent(typeof(Rigidbody))]
     public class ObstacleMovement : MonoBehaviour
     {
-        private Rigidbody rb;
+        private Rigidbody rigidbody;
         private float movementSpeed = 60f;
 
         private void SetMovementSpeed(float _movementSpeedIncrease)
@@ -29,7 +29,7 @@ namespace Environment
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            rigidbody = GetComponent<Rigidbody>();
         }
         
         private void Update()
@@ -42,7 +42,7 @@ namespace Environment
         /// </summary>
         private void MoveObstacle()
         {
-            rb.velocity = Vector3.back * movementSpeed;
+            rigidbody.velocity = Vector3.back * movementSpeed;
         }
     }
 }

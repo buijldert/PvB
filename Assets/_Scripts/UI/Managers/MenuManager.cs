@@ -2,10 +2,10 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UI.Controllers;
+using RR.UI.Controllers;
 using DG.Tweening;
 
-namespace UI.Managers
+namespace RR.UI.Managers
 {
     /// <summary>
     /// This class controlls and animates the different Menu buttons.
@@ -127,7 +127,7 @@ namespace UI.Managers
         /// <summary>
         /// Animates the menu
         /// </summary>
-        /// <param name="button">The button we clicked on.</param>
+        /// <param name="_button">The button we clicked on.</param>
         private void DoButtonAnimation(Button _button)
         {
             // If the button we click is the middle button, just return

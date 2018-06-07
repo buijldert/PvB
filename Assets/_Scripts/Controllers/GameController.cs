@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility
+namespace RR.Controllers
 {
     /// <summary>
     /// This class is responsible for starting/stopping/pausing/resuming the game.

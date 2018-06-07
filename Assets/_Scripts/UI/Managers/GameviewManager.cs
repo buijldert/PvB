@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UI.Base;
-using UI.Controllers;
-using Utility;
+using RR.UI.Base;
+using RR.Handlers;
+using RR.UI.Controllers;
+using RR.Controllers;
 
-namespace UI.Managers 
+namespace RR.UI.Managers 
 {
     /// <summary>
     /// This class controlls als the UI that is used while playing the game, such as the pause functionality.

@@ -1,7 +1,7 @@
-﻿using UI.Controllers;
-using UnityEngine;
+﻿using UnityEngine;
+using RR.UI.Controllers;
 
-namespace UI.Base
+namespace RR.UI.Base
 {
     /// <summary>
     /// This class acts as a BaseClass for all major UI screens the game has
@@ -27,9 +27,9 @@ namespace UI.Base
         /// Checks if the screenState is the same as the MenuState
         /// </summary>
         /// <param name="state">The current state of the UI.</param>
-        protected virtual void PrepareScreen(MenuState state)
+        protected virtual void PrepareScreen(MenuState _state)
         {
-            if (state == screenState)
+            if (_state == screenState)
             {
                 StartScreen();
             }

@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UI.Base;
-using UI.Controllers;
+using RR.UI.Base;
+using RR.UI.Controllers;
+using RR.Controllers;
 using DG.Tweening;
-using Utility;
 
-namespace UI.Managers
+namespace RR.UI.Managers
 {
     /// <summary>
     /// This class controlls the UI Elements on the Home-Screen
@@ -14,8 +13,6 @@ namespace UI.Managers
     public class HomeScreenManager : ScreenManager
     {
         public static HomeScreenManager instance;
-
-        //public static Action OnRestartGame;
 
         [SerializeField] private Button startbutton;
         [SerializeField] private Image logo;

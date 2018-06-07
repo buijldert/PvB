@@ -1,68 +1,29 @@
 ﻿using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.Audio;
 
-namespace Audio
+namespace RR.Audio
 {
     /// <summary>
     /// This class is responsible for playing sound FX when needed and changing the volume of different audiomixer channels.
     /// </summary>
     public class SFXManager : MonoBehaviour
     {
-        private static SFXManager s_Instance = null;
+        public static SFXManager instance;
 
         private AudioMixer masterAudioMixer;
 
-        /// <summary>
-        /// Instantiates a new SoundManager if one cannot be found.
-        /// </summary>
-        public static SFXManager instance
-        {
-            get
-            {
-                if (s_Instance == null)
-                {
-                    s_Instance = FindObjectOfType(typeof(SFXManager)) as SFXManager;
-                }
-
-
-                if (s_Instance == null)
-                {
-                    GameObject obj = new GameObject("SoundManager");
-                    s_Instance = obj.AddComponent(typeof(SFXManager)) as SFXManager;
-                }
-
-                return s_Instance;
-            }
-
-            set { }
-        }
-
-        /// <summary>
-        /// Removes the instance of the SoundManager 
-        /// </summary>
-        private void OnApplicationQuit()
-        {
-            s_Instance = null;
-        }
-
-        /// <summary>
-        /// Loads the sound clips from the Resources/Audio folder so they can be used.
-        /// Also makes sure the sound manager persists through every scene.
-        /// </summary>
         private void Awake()
         {
-            if (s_Instance != null && s_Instance != this)
+            if (instance != null && instance != this)
             {
-                Destroy(gameObject);
+                Destroy(this.gameObject);
             }
-
-            s_Instance = this;
-            DontDestroyOnLoad(gameObject);
+            instance = this;
 
             masterAudioMixer = Resources.Load<AudioMixer>("Mixer");
         }
+
 
         public void ChangeGroupVolume(string _groupVolumeName, float _volumeValue)
         {

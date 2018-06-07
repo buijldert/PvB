@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility
+namespace RR.Components
 {
     /// <summary>
     /// This class is a repository of commonly used prefabs.
@@ -10,7 +10,6 @@ namespace Utility
     [AddComponentMenu("Gameplay/ObjectPool")]
     public class ObjectPool : MonoBehaviour
     {
-
         public static ObjectPool Instance { get; private set; }
 
         #region member

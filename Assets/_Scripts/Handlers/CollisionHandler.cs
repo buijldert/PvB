@@ -1,8 +1,9 @@
-﻿using Player;
-using System;
+﻿using System;
 using UnityEngine;
+using RR.Components.Player;
+using RR.Controllers;
 
-namespace Utility
+namespace RR.Handlers
 {
     /// <summary>
     /// This class is responsible for handling the collision between the player and the gates.
@@ -10,8 +11,11 @@ namespace Utility
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {
-        public static Action OnDeadlyCollision;
+        private const string WHITE_OBSTACLE_TAG = "WhiteObstacle";
+        private const string BLACK_OBSTACLE_TAG = "BlackObstacle";
+
         public static Action<int> OnFadeThroughCollision;
+        public static Action OnDeadlyCollision;
 
         private PlayerMovement playerMovement;
 
@@ -26,13 +30,14 @@ namespace Utility
         /// <param name="_collision">The collider the player is colliding with.</param>
         private void OnTriggerEnter(Collider _collision)
         {
-            if ((_collision.gameObject.tag == "WhiteObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
-                (_collision.gameObject.tag == "BlackObstacle" && playerMovement.GetPlayerColor() == PlayerColor.Blue))
+            if ((_collision.gameObject.tag == WHITE_OBSTACLE_TAG && playerMovement.GetPlayerColor() == PlayerColor.Pink) || 
+                (_collision.gameObject.tag == BLACK_OBSTACLE_TAG && playerMovement.GetPlayerColor() == PlayerColor.Blue))
             {
                 if (OnDeadlyCollision != null)
                 {
                     OnDeadlyCollision();
 
+                    //TODO: put this somewhere else..
                     if(SettingsController.GetVibrationState())
                     {
                         Handheld.Vibrate();
@@ -40,7 +45,7 @@ namespace Utility
                 }
                     
             }
-            else if(_collision.gameObject.tag == "WhiteObstacle" || _collision.gameObject.tag == "BlackObstacle")
+            else if(_collision.gameObject.tag == WHITE_OBSTACLE_TAG || _collision.gameObject.tag == BLACK_OBSTACLE_TAG)
             {
                 if (OnFadeThroughCollision != null)
                 {

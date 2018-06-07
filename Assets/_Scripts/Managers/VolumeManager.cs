@@ -1,8 +1,10 @@
-﻿using Audio;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using RR.Audio;
+using RR.Controllers;
+using RR.Helpers;
 
-namespace Utility
+namespace RR.Managers
 {
     /// <summary>
     /// This class is responsible for managing the volume of the game and the volume of the music/sfx seperately.

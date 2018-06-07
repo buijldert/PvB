@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using UI;
-using UI.Managers;
 using UnityEngine;
-using Utility;
+using RR.Controllers;
+using RR.Handlers;
+using RR.Components;
 
-namespace Environment
+namespace RR.Managers
 {
     public enum ChunkID
     {
@@ -28,13 +28,12 @@ namespace Environment
         private Dictionary<string, Vector3> sizeDatabase = new Dictionary<string, Vector3>();
 
         [SerializeField] private GameObject[] chunkPrefabs;
-        private List<GameObject> chunkClones = new List<GameObject>();
-
         [SerializeField] private float movementSpeed = 60f;
-        private float outOfScreenPosZ = 300f;
-
-        private bool canMove;
         [SerializeField] private bool isLeftChunkManager;
+
+        private List<GameObject> chunkClones = new List<GameObject>();
+        private float outOfScreenPosZ = 300f;
+        private bool canMove;
 
         private void Start()
         {
@@ -53,7 +52,6 @@ namespace Environment
             CollisionHandler.OnDeadlyCollision += StopMovement;
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += StopMovement;
-
         }
 
         private void OnDisable()
@@ -61,7 +59,6 @@ namespace Environment
             CollisionHandler.OnDeadlyCollision -= StopMovement;
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= StopMovement;
-
         }
 
         private void Update()
@@ -192,14 +189,7 @@ namespace Environment
         /// <returns>A boolean signalling whether the chunk is out of bounds or not.</returns>
         private bool ChunkOutOfBounds(GameObject _chunk)
         {
-            if (_chunk.transform.position.z < transform.position.z)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _chunk.transform.position.z < transform.position.z;
         }
     }
 }

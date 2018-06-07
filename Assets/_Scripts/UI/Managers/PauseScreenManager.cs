@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UI.Controllers;
-using Utility;
+using RR.Controllers;
+using RR.UI.Controllers;
 
-namespace UI.Managers
+namespace RR.UI.Managers
 {
     /// <summary>
     /// This class controlls the UI Elements on the Pause-Screen

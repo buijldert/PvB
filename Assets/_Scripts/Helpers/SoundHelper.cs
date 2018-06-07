@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utility
+namespace RR.Helpers
 {
     /// <summary>
     /// This class is responsible for converting volume to decibels and vice versa.
@@ -10,12 +10,12 @@ namespace Utility
         /// <summary>
         /// Function to translate volume to decibel.
         /// </summary>
-        /// <param name="volume">Volume float</param>
-        public static float VolumeToDecibel(float volume)
+        /// <param name="_volume">Volume float</param>
+        public static float VolumeToDecibel(float _volume)
         {
-            if (volume > 0f)
+            if (_volume > 0f)
             {
-                return 20f * Mathf.Log10(volume);
+                return 20f * Mathf.Log10(_volume);
             }
             return -80f;
         }
@@ -24,9 +24,9 @@ namespace Utility
         /// Function to translate decibel to volume.
         /// </summary>
         /// <param name="decibel">Decibel float</param>
-        public static float DecibelToVolume(float decibel)
+        public static float DecibelToVolume(float _decibel)
         {
-            return Mathf.Pow(10f, decibel / 20f);
+            return Mathf.Pow(10f, _decibel / 20f);
         }
     }
 }

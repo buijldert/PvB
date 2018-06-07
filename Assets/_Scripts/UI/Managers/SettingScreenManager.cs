@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UI.Base;
-using UI.Controllers;
+using RR.UI.Base;
+using RR.Controllers;
+using RR.UI.Controllers;
 using DG.Tweening;
 
-namespace UI.Managers
+namespace RR.UI.Managers
 {
     /// <summary>
     /// This class controlls the UI Elements on the Settings-Screen

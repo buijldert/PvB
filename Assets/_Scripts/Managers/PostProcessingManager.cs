@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-namespace Utility
+namespace RR.Managers
 {
     /// <summary>
     /// This class manages the postprocessing profiles for differing platforms.

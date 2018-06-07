@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using UI;
-using UI.Managers;
 using UnityEngine;
-using Utility;
+using RR.Controllers;
+using RR.Handlers;
 
-namespace Player
+namespace RR.Components.Player
 {
     /// <summary>
     /// The PlayerColor enum is used to differentiate between the players alter egos.
@@ -20,18 +19,9 @@ namespace Player
     /// </summary>
     public class PlayerMovement : MonoBehaviour
     {
-        private PlayerColor playerColor = PlayerColor.Pink;
-
-        private BoxCollider boxCollider;
-
-        private bool canMove;
-
-        private Coroutine _appearDelayCoroutine;
-
         [Header("Positions")]
         [SerializeField] private Vector3 leftPos;
         [SerializeField] private Vector3 rightPos;
-
         
         [Header("GameObjects")]
         [SerializeField] private GameObject particleSystemGameObject;
@@ -44,7 +34,13 @@ namespace Player
         [Header("Colors")]
         [SerializeField] private Color pinkColor;
         [SerializeField] private Color blueColor;
-        
+
+        private PlayerColor playerColor = PlayerColor.Pink;
+        private BoxCollider boxCollider;
+        private Coroutine _appearDelayCoroutine;
+
+        private bool canMove;
+
         public PlayerColor GetPlayerColor()
         {
             return playerColor;
@@ -159,10 +155,8 @@ namespace Player
             }
 
             boxCollider.enabled = true;
-            
             canMove = true;
 
-            //yield return new WaitForSeconds(particleSystemTime);
             particleSystemGameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
             yield return new WaitForSeconds(particleSystemTime * 2);
             particleSystemGameObject.SetActive(false);

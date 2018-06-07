@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Player
+namespace RR.Components.Player
 {
     /// <summary>
     /// This class is responsible for sending out a message when certain inputs are given.
@@ -22,8 +22,6 @@ namespace Player
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Input");
-
                 if (OnLeftMouseButtonDown != null)
                 {
                     OnLeftMouseButtonDown();

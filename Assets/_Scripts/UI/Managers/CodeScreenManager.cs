@@ -2,11 +2,14 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UI.Base;
-using UI.Controllers;
+using RR.Models;
+using RR.UI.Base;
+using RR.UI.Controllers;
+using RR.Helpers;
+using RR.Managers;
 using DG.Tweening;
 
-namespace UI.Managers 
+namespace RR.UI.Managers 
 {
     /// <summary>
     /// This class represents de CodeInputScreen, and controlls all the UI related

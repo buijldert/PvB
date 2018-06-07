@@ -1,10 +1,12 @@
-﻿using Audio;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility;
+using Audio;
+using RR.Handlers;
+using RR.Components;
+using RR.Controllers;
 
-namespace Environment
+namespace RR.Generators
 {
     /// <summary>
     /// This class is responsible for spawning obstacles when the signal(beat) is given.
@@ -86,10 +88,10 @@ namespace Environment
         /// <summary>
         /// Removes the given obstacle from the active pool.
         /// </summary>
-        /// <param name="obstacleToCollect">The obstacle that will be removed from the active pool.</param>
-        private void RemoveObstacleFromList(GameObject obstacleToCollect)
+        /// <param name="_obstacleToCollect">The obstacle that will be removed from the active pool.</param>
+        private void RemoveObstacleFromList(GameObject _obstacleToCollect)
         {
-            obstacleClones.Remove(obstacleToCollect);
+            obstacleClones.Remove(_obstacleToCollect);
         }
 
         /// <summary>

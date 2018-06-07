@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Utility
+namespace RR.Managers
 {
     /// <summary>
     /// This class is responsible for increasing the difficulty when the signal is given.

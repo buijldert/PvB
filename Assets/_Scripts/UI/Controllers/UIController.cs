@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 using UnityEngine.PostProcessing;
 
-namespace UI.Controllers
+namespace RR.UI.Controllers
 {
     public enum MenuState
     {
@@ -58,14 +58,14 @@ namespace UI.Controllers
         /// Also sends an Action with te current MenuState to the ScreenManager BaseClass.
         /// </summary>
         /// <param name="state">State we want the system to be in.</param>
-        public void SetState(MenuState state)
+        public void SetState(MenuState _state)
         {
             TurnHoldersInactive();
-            holders[(int)state].SetActive(true);
+            holders[(int)_state].SetActive(true);
 
             if (OnScreenChanged != null)
             {
-                OnScreenChanged(state);
+                OnScreenChanged(_state);
             }
         }
 

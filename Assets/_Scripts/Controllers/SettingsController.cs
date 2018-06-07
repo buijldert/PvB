@@ -1,22 +1,27 @@
-﻿public static class SettingsController 
+﻿using RR.Helpers;
+
+namespace RR.Controllers
 {
-    public static void SetMute(bool b)
+    public static class SettingsController
     {
-        PlayerPrefHelper.SetBool("Music_Mute", b);
-    }
+        public static void SetMute(bool _value)
+        {
+            PlayerPrefHelper.SetBool("Music_Mute", _value);
+        }
 
-    public static void SetVibration(bool b)
-    {
-        PlayerPrefHelper.SetBool("Vibration", b);
-    }
+        public static void SetVibration(bool _value)
+        {
+            PlayerPrefHelper.SetBool("Vibration", _value);
+        }
 
-    public static bool GetVibrationState()
-    {
-        return PlayerPrefHelper.GetBool("Vibration");
-    }
+        public static bool GetVibrationState()
+        {
+            return PlayerPrefHelper.GetBool("Vibration");
+        }
 
-    public static bool GetMuteState()
-    {
-        return PlayerPrefHelper.GetBool("Music_Mute");
-    }
+        public static bool GetMuteState()
+        {
+            return PlayerPrefHelper.GetBool("Music_Mute");
+        }
+    } 
 }
