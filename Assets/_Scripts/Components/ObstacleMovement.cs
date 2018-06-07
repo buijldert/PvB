@@ -6,10 +6,8 @@ namespace RR.Components
     /// <summary>
     /// This class is responsible for moving the obstacle backwards at a certain movment speed.
     /// </summary>
-    [RequireComponent(typeof(Rigidbody))]
     public class ObstacleMovement : MonoBehaviour
     {
-        private Rigidbody rigidBody;
         private float movementSpeed = 60f;
 
         private void SetMovementSpeed(float _movementSpeedIncrease)
@@ -26,11 +24,6 @@ namespace RR.Components
         {
             DifficultyManager.OnChangeDifficulty -= SetMovementSpeed;
         }
-
-        private void Start()
-        {
-            rigidBody = GetComponent<Rigidbody>();
-        }
         
         private void Update()
         {
@@ -42,7 +35,7 @@ namespace RR.Components
         /// </summary>
         private void MoveObstacle()
         {
-            rigidBody.velocity = Vector3.back * movementSpeed;
+            transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
         }
     }
 }
