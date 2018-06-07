@@ -10,12 +10,7 @@ namespace RR.Components
     [AddComponentMenu("Gameplay/ObjectPool")]
     public class ObjectPool : MonoBehaviour
     {
-<<<<<<< HEAD
-        public static ObjectPool Instance { get; private set; }
-=======
-
         public static ObjectPool instance { get; private set; }
->>>>>>> Development_branch
 
         #region member
         /// <summary>

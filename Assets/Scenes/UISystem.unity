@@ -5486,6 +5486,16 @@ Prefab:
       propertyPath: simulationSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 33125557520073084, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: c66a3c3f88423194593cc2a632e17114, type: 3}
+    - target: {fileID: 33123487679422938, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: c66a3c3f88423194593cc2a632e17114, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
   m_IsPrefabParent: 0

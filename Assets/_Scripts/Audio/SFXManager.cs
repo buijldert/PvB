@@ -21,15 +21,8 @@ namespace RR.Audio
             {
                 Destroy(this.gameObject);
             }
-<<<<<<< HEAD
+
             instance = this;
-
-            masterAudioMixer = Resources.Load<AudioMixer>("Mixer");
-=======
-
-            s_Instance = this;
-            DontDestroyOnLoad(gameObject);
->>>>>>> Development_branch
         }
 
 
