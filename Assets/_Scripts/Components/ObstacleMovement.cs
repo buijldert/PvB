@@ -9,7 +9,7 @@ namespace RR.Components
     [RequireComponent(typeof(Rigidbody))]
     public class ObstacleMovement : MonoBehaviour
     {
-        private Rigidbody rigidbody;
+        private Rigidbody rigidBody;
         private float movementSpeed = 60f;
 
         private void SetMovementSpeed(float _movementSpeedIncrease)
@@ -29,7 +29,7 @@ namespace RR.Components
 
         private void Start()
         {
-            rigidbody = GetComponent<Rigidbody>();
+            rigidBody = GetComponent<Rigidbody>();
         }
         
         private void Update()
@@ -42,7 +42,7 @@ namespace RR.Components
         /// </summary>
         private void MoveObstacle()
         {
-            rigidbody.velocity = Vector3.back * movementSpeed;
+            rigidBody.velocity = Vector3.back * movementSpeed;
         }
     }
 }
