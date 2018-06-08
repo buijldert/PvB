@@ -7,6 +7,7 @@ using RR.Models;
 using RR.UI.Controllers;
 using RR.Managers;
 using DG.Tweening;
+using RR.Components.Player;
 
 namespace RR.UI.Managers
 {
@@ -72,6 +73,8 @@ namespace RR.UI.Managers
                 if (unlockedItems[i].Selected)
                 {
                     g.transform.GetChild(1).gameObject.SetActive(true);
+
+
                 }
 
                 Button btn = g.GetComponent<Button>();
@@ -91,10 +94,20 @@ namespace RR.UI.Managers
 
                 btn.onClick.AddListener(() =>
                 {
+                    PlayerOutfit.instance.SwitchOutfit(unlockedItems[i]);
                     ItemManager.instance.SetItemSelected(unlockedItems[i].Key);
+
+                    
                     SetSelectionSign(g);
+                    
+                    
                 });
             }
+        }
+
+        private void OnButtonClick()
+        {
+
         }
 
         private void SetSelectionSign(GameObject gameobject)

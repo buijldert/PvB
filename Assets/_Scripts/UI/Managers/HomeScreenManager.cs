@@ -75,7 +75,7 @@ namespace RR.UI.Managers
             startUpSequence = DOTween.Sequence();
             startUpSequence.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
             startUpSequence.Join(logo.DOFade(1, 1));
-            startUpSequence.Join(highScore.DOFade(1,1));
+            startUpSequence.Join(highScore.DOFade(1, 1));
 
             isFirstStarup = false;
         }
@@ -87,6 +87,7 @@ namespace RR.UI.Managers
         /// </summary>
         private void OnStartButtonClicked()
         {
+            GameviewManager.instance.SetButtonInteractable(true);
             UIController.instance.GoToGameView();
             GameController.instance.StartGame();
         }

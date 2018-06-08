@@ -4,6 +4,7 @@ using RR.UI.Base;
 using RR.Handlers;
 using RR.UI.Controllers;
 using RR.Controllers;
+using System;
 
 namespace RR.UI.Managers 
 {
@@ -14,10 +15,13 @@ namespace RR.UI.Managers
     {
         public static GameviewManager instance;
 
+        public static Action OnLeftMouseButtonDown;
+
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject pauseScreen;
 
         [SerializeField] private Button pauseButton;
+        [SerializeField] private Button switchAreaButton;
         [SerializeField] private Text scoreText;
 
         private int score;
@@ -31,6 +35,7 @@ namespace RR.UI.Managers
             CollisionHandler.OnDeadlyCollision += ShowGameOver;
 
             pauseButton.onClick.AddListener(() => OnPauseButtonClicked());
+            switchAreaButton.onClick.AddListener(() => SwitchPlayer());
         }
 
         /// <summary>
@@ -85,6 +90,7 @@ namespace RR.UI.Managers
             pauseButton.interactable = false;
             gameOverScreen.SetActive(true);
             GameOverScreenManager.instance.UpdateScore();
+            SetButtonInteractable(false);
         }
 
         /// <summary>
@@ -94,6 +100,23 @@ namespace RR.UI.Managers
         {
             pauseScreen.SetActive(true);
             GameController.instance.PauseGame();
+            SetButtonInteractable(false);
+        }
+
+        /// <summary>
+        /// Handles the input from the player by sending out an Action when input is given.
+        /// </summary>
+        private void SwitchPlayer()
+        {
+            if (OnLeftMouseButtonDown != null)
+            {
+                OnLeftMouseButtonDown();
+            }
+        }
+
+        public void SetButtonInteractable(bool _value)
+        {
+            switchAreaButton.interactable = _value;
         }
         #endregion // UI Events
 
@@ -125,6 +148,7 @@ namespace RR.UI.Managers
             CollisionHandler.OnDeadlyCollision -= ShowGameOver;
 
             pauseButton.onClick.RemoveAllListeners();
+            switchAreaButton.onClick.RemoveAllListeners();
         }
     }
 }

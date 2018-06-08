@@ -4,6 +4,7 @@ using RR.Controllers;
 using RR.Handlers;
 using RR.Audio;
 using RR.UI.Controllers;
+using RR.UI.Managers;
 
 namespace RR.Components.Player
 {
@@ -42,19 +43,12 @@ namespace RR.Components.Player
         private BoxCollider boxCollider;
 
         private Coroutine appearDelayCoroutine;
-        private Coroutine resetDelayCoroutine;
 
         private bool canMove;
 
 
         [Header("Audioclips")]
         [SerializeField] private AudioClip switchSoundEffect;
-
-        private MenuState menuState;
-        private void SetMenuState(MenuState _menuState)
-        {
-            menuState = _menuState;
-        }
 
         public PlayerColor GetPlayerColor()
         {
@@ -63,20 +57,18 @@ namespace RR.Components.Player
 
         private void OnEnable()
         {
-            CollisionHandler.OnDeadlyCollision += ResetPlayerDelayed;
-            PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
+            CollisionHandler.OnDeadlyCollision += RemovePlayer;
+            GameviewManager.OnLeftMouseButtonDown += TogglePlayer;
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += ResetPlayerInstant;
-            UIController.OnScreenChanged += SetMenuState;
         }
 
         private void OnDisable()
         {
-            CollisionHandler.OnDeadlyCollision -= ResetPlayerDelayed;
-            PlayerInput.OnLeftMouseButtonDown -= TogglePlayer; 
+            CollisionHandler.OnDeadlyCollision -= RemovePlayer;
+            GameviewManager.OnLeftMouseButtonDown -= TogglePlayer; 
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= ResetPlayerInstant;
-            UIController.OnScreenChanged -= SetMenuState;
         }
 
         private void Start()
@@ -98,8 +90,7 @@ namespace RR.Components.Player
         /// </summary>
         private void TogglePlayer()
         {
-            print(menuState);
-            if (canMove && menuState == MenuState.GameView)
+            if (canMove)
             {
                 if (playerColor == PlayerColor.Pink)
                 {
@@ -185,11 +176,11 @@ namespace RR.Components.Player
         /// <summary>
         /// Resets the player to his original position and color with a delay.
         /// </summary>
-        private void ResetPlayerDelayed()
+        private void RemovePlayer()
         {
             bluePlayer.SetActive(false);
             pinkPlayer.SetActive(false);
-            resetDelayCoroutine = StartCoroutine(ResetDelay());
+            canMove = false;
         }
 
         /// <summary>
@@ -197,21 +188,6 @@ namespace RR.Components.Player
         /// </summary>
         private void ResetPlayerInstant()
         {
-            if(resetDelayCoroutine != null)
-            {
-                StopCoroutine(resetDelayCoroutine);
-            }
-            ChangePlayer(rightPos, PlayerColor.Pink, pinkColor, true);
-        }
-
-        /// <summary>
-        /// Resets the player at a delay;
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator ResetDelay()
-        {
-            canMove = false;
-            yield return new WaitForSeconds(2f);
             ChangePlayer(rightPos, PlayerColor.Pink, pinkColor, true);
         }
     }

@@ -1,33 +1,36 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RR.Components.Player
 {
     /// <summary>
-    /// This class is responsible for sending out a message when certain inputs are given.
+    /// This class is responsible for sending out a message when the switch area is clicked.
     /// </summary>
     public class PlayerInput : MonoBehaviour
     {
+        [SerializeField] private Button switchAreaButton;
+
         public static Action OnLeftMouseButtonDown;
 
-        private float mouseMaxY = 800f;
-
-        private void Update()
+        private void OnEnable()
         {
-            Inputs();
+            switchAreaButton.onClick.AddListener(() => SwitchPlayer());
+        }
+
+        private void OnDestroy()
+        {
+            switchAreaButton.onClick.RemoveAllListeners();
         }
 
         /// <summary>
         /// Handles the input from the player by sending out an Action when input is given.
         /// </summary>
-        private void Inputs()
+        private void SwitchPlayer()
         {
-            if (Input.GetMouseButtonDown(0) && Input.mousePosition.y < mouseMaxY)
+            if (OnLeftMouseButtonDown != null)
             {
-                if (OnLeftMouseButtonDown != null)
-                {
-                    OnLeftMouseButtonDown();
-                }
+                OnLeftMouseButtonDown();
             }
         }
     }
