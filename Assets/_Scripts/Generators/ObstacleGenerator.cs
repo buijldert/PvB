@@ -36,6 +36,7 @@ namespace RR.Generators
             CollisionHandler.OnDeadlyCollision += StopSpawning;
             PoolOverTime.OnObstacleCollection += RemoveObstacleFromList;
             GameController.OnStartGame += StartSpawning;
+            GameController.OnStopGame += StopSpawning;
         }
 
         private void OnDisable()
@@ -43,6 +44,7 @@ namespace RR.Generators
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
             PoolOverTime.OnObstacleCollection -= RemoveObstacleFromList;
             GameController.OnStartGame -= StartSpawning;
+            GameController.OnStopGame -= StopSpawning;
         }
 
         private void Start()

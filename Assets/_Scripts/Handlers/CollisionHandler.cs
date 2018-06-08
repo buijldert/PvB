@@ -2,6 +2,7 @@
 using UnityEngine;
 using RR.Components.Player;
 using RR.Controllers;
+using RR.Components;
 
 namespace RR.Handlers
 {
@@ -11,6 +12,8 @@ namespace RR.Handlers
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {
+        [SerializeField] private GameObject fadeParticleGameObject;
+
         private const string WHITE_OBSTACLE_TAG = "WhiteObstacle";
         private const string BLACK_OBSTACLE_TAG = "BlackObstacle";
 
@@ -49,6 +52,9 @@ namespace RR.Handlers
             {
                 if (OnFadeThroughCollision != null)
                 {
+                    GameObject fadeParticleClone = ObjectPool.instance.GetObjectForType(fadeParticleGameObject.name, false);
+                    fadeParticleClone.transform.position = _collision.transform.position;
+                    //foreach(ParticleSystem p in fadeParticleClone.GetComponentInChildren<ParticleSystem>())
                     OnFadeThroughCollision(10);
                 }
             }

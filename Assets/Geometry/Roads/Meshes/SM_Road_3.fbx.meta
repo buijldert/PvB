@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7148363ce2e966447ba1ceb674461a95
+guid: df3c5a65f2efa6a4989a8e952c95bbca
 timeCreated: 1527847313
 licenseType: Free
 ModelImporter:
@@ -13,7 +13,22 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Road_3
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_window
+    second: {fileID: 2100000, guid: 83b74e32a2b90f7448e9307d1d1f67c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pink_window
+    second: {fileID: 2100000, guid: 8322970a7fdb3aa45bd691df967e20b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Weg_1_JM_palette1
+    second: {fileID: 2100000, guid: 1789748ae7512e244a49dcd2f6c0bda5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

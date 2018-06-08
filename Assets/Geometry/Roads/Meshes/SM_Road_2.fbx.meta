@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 14341890d937c9e4ab4666462b75fd37
+guid: 4d94b497eb0597f4a9775ee24cd8a218
 timeCreated: 1527847313
 licenseType: Free
 ModelImporter:
@@ -13,7 +13,22 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: SM_Road_2
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_window
+    second: {fileID: 2100000, guid: c4664f52ae3366c45803995b698fe4c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pink_window
+    second: {fileID: 2100000, guid: 4ea4295c90254ab4da30a364315650e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: road_0_palette1
+    second: {fileID: 2100000, guid: 8e2980587d1161f45bb5ab899082eb9d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

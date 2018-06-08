@@ -1213,6 +1213,7 @@ MonoBehaviour:
   - {fileID: 1921328409069214, guid: 5eca70feafd25444fa33cf1999b5b10a, type: 2}
   - {fileID: 1238339234318002, guid: 19a57e712102ef041a1074514c37ffbe, type: 2}
   - {fileID: 1077225972650364, guid: 6a892846e83803043a80a21b498deaa8, type: 2}
+  - {fileID: 1066594442862752, guid: 2a678dd7894b29d4c92ea6583c122154, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 0
 --- !u!1 &432295079
@@ -2094,6 +2095,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 664812644}
+--- !u!1001 &683129745
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481036471729030, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0b0a74824618e3f438a465a85a8bc97d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &713072174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3295,6 +3338,15 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
+  - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
+  - {fileID: 1649718153288690, guid: 975be02113cb04d46b0a3f345406c261, type: 2}
+  - {fileID: 1485735362840946, guid: 2e6b85ebc9a15434dae24f14fe60d941, type: 2}
+  - {fileID: 1158292579280956, guid: 0bf809e49b6870847bf3d7bcd4416857, type: 2}
+  - {fileID: 1578820584875678, guid: cf509d0792277d54dba90127afdcdd7f, type: 2}
+  - {fileID: 1382286847478034, guid: ac23076db022f4a43a885f1df14b6f01, type: 2}
+  - {fileID: 1299122192600140, guid: e66f916374d2fd049be20970e5f13f62, type: 2}
+  - {fileID: 1221960596702956, guid: fe2c9ff55a7cd1c408f0db5760e3ea92, type: 2}
+  - {fileID: 1910278214818478, guid: 0084775834aa75d42a988562da8801fd, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 1
 --- !u!1 &1082702651
@@ -3631,16 +3683,6 @@ Prefab:
       propertyPath: switchParticleSystems.Array.data[3]
       value: 
       objectReference: {fileID: 1691325220}
-    - target: {fileID: 33125557520073084, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: fefaa1f877771f143890109ea6c69bac, type: 3}
-    - target: {fileID: 33123487679422938, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: fefaa1f877771f143890109ea6c69bac, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
   m_IsPrefabParent: 0
@@ -3677,8 +3719,8 @@ Camera:
   m_GameObject: {fileID: 1142333999}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.85294116, g: 0.85294116, b: 0.85294116, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -4963,6 +5005,15 @@ MonoBehaviour:
   - {fileID: 1455663164022068, guid: fd0167b98d609cc4c8c08f284554cbf8, type: 2}
   - {fileID: 1875112632205670, guid: 745b33b7dc1babf4da864067b3c5ccc2, type: 2}
   - {fileID: 1468798049492088, guid: 98396b22f1b1ba2488c7c73ce984e951, type: 2}
+  - {fileID: 1806997504669666, guid: 340793b19335bfc419a1a4d2d6b425fb, type: 2}
+  - {fileID: 1649718153288690, guid: 975be02113cb04d46b0a3f345406c261, type: 2}
+  - {fileID: 1485735362840946, guid: 2e6b85ebc9a15434dae24f14fe60d941, type: 2}
+  - {fileID: 1158292579280956, guid: 0bf809e49b6870847bf3d7bcd4416857, type: 2}
+  - {fileID: 1578820584875678, guid: cf509d0792277d54dba90127afdcdd7f, type: 2}
+  - {fileID: 1382286847478034, guid: ac23076db022f4a43a885f1df14b6f01, type: 2}
+  - {fileID: 1299122192600140, guid: e66f916374d2fd049be20970e5f13f62, type: 2}
+  - {fileID: 1221960596702956, guid: fe2c9ff55a7cd1c408f0db5760e3ea92, type: 2}
+  - {fileID: 1910278214818478, guid: 0084775834aa75d42a988562da8801fd, type: 2}
   movementSpeed: 60
   isLeftChunkManager: 0
 --- !u!1 &1816468093
