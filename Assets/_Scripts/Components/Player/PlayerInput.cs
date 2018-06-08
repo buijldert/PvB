@@ -10,6 +10,8 @@ namespace RR.Components.Player
     {
         public static Action OnLeftMouseButtonDown;
 
+        private float mouseMaxY = 800f;
+
         private void Update()
         {
             Inputs();
@@ -22,7 +24,7 @@ namespace RR.Components.Player
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (OnLeftMouseButtonDown != null)
+                if (OnLeftMouseButtonDown != null && Input.mousePosition.y < mouseMaxY)
                 {
                     OnLeftMouseButtonDown();
                 }

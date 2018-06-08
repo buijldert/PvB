@@ -14,13 +14,18 @@ namespace RR.Handlers
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {
-        [SerializeField] private AudioClip deathSound;
-
+        [Header("GameObjects")]
         [SerializeField] private GameObject fadeParticleGameObject;
         [SerializeField] private GameObject deathParticleGameObject;
 
+        [Header("Colors")]
         [SerializeField] private Color pinkColor;
         [SerializeField] private Color blueColor;
+
+        [Header("AudioClips")]
+        [SerializeField]
+        private AudioClip deathSound;
+        [SerializeField] private AudioClip fadeThroughSound;
 
         private const string WHITE_OBSTACLE_TAG = "WhiteObstacle";
         private const string BLACK_OBSTACLE_TAG = "BlackObstacle";
@@ -46,7 +51,7 @@ namespace RR.Handlers
             {
                 if (OnDeadlyCollision != null)
                 {
-                    SFXManager.instance.PlaySound
+                    SFXManager.instance.PlaySound(deathSound);
                     deathParticleGameObject.SetActive(true);
                     StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();
@@ -63,6 +68,7 @@ namespace RR.Handlers
             {
                 if (OnFadeThroughCollision != null)
                 {
+                    SFXManager.instance.PlaySound(fadeThroughSound);
                     GameObject fadeParticleClone = ObjectPool.instance.GetObjectForType(fadeParticleGameObject.name, false);
                     fadeParticleClone.transform.position = _collision.transform.position;
                     foreach(ParticleSystem p in fadeParticleClone.GetComponentsInChildren<ParticleSystem>())
