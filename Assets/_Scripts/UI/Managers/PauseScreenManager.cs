@@ -1,10 +1,16 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+<<<<<<< HEAD
 using RR.Controllers;
 using RR.UI.Controllers;
 using RR.Managers;
 
+=======
+using RR.Controllers;
+using RR.UI.Controllers;
+
+>>>>>>> origin/Code_Cleanup
 namespace RR.UI.Managers
 {
     /// <summary>

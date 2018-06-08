@@ -3,6 +3,7 @@ using UnityEngine;
 using RR.Components.Player;
 using RR.Controllers;
 using RR.Components;
+using System.Collections;
 
 namespace RR.Handlers
 {
@@ -13,6 +14,10 @@ namespace RR.Handlers
     public class CollisionHandler : MonoBehaviour
     {
         [SerializeField] private GameObject fadeParticleGameObject;
+        [SerializeField] private GameObject deathParticleGameObject;
+
+        [SerializeField] private Color pinkColor;
+        [SerializeField] private Color blueColor;
 
         private const string WHITE_OBSTACLE_TAG = "WhiteObstacle";
         private const string BLACK_OBSTACLE_TAG = "BlackObstacle";
@@ -38,6 +43,8 @@ namespace RR.Handlers
             {
                 if (OnDeadlyCollision != null)
                 {
+                    deathParticleGameObject.SetActive(true);
+                    StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();
 
                     //TODO: put this somewhere else..
@@ -54,10 +61,27 @@ namespace RR.Handlers
                 {
                     GameObject fadeParticleClone = ObjectPool.instance.GetObjectForType(fadeParticleGameObject.name, false);
                     fadeParticleClone.transform.position = _collision.transform.position;
-                    //foreach(ParticleSystem p in fadeParticleClone.GetComponentInChildren<ParticleSystem>())
+                    foreach(ParticleSystem p in fadeParticleClone.GetComponentsInChildren<ParticleSystem>())
+                    {
+                        var main = p.main;
+                        if(_collision.gameObject.tag == BLACK_OBSTACLE_TAG)
+                        {
+                            main.startColor = pinkColor;
+                        }
+                        else
+                        {
+                            main.startColor = blueColor;
+                        }
+                    }
                     OnFadeThroughCollision(10);
                 }
             }
+        }
+
+        private IEnumerator DeathParticleDelay()
+        {
+            yield return new WaitForSeconds(2f);
+            deathParticleGameObject.SetActive(false);
         }
     }
 }
