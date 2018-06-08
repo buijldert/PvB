@@ -18,7 +18,6 @@ namespace RR.UI.Managers
         {
             Sound,
             Vibration,
-            Achievement,
             Credits
         }
 
@@ -35,7 +34,6 @@ namespace RR.UI.Managers
 
             settingsButtons[(int)ButtonType.Sound].onClick.AddListener(() => OnSoundButtonClicked());
             settingsButtons[(int)ButtonType.Vibration].onClick.AddListener(() => OnVibrationButtonClicked());
-            settingsButtons[(int)ButtonType.Achievement].onClick.AddListener(() => OnAchievementButtonClicked());
             settingsButtons[(int)ButtonType.Credits].onClick.AddListener(() => OnCreditsButtonClicked());
         }
 
@@ -74,7 +72,7 @@ namespace RR.UI.Managers
                 Text buttonText = settingsButtons[i].GetComponentInChildren<Text>();
 
                 rect.localScale = new Vector3(1, 1, 1);
-                rect.anchoredPosition = new Vector2(0, 750 - (i * 325));
+                rect.anchoredPosition = new Vector2(0, 750 - (i * 450));
 
                 startUpSequence.Append(settingsButtons[i].GetComponent<Image>().DOFade(1, 0.75f));
                 startUpSequence.Join(buttonText.DOFade(1, 0.75f));
@@ -140,7 +138,6 @@ namespace RR.UI.Managers
 
             settingsButtons[(int)ButtonType.Sound].onClick.RemoveAllListeners();
             settingsButtons[(int)ButtonType.Vibration].onClick.RemoveAllListeners();
-            settingsButtons[(int)ButtonType.Achievement].onClick.RemoveAllListeners();
             settingsButtons[(int)ButtonType.Credits].onClick.RemoveAllListeners();
         }
     }
