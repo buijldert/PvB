@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 3af9719ec128cca4fad4205209ec60e6
-timeCreated: 1527687556
+guid: 880f05f537f9e0d48aa438222d1788aa
+timeCreated: 1528189288
 licenseType: Free
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
   defaultSettings:
-    loadType: 2
+    loadType: 0
     sampleRateSetting: 0
     sampleRateOverride: 44100
     compressionFormat: 1
@@ -23,7 +23,7 @@ AudioImporter:
   forceToMono: 0
   normalize: 1
   preloadAudioData: 1
-  loadInBackground: 1
+  loadInBackground: 0
   ambisonic: 0
   3D: 1
   userData: 

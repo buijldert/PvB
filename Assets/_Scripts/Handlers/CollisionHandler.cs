@@ -4,6 +4,7 @@ using RR.Components.Player;
 using RR.Controllers;
 using RR.Components;
 using System.Collections;
+using RR.Audio;
 
 namespace RR.Handlers
 {
@@ -13,6 +14,8 @@ namespace RR.Handlers
     [RequireComponent(typeof(Collider))]
     public class CollisionHandler : MonoBehaviour
     {
+        [SerializeField] private AudioClip deathSound;
+
         [SerializeField] private GameObject fadeParticleGameObject;
         [SerializeField] private GameObject deathParticleGameObject;
 
@@ -43,6 +46,7 @@ namespace RR.Handlers
             {
                 if (OnDeadlyCollision != null)
                 {
+                    SFXManager.instance.PlaySound
                     deathParticleGameObject.SetActive(true);
                     StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();

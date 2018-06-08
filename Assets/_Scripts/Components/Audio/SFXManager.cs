@@ -49,7 +49,7 @@ namespace RR.Audio
         /// <param name="_clipToPlay">The clip that will be played.</param>
         /// <param name="_volume">The volume at which the clip will be played.</param>
         /// <param name="_pitch">The pitch at which the clip will be played.</param>
-        private IEnumerator SimultaneousSound(AudioClip _clipToPlay, float _volume = 1f, float _pitch = 1f)
+        private IEnumerator SimultaneousSound(AudioClip _clipToPlay, float _volume, float _pitch)
         {
             AudioSource tempAS = gameObject.AddComponent<AudioSource>();
             tempAS.clip = _clipToPlay;

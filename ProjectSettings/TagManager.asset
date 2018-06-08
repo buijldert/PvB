@@ -6,7 +6,6 @@ TagManager:
   tags:
   - BlackObstacle
   - WhiteObstacle
-  - ObstacleCollector
   layers:
   - Default
   - TransparentFX

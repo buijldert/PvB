@@ -24,6 +24,7 @@ namespace RR.UI.Managers
 
         [SerializeField] private Button[] settingsButtons;
 
+        private Text soundButtonText;
         private Sequence startUpSequence; 
 
         /// <summary>
@@ -51,6 +52,12 @@ namespace RR.UI.Managers
             instance = this;
 
             screenState = MenuState.Settings;
+        }
+
+        private void Start()
+        {
+            soundButtonText = settingsButtons[(int)ButtonType.Sound].GetComponentInChildren<Text>();
+            soundButtonText.text = (SettingsController.GetMuteState()) ? "Sound: On" : "Sound: Off";
         }
 
         /// <summary>
@@ -88,6 +95,8 @@ namespace RR.UI.Managers
         {
             SettingsController.SetMute(!SettingsController.GetMuteState());
             VolumeManager.instance.ChangeMasterVolume();
+
+            soundButtonText.text = (SettingsController.GetMuteState()) ? "Sound: On" : "Sound Off";
         }
 
         /// <summary>
