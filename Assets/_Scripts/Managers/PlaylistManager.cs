@@ -66,7 +66,7 @@ namespace RR.Managers
                 {
                     OnChangeSong(songs[i]);
                 }
-                yield return new WaitForSeconds(songs[i].length + 5f);
+                yield return new WaitForSeconds(songs[i].length);
             }
             ShuffleSongs();
 

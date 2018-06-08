@@ -22,9 +22,9 @@ namespace RR.Components.Player
         /// </summary>
         private void Inputs()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Input.mousePosition.y < mouseMaxY)
             {
-                if (OnLeftMouseButtonDown != null && Input.mousePosition.y < mouseMaxY)
+                if (OnLeftMouseButtonDown != null)
                 {
                     OnLeftMouseButtonDown();
                 }

@@ -51,6 +51,10 @@ namespace RR.Components.Player
         [SerializeField] private AudioClip switchSoundEffect;
 
         private MenuState menuState;
+        private void SetMenuState(MenuState _menuState)
+        {
+            menuState = _menuState;
+        }
 
         public PlayerColor GetPlayerColor()
         {
@@ -63,6 +67,7 @@ namespace RR.Components.Player
             PlayerInput.OnLeftMouseButtonDown += TogglePlayer;
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += ResetPlayerInstant;
+            UIController.OnScreenChanged += SetMenuState;
         }
 
         private void OnDisable()
@@ -71,6 +76,7 @@ namespace RR.Components.Player
             PlayerInput.OnLeftMouseButtonDown -= TogglePlayer; 
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= ResetPlayerInstant;
+            UIController.OnScreenChanged -= SetMenuState;
         }
 
         private void Start()
@@ -92,6 +98,7 @@ namespace RR.Components.Player
         /// </summary>
         private void TogglePlayer()
         {
+            print(menuState);
             if (canMove && menuState == MenuState.GameView)
             {
                 if (playerColor == PlayerColor.Pink)

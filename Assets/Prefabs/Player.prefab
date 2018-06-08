@@ -332,7 +332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cda99a3325ff14d9cb7b519af3c792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMeshRenderers: []
+  playerMeshRenderers:
+  - {fileID: 23782299144319216}
+  - {fileID: 23010406426926356}
 --- !u!114 &114644380443102414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,13 +346,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1204602df937d4dbfdfc2bdfbaeeda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 8300000, guid: 4e0f68854b15f4e4bbbea6df79abec01, type: 3}
-  fadeThroughSound: {fileID: 8300000, guid: 880f05f537f9e0d48aa438222d1788aa, type: 3}
   fadeParticleGameObject: {fileID: 1751320444824316, guid: 755c000fa2090cf49a5c79dfc2fb61d1,
     type: 2}
   deathParticleGameObject: {fileID: 1870729696822256}
   pinkColor: {r: 1, g: 0.16078432, b: 0.9411765, a: 0.70980394}
   blueColor: {r: 0.16078432, g: 0.75686276, b: 1, a: 0.70980394}
+  deathSound: {fileID: 8300000, guid: 4e0f68854b15f4e4bbbea6df79abec01, type: 3}
+  fadeThroughSound: {fileID: 8300000, guid: 880f05f537f9e0d48aa438222d1788aa, type: 3}
 --- !u!114 &114681188899137076
 MonoBehaviour:
   m_ObjectHideFlags: 1
