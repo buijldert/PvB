@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using RR.Controllers;
 using RR.UI.Controllers;
+using RR.Managers;
 
 namespace RR.UI.Managers
 {
@@ -62,6 +63,7 @@ namespace RR.UI.Managers
         private void OnSoundButtonClicked()
         {
             SettingsController.SetMute(!SettingsController.GetMuteState());
+            VolumeManager.instance.ChangeMasterVolume();
         }
 
         /// <summary>

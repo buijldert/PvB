@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using RR.Audio;
 using RR.Controllers;
 using RR.Helpers;
@@ -11,17 +10,26 @@ namespace RR.Managers
     /// </summary>
     public class VolumeManager : MonoBehaviour
     {
-        [Header("Sliders")]
-        [SerializeField] private Slider masterVolumeSlider;
-        [SerializeField] private Slider sfxVolumeSlider;
-        [SerializeField] private Slider musicVolumeSlider;
+        public static VolumeManager instance;
+
+        /// <summary>
+        /// Singleton Implementation
+        /// </summary>
+        private void Awake()
+        {
+            if (instance != null && instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            instance = this;
+        }
 
         /// <summary>
         /// Changes the master volume to the given value of the slider.
         /// </summary>
         public void ChangeMasterVolume()
         {
-            if(SettingsController.GetMuteState())
+            if(!SettingsController.GetMuteState())
             {
                 SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(0));
             }
@@ -29,22 +37,6 @@ namespace RR.Managers
             {
                 SFXManager.instance.ChangeGroupVolume("MasterVolume", SoundHelper.VolumeToDecibel(1));
             }
-        }
-
-        /// <summary>
-        /// Changes the SFX volume to the given value of the slider.
-        /// </summary>
-        public void ChangeSFXVolume()
-        {
-            SFXManager.instance.ChangeGroupVolume("SFXVolume", SoundHelper.VolumeToDecibel(sfxVolumeSlider.value));
-        }
-
-        /// <summary>
-        /// Changes the music volume to the given value of the slider.
-        /// </summary>
-        public void ChangeMusicVolume()
-        {
-            SFXManager.instance.ChangeGroupVolume("MusicVolume", SoundHelper.VolumeToDecibel(musicVolumeSlider.value));
         }
     }
 }

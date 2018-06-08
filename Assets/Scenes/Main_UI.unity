@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 153504274}
   - component: {fileID: 153504273}
   - component: {fileID: 153504275}
+  - component: {fileID: 153504276}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -634,6 +635,20 @@ MonoBehaviour:
   masterMixer: {fileID: 24100000, guid: b3f32fa90a7850d45bfd6a973f4b612b, type: 2}
   outputMixerGroup: {fileID: 243618927175109246, guid: b3f32fa90a7850d45bfd6a973f4b612b,
     type: 2}
+--- !u!114 &153504276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 153504272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a341c10bc1320e43ab892e949a2dc89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
 --- !u!1 &177835424
 GameObject:
   m_ObjectHideFlags: 0

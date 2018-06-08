@@ -4,6 +4,7 @@ using RR.UI.Base;
 using RR.Controllers;
 using RR.UI.Controllers;
 using DG.Tweening;
+using RR.Managers;
 
 namespace RR.UI.Managers
 {
@@ -86,6 +87,7 @@ namespace RR.UI.Managers
         private void OnSoundButtonClicked()
         {
             SettingsController.SetMute(!SettingsController.GetMuteState());
+            VolumeManager.instance.ChangeMasterVolume();
         }
 
         /// <summary>
@@ -94,14 +96,6 @@ namespace RR.UI.Managers
         private void OnVibrationButtonClicked()
         {
             SettingsController.SetVibration(!SettingsController.GetVibrationState());
-        }
-
-        /// <summary>
-        /// Will fire when the achievement-button is clicked
-        /// </summary>
-        private void OnAchievementButtonClicked()
-        {
-
         }
 
         /// <summary>
