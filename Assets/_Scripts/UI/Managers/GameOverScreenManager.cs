@@ -46,6 +46,10 @@ namespace RR.UI.Managers
         public void UpdateScore()
         {
             score.text = GameviewManager.instance.GetScore().ToString();
+            if(GameviewManager.instance.GetScore() > PlayerPrefs.GetInt("HighScore"))
+            {
+                PlayerPrefs.SetInt("HighScore", GameviewManager.instance.GetScore());
+            }
         }
 
         /// <summary>

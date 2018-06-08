@@ -16,6 +16,7 @@ namespace RR.UI.Managers
 
         [SerializeField] private Button startbutton;
         [SerializeField] private Image logo;
+        [SerializeField] private Text highScore;
 
         private Sequence startUpSequence;
         private bool isFirstStarup = true;
@@ -50,6 +51,15 @@ namespace RR.UI.Managers
         /// </summary>
         protected override void StartScreen()
         {
+            if(PlayerPrefs.HasKey("HighScore"))
+            {
+                highScore.text = PlayerPrefs.GetInt("HighScore").ToString();
+            }
+            else
+            {
+                highScore.text = string.Empty;
+            }
+
             if(!isFirstStarup)
             {
                 DoAnimation();
@@ -65,6 +75,7 @@ namespace RR.UI.Managers
             startUpSequence = DOTween.Sequence();
             startUpSequence.Append(startbutton.GetComponent<Image>().DOFade(1, 1));
             startUpSequence.Join(logo.DOFade(1, 1));
+            startUpSequence.Join(highScore.DOFade(1,1));
 
             isFirstStarup = false;
         }
@@ -88,6 +99,7 @@ namespace RR.UI.Managers
         {
             startbutton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
             logo.color = new Color(1, 1, 1, 0);
+            highScore.color = new Color(1, 1, 1, 0);
 
             startUpSequence.Kill();
         }
