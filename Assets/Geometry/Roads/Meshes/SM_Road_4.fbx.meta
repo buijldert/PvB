@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Blue_window
-    second: {fileID: 2100000, guid: 13880593299c339439a3500267202c52, type: 2}
+    second: {fileID: 2100000, guid: c1ee098b1ddae4840ab7118cbe51a726, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pink_window
-    second: {fileID: 2100000, guid: c1ee098b1ddae4840ab7118cbe51a726, type: 2}
+    second: {fileID: 2100000, guid: 13880593299c339439a3500267202c52, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
