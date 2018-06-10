@@ -53,7 +53,7 @@ namespace RR.Managers
         /// <summary>
         /// Updates the item entries.
         /// </summary>
-        /// <param name="item">Item.</param>
+        /// <param name="_item">Item.</param>
         public void UpdateItemEntries(ItemModel _item)
         {
             UpdateItemEntries();

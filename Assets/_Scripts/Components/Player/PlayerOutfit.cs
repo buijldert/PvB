@@ -42,8 +42,6 @@ namespace RR.Components.Player
         /// <param name="outfitMaterial">The given outfit material.</param>
         public void SwitchOutfit(ItemModel _itemmodel)
         {
-            Debug.Log("hoeruuhh");
-
             for (int i = 0; i < playerMeshRenderers.Length; i++)
             {
                 Material[] rendererMaterials = playerMeshRenderers[i].materials;

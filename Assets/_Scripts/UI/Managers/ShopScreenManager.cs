@@ -7,6 +7,7 @@ using RR.UI.Base;
 using RR.UI.Controllers;
 using RR.Managers;
 using DG.Tweening;
+using RR.Components.Player;
 
 namespace RR.UI.Managers
 {
@@ -87,15 +88,18 @@ namespace RR.UI.Managers
                 Image selectedImage = itemHolder.transform.GetChild(1).GetComponent<Image>();
 
                 string key = unlockedItems[i].Key;
+                ItemModel model = unlockedItems[i];
 
                 if (unlockedItems[i].Selected)
                 {
+                    PlayerOutfit.instance.SwitchOutfit(model);
                     selectedImage.gameObject.SetActive(true);
                 }
 
                 button.onClick.AddListener(() =>
                 {
                     ItemManager.instance.SetItemSelected(key);
+                    PlayerOutfit.instance.SwitchOutfit(model);
                     SetSelectionSign(itemHolder);
                 });
 
@@ -116,6 +120,17 @@ namespace RR.UI.Managers
                 {
                     s.Join(image.DOColor(Color.white, 0.5f));
                 }
+            }
+        }
+
+        /// <summary>
+        /// Sets the outfit on first load.
+        /// </summary>
+        public void SetOutfitOnFirstLoad()
+        {
+            foreach (ItemModel item in unlockedItems.Where(item => item.Selected == true))
+            {
+                PlayerOutfit.instance.SwitchOutfit(item);
             }
         }
 
