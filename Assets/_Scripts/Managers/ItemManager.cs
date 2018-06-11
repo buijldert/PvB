@@ -32,13 +32,27 @@ namespace RR.Managers
             }
             instance = this;
 
-            UpdateItemEntries();
+            if(!PlayerPrefs.HasKey("FirstStartUpHappend"))
+            {
+                PlayerPrefHelper.SetBool("FirstStartUpHappend", true);
+
+                for (int i = 0; i < items.Length; i++)
+                {
+                    PlayerPrefHelper.SetBool(items[i].Key, false);
+                    PlayerPrefHelper.SetBool(items[i].Key + "_Selected", false);
+                    PlayerPrefHelper.SetBool("Music_Mute", false);
+                }
+            }
+            else
+            {
+                UpdateItemEntries(); 
+            }
         }
 
         /// <summary>
         /// Sets the item as selected in the playerprefs.
         /// </summary>
-        /// <param name="key">Key we want to change the value of.</param>
+        /// <param name="_key">Key we want to change the value of.</param>
         public void SetItemSelected(string _key)
         {
             foreach (ItemModel item in GetItemArray().Where(item => item.Key != _key))
