@@ -59,6 +59,7 @@ namespace RR.UI.Managers
         protected override void StartScreen()
         {
             ResetScore();
+            SetButtonInteractable(true);
         }
 
         #region UI Events

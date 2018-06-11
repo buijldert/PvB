@@ -54,7 +54,6 @@ namespace RR.UI.Managers
         private void OnResumeButtonClicked()
         {
             pauseScreen.SetActive(false);
-            GameviewManager.instance.SetButtonInteractable(true);
             GameController.instance.ResumeGame();
         }
 

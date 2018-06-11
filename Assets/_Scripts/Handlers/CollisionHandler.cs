@@ -71,18 +71,16 @@ namespace RR.Handlers
                     SFXManager.instance.PlaySound(fadeThroughSound);
                     GameObject fadeParticleClone = ObjectPool.instance.GetObjectForType(fadeParticleGameObject.name, false);
                     fadeParticleClone.transform.position = _collision.transform.position;
-                    foreach(ParticleSystem p in fadeParticleClone.GetComponentsInChildren<ParticleSystem>())
+                    GateFXColor gateFXColor = fadeParticleClone.GetComponent<GateFXColor>();
+                    if (_collision.gameObject.tag == WHITE_OBSTACLE_TAG)
                     {
-                        var main = p.main;
-                        if(_collision.gameObject.tag == BLACK_OBSTACLE_TAG)
-                        {
-                            main.startColor = pinkColor;
-                        }
-                        else
-                        {
-                            main.startColor = blueColor;
-                        }
+                        gateFXColor.ChangeParticleColor(blueColor);
                     }
+                    else
+                    {
+                        gateFXColor.ChangeParticleColor(pinkColor);
+                    }
+                    
                     OnFadeThroughCollision(10);
                 }
             }
@@ -91,6 +89,11 @@ namespace RR.Handlers
         private IEnumerator DeathParticleDelay()
         {
             yield return new WaitForSeconds(2f);
+            deathParticleGameObject.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
             deathParticleGameObject.SetActive(false);
         }
     }

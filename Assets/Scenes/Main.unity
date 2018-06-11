@@ -3633,19 +3633,7 @@ Prefab:
       propertyPath: switchParticleSystems.Array.data[3]
       value: 
       objectReference: {fileID: 1691325220}
-    - target: {fileID: 33125557520073084, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: c66a3c3f88423194593cc2a632e17114, type: 3}
-    - target: {fileID: 33123487679422938, guid: 4a12a8ff4d46e41d5a410036b2aff8fb,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: c66a3c3f88423194593cc2a632e17114, type: 3}
-    m_RemovedComponents:
-    - {fileID: 114681188899137076, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
-    - {fileID: 114399950764582724, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a12a8ff4d46e41d5a410036b2aff8fb, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1123123470 stripped
@@ -3720,7 +3708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: b1ec87c0c53f3cf4282eb78f7967808c, type: 2}
+  profile: {fileID: 11400000, guid: 76c868a00ba9bb945b13fa98b5ec7196, type: 2}
 --- !u!114 &1142334002
 MonoBehaviour:
   m_ObjectHideFlags: 0

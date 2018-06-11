@@ -72,9 +72,7 @@ GameObject:
   - component: {fileID: 4995304944995198}
   - component: {fileID: 114085755759372230}
   - component: {fileID: 114644380443102414}
-  - component: {fileID: 114681188899137076}
   - component: {fileID: 65529723029652612}
-  - component: {fileID: 114399950764582724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -321,20 +319,6 @@ MonoBehaviour:
   pinkColor: {r: 1, g: 0.16078432, b: 0.9411765, a: 0.70980394}
   blueColor: {r: 0.16078432, g: 0.75686276, b: 1, a: 0.70980394}
   switchSoundEffect: {fileID: 8300000, guid: bfcd4f4f015b5524b880129268ccf603, type: 3}
---- !u!114 &114399950764582724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1554409519981592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1cda99a3325ff14d9cb7b519af3c792, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMeshRenderers:
-  - {fileID: 23782299144319216}
-  - {fileID: 23010406426926356}
 --- !u!114 &114644380443102414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,17 +337,6 @@ MonoBehaviour:
   blueColor: {r: 0.16078432, g: 0.75686276, b: 1, a: 0.70980394}
   deathSound: {fileID: 8300000, guid: 4e0f68854b15f4e4bbbea6df79abec01, type: 3}
   fadeThroughSound: {fileID: 8300000, guid: 880f05f537f9e0d48aa438222d1788aa, type: 3}
---- !u!114 &114681188899137076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1554409519981592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4586f805654105041800c3f39326b869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &198107721147976576
 ParticleSystem:
   m_ObjectHideFlags: 1

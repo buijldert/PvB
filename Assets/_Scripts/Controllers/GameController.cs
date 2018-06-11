@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RR.UI.Managers;
+using System;
 using UnityEngine;
 
 namespace RR.Controllers
@@ -29,6 +30,7 @@ namespace RR.Controllers
         /// </summary>
         public void StartGame()
         {
+            GameviewManager.instance.SetButtonInteractable(true);
             if(OnStartGame != null)
             {
                 OnStartGame();
@@ -40,6 +42,7 @@ namespace RR.Controllers
         /// </summary>
         public void StopGame()
         {
+            GameviewManager.instance.SetButtonInteractable(false);
             Time.timeScale = 1;
             if (OnStopGame != null)
             {
@@ -52,7 +55,8 @@ namespace RR.Controllers
         /// </summary>
         public void PauseGame()
         {
-            if(OnPauseGame != null)
+            GameviewManager.instance.SetButtonInteractable(false);
+            if (OnPauseGame != null)
             {
                 OnPauseGame();
             }
@@ -65,6 +69,7 @@ namespace RR.Controllers
         public void ResumeGame()
         {
             Time.timeScale = 1;
+            GameviewManager.instance.SetButtonInteractable(true);
             if (OnResumeGame != null)
             {
                 OnResumeGame();

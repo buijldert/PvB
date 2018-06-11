@@ -58,7 +58,6 @@ namespace RR.UI.Managers
         private void OnResumeButtonClicked()
         {
             gameOverScreen.SetActive(false);
-            GameviewManager.instance.SetButtonInteractable(true);
             GameController.instance.StartGame();
             GameviewManager.instance.ResetScore();
         }

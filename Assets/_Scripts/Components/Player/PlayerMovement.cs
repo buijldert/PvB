@@ -174,7 +174,7 @@ namespace RR.Components.Player
         }
 
         /// <summary>
-        /// Resets the player to his original position and color with a delay.
+        /// Disables the player and makes sure he cant move.
         /// </summary>
         private void RemovePlayer()
         {
