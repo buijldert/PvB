@@ -58,8 +58,8 @@ namespace RR.Handlers
                     deathParticleGameObject.SetActive(true);
                     StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();
-                    
-                    if(SettingsController.GetVibrationState())
+
+                    if (SettingsController.GetVibrationState())
                     {
                         Handheld.Vibrate();
                     }
