@@ -10,24 +10,28 @@ namespace RR.Components
     {
         private float movementSpeed = 60f;
 
-        private void SetMovementSpeed(float _movementSpeedIncrease)
-        {
-            movementSpeed += _movementSpeedIncrease;
-        }
-
         private void OnEnable()
         {
-            DifficultyManager.OnChangeDifficulty += SetMovementSpeed;
+            UpdateMovementSpeed();
+            DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
         }
 
         private void OnDisable()
         {
-            DifficultyManager.OnChangeDifficulty -= SetMovementSpeed;
+            DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
         }
-        
+
         private void Update()
         {
             MoveObstacle();
+        }
+
+        /// <summary>
+        /// Updates the movement speed to increase the difficulty somewhat.
+        /// </summary>
+        private void UpdateMovementSpeed()
+        {
+            movementSpeed = DifficultyManager.GLOBAL_MOVEMENT_SPEED;
         }
 
         /// <summary>

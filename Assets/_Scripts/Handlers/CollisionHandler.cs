@@ -55,8 +55,7 @@ namespace RR.Handlers
                     deathParticleGameObject.SetActive(true);
                     StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();
-
-                    //TODO: put this somewhere else..
+                    
                     if(SettingsController.GetVibrationState())
                     {
                         Handheld.Vibrate();
@@ -86,6 +85,10 @@ namespace RR.Handlers
             }
         }
 
+        /// <summary>
+        /// Sets a little delay before removing the death particle.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator DeathParticleDelay()
         {
             yield return new WaitForSeconds(2f);

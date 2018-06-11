@@ -6,6 +6,9 @@ using RR.UI.Managers;
 
 namespace RR.Managers
 {
+    /// <summary>
+    /// This class is responsible for handling the items in the shop.
+    /// </summary>
     public class ItemManager : MonoBehaviour
     {
         public static ItemManager instance;

@@ -6,20 +6,6 @@ using RR.Components;
 
 namespace RR.Managers
 {
-    public enum ChunkID
-    {
-        StreetOne,
-        StreetTwo,
-        StreetThree,
-        StreetFour,
-        RoadOne,
-        RoadTwo,
-        RoadThree,
-        RoadFour,
-        RoadFive,
-        RoadSix
-    }
-
     /// <summary>
     /// This class is responsible for managing the various chunks in the game, including but not limited to buildings and roads).
     /// </summary>
@@ -49,9 +35,11 @@ namespace RR.Managers
 
         private void OnEnable()
         {
+            UpdateMovementSpeed();
             CollisionHandler.OnDeadlyCollision += StopMovement;
             GameController.OnStartGame += StartMovement;
             GameController.OnStopGame += StopMovement;
+            DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
         }
 
         private void OnDisable()
@@ -59,6 +47,7 @@ namespace RR.Managers
             CollisionHandler.OnDeadlyCollision -= StopMovement;
             GameController.OnStartGame -= StartMovement;
             GameController.OnStopGame -= StopMovement;
+            DifficultyManager.OnChangeDifficulty -= UpdateMovementSpeed;
         }
 
         private void Update()
@@ -67,6 +56,14 @@ namespace RR.Managers
             {
                 MoveAllChunks();
             }
+        }
+
+        /// <summary>
+        /// Updates the movement speed to conform with the global.
+        /// </summary>
+        private void UpdateMovementSpeed()
+        {
+            movementSpeed = DifficultyManager.GLOBAL_MOVEMENT_SPEED;
         }
 
         /// <summary>

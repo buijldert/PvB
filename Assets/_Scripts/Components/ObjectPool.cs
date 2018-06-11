@@ -21,14 +21,7 @@ namespace RR.Components
         [Serializable]
         public class ObjectPoolEntry
         {
-            /// <summary>
-            /// the object to pre instantiate
-            /// </summary>
             public GameObject prefab;
-
-            /// <summary>
-            /// quantity of object to pre-instantiate
-            /// </summary>
             public int count;
             public bool startActive;
         }
@@ -52,8 +45,7 @@ namespace RR.Components
         /// The container object that we will keep unused pooled objects so we dont clog up the editor with objects.
         /// </summary>
         private GameObject containerObject;
-
-        // Use this for initialization
+        
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -66,19 +58,14 @@ namespace RR.Components
 
             containerObject = gameObject;
 
-            //Loop through the object prefabs and make a new list for each one.
-            //We do this because the pool can only support prefabs set to it in the editor,
-            //so we can assume the lists of pooled objects are in the same order as object prefabs in the array
             pool = new List<GameObject>[entries.Length];
 
             for (int i = 0; i < entries.Length; i++)
             {
                 var objectPrefab = entries[i];
-
-                //create the repository
+                
                 pool[i] = new List<GameObject>();
-
-                //fill it
+                
                 for (int n = 0; n < objectPrefab.count; n++)
                 {
 
@@ -138,8 +125,6 @@ namespace RR.Components
                     return newObj;
                 }
             }
-
-            //If we have gotten here either there was no object of the specified type or non were left in the pool with onlyPooled set to true
             return null;
         }
 
@@ -151,7 +136,6 @@ namespace RR.Components
         /// </param>
         public void PoolObject(GameObject _obj)
         {
-
             for (int i = 0; i < entries.Length; i++)
             {
                 if (entries[i].prefab.name != _obj.name)

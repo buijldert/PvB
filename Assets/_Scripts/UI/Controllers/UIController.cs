@@ -80,6 +80,10 @@ namespace RR.UI.Controllers
             }
         }
 
+        /// <summary>
+        /// Activates the screen elements that correspond with the code activation screen.
+        /// </summary>
+        /// <param name="_isActive">Whether the screen should be set active.</param>
         private void ActivateCodeScreenElements(bool _isActive)
         {
             background.SetActive(!_isActive);
@@ -88,6 +92,10 @@ namespace RR.UI.Controllers
             postProcessingBehaviour.enabled = !_isActive;
         }
 
+        /// <summary>
+        /// Activates the screen elements that correspond with the game screen.
+        /// </summary>
+        /// <param name="_isActive">Whether the screen should be set active.</param>
         private void ActivateGameViewElements(bool _isActive)
         {
             background.gameObject.SetActive(!_isActive);

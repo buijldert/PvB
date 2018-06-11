@@ -34,6 +34,10 @@ namespace RR.Controllers
             GameController.OnStopGame -= StopMusic;
         }
 
+        /// <summary>
+        /// Changes the song playing.
+        /// </summary>
+        /// <param name="_clipToPlay">The song that the will be changed to.</param>
         private void ChangeAudio(AudioClip _clipToPlay)
         {
             audioSource.clip = _clipToPlay;

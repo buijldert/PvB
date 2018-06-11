@@ -28,6 +28,9 @@ namespace RR.Managers
             SelectProfile();
         }
 
+        /// <summary>
+        /// Selects the profile based on the current build or editor platform.
+        /// </summary>
         private void SelectProfile()
         {
 #if UNITY_EDITOR

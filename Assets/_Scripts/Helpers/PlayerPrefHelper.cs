@@ -1,5 +1,8 @@
 ﻿namespace RR.Helpers
 {
+    /// <summary>
+    /// This class is responsible for converting 0s and 1s to true and false for the playerprefs.
+    /// </summary>
     public static class PlayerPrefHelper
     {
         /// <summary>

@@ -25,10 +25,14 @@ namespace RR.Audio
             instance = this;
         }
 
-
-        public void ChangeGroupVolume(string _groupVolumeName, float _volumeValue)
+        /// <summary>
+        /// Changes the volume in decibels of the given exposed parameter.
+        /// </summary>
+        /// <param name="_groupVolumeName">The name of the exposed volume parameter.</param>
+        /// <param name="_decibelValue">The value in decibels that the given exposed parameter will be changed to.</param>
+        public void ChangeGroupVolume(string _groupVolumeName, float _decibelValue)
         {
-            masterMixer.SetFloat(_groupVolumeName, _volumeValue);
+            masterMixer.SetFloat(_groupVolumeName, _decibelValue);
         }
         
         /// <summary>

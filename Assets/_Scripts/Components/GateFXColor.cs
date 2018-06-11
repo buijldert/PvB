@@ -14,7 +14,7 @@ namespace RR.Components
         /// <summary>
         /// Changes the color of the gate particlesystems.
         /// </summary>
-        /// <param name="color"></param>
+        /// <param name="color">The color that the gate particlesystems will be changed to.</param>
         public void ChangeParticleColor(Color color)
         {
             for (int i = 0; i < gateParticleSystems.Length; i++)

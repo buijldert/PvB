@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace RR.Components
 {
+    /// <summary>
+    /// This class is responsible for pooling the gameobject it is attached to and removing it from the active pool.
+    /// </summary>
     public class PoolOverTime : MonoBehaviour
     {
         public static Action<GameObject> OnObstacleCollection;
@@ -20,6 +23,10 @@ namespace RR.Components
             poolCoroutine = StartCoroutine(PoolDelay());
         }
 
+        /// <summary>
+        /// Pools the gameobject after a delay;
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator PoolDelay()
         {
             yield return new WaitForSeconds(poolTime);
