@@ -39,7 +39,7 @@ namespace RR.UI.Managers
         private Sequence menuSequence;
 
         /// <summary>
-        /// Subscribes to the menu methods
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         private void OnEnable()
         {
@@ -51,7 +51,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Singleton Implementation
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         private void Awake()
         {
@@ -63,7 +63,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Starts the text-pulse
+        /// Start() is called before Awake() and OnEnable().
         /// </summary>
         private void Start()
         {
@@ -235,7 +235,7 @@ namespace RR.UI.Managers
         #endregion //UI Events
 
         /// <summary>
-        /// Unsubscribes to the menu methods
+        /// OnDisable() is called before the object is disabled.
         /// </summary>
         private void OnDisable()
         {

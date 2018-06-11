@@ -35,6 +35,9 @@ namespace RR.Handlers
 
         private PlayerMovement playerMovement;
 
+        /// <summary>
+        /// Start() is called after OnEnable() and Awake().
+        /// </summary>
         private void Start()
         {
             playerMovement = GetComponent<PlayerMovement>();
@@ -95,6 +98,9 @@ namespace RR.Handlers
             deathParticleGameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             deathParticleGameObject.SetActive(false);

@@ -50,11 +50,18 @@ namespace RR.Components.Player
         [Header("Audioclips")]
         [SerializeField] private AudioClip switchSoundEffect;
 
+        /// <summary>
+        /// Gets the player color.
+        /// </summary>
+        /// <returns></returns>
         public PlayerColor GetPlayerColor()
         {
             return playerColor;
         }
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += RemovePlayer;
@@ -63,6 +70,9 @@ namespace RR.Components.Player
             GameController.OnStopGame += ResetPlayerInstant;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= RemovePlayer;
@@ -71,6 +81,9 @@ namespace RR.Components.Player
             GameController.OnStopGame -= ResetPlayerInstant;
         }
 
+        /// <summary>
+        /// Start() is called after OnEnable() and Awake().
+        /// </summary>
         private void Start()
         {
             boxCollider = GetComponent<BoxCollider>();

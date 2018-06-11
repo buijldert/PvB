@@ -46,6 +46,9 @@ namespace RR.Components
         /// </summary>
         private GameObject containerObject;
         
+        /// <summary>
+        /// Awake() is called before Start() and OnEnable().
+        /// </summary>
         private void Awake()
         {
             if (instance != null && instance != this)

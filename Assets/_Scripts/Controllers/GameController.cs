@@ -16,6 +16,9 @@ namespace RR.Controllers
         public static Action OnPauseGame;
         public static Action OnResumeGame;
 
+        /// <summary>
+        /// Awake() is called before Start() and OnEnable().
+        /// </summary>
         private void Awake()
         {
             if (instance != null && instance != this)

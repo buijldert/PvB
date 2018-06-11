@@ -16,7 +16,7 @@ namespace RR.Managers
         [SerializeField] private ItemModel[] items;
 
         /// <summary>
-        /// Subscribes to the events we want to use.
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         private void OnEnable()
         {

@@ -22,6 +22,9 @@ namespace RR.Managers
 
         private PostProcessingBehaviour postProcessingBehaviour;
         
+        /// <summary>
+        /// Awake() is called before Start() and OnEnable().
+        /// </summary>
         private void Awake()
         {
             postProcessingBehaviour = GetComponent<PostProcessingBehaviour>();

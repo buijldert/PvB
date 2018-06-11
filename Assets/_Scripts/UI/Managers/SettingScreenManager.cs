@@ -25,10 +25,10 @@ namespace RR.UI.Managers
         [SerializeField] private Button[] settingsButtons;
 
         private Text soundButtonText;
-        private Sequence startUpSequence; 
+        private Sequence startUpSequence;
 
         /// <summary>
-        /// Subscribes to the different events we want to react on
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         protected override void OnEnable()
         {
@@ -40,8 +40,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Singleton Implementation.
-        /// Also sets the screenstate to the state this script represents.
+        /// Awake is called before Start() and OnEnable().
         /// </summary>
         protected override void Awake()
         {
@@ -54,6 +53,9 @@ namespace RR.UI.Managers
             screenState = MenuState.Settings;
         }
 
+        /// <summary>
+        /// Start() is called after Awake() and OnEnable().
+        /// </summary>
         private void Start()
         {
             soundButtonText = settingsButtons[(int)ButtonType.Sound].GetComponentInChildren<Text>();
@@ -133,7 +135,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Subscribes to the different events we want to react on
+        /// OnDisable is called before the object is disabled.
         /// </summary>
         protected override void OnDisable()
         {

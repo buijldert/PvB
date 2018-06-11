@@ -21,6 +21,9 @@ namespace RR.Managers
         private float outOfScreenPosZ = 300f;
         private bool canMove;
 
+        /// <summary>
+        /// Start() is called before OnEnable() and Awake().
+        /// </summary>
         private void Start()
         {
             FillSizeDatabase();
@@ -33,6 +36,9 @@ namespace RR.Managers
             SortChunks();
         }
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             UpdateMovementSpeed();
@@ -42,6 +48,9 @@ namespace RR.Managers
             DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMovement;
@@ -50,6 +59,9 @@ namespace RR.Managers
             DifficultyManager.OnChangeDifficulty -= UpdateMovementSpeed;
         }
 
+        /// <summary>
+        /// Update() is called once per frame.
+        /// </summary>
         private void Update()
         {
             if (canMove)
@@ -104,6 +116,9 @@ namespace RR.Managers
             canMove = false;
         }
 
+        /// <summary>
+        /// Fills the chunk size database based on the chunkprefabs.
+        /// </summary>
         private void FillSizeDatabase()
         {
             for (int i = 0; i < chunkPrefabs.Length; i++)

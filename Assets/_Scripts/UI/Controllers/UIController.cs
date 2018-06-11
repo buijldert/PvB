@@ -42,7 +42,7 @@ namespace RR.UI.Controllers
         [SerializeField] private PostProcessingBehaviour postProcessingBehaviour; 
 
         /// <summary>
-        /// Singleton implementation
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         private void Awake()
         {

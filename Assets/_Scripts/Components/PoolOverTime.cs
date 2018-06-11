@@ -15,6 +15,9 @@ namespace RR.Components
 
         private Coroutine poolCoroutine;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             if (poolCoroutine != null)

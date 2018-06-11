@@ -14,6 +14,9 @@ namespace RR.Controllers
 
         [SerializeField] private AudioSource audioSource;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopMusic;
@@ -24,6 +27,9 @@ namespace RR.Controllers
             GameController.OnStopGame += StopMusic;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopMusic;

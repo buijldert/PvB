@@ -13,7 +13,7 @@ namespace RR.Managers
         public static VolumeManager instance;
 
         /// <summary>
-        /// Singleton Implementation
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         private void Awake()
         {

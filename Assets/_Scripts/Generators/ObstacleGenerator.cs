@@ -31,6 +31,9 @@ namespace RR.Generators
 
         private Coroutine doubleGateChanceCoroutine;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopSpawning;
@@ -39,6 +42,9 @@ namespace RR.Generators
             GameController.OnStopGame += StopSpawning;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopSpawning;
@@ -47,6 +53,9 @@ namespace RR.Generators
             GameController.OnStopGame -= StopSpawning;
         }
 
+        /// <summary>
+        /// Start() is called after OnEnable() and Awake().
+        /// </summary>
         private void Start()
         {
             for (int i = 0; i < lastTwoLanes.Length; i++)
@@ -57,6 +66,9 @@ namespace RR.Generators
             beatObserver = GetComponent<BeatObserver>();
         }
 
+        /// <summary>
+        /// Update() is called once per frame.
+        /// </summary>
         private void Update()
         {
             if ((beatObserver.beatMask & BeatType.OnBeat) == BeatType.OnBeat)

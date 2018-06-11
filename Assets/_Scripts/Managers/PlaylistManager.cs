@@ -17,6 +17,9 @@ namespace RR.Managers
         [SerializeField] private List<AudioClip> songs;
         private Coroutine loopPlaylistCoroutine;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             CollisionHandler.OnDeadlyCollision += StopPlaylist;
@@ -24,6 +27,9 @@ namespace RR.Managers
             GameController.OnStopGame += StopPlaylist;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CollisionHandler.OnDeadlyCollision -= StopPlaylist;

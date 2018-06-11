@@ -16,6 +16,9 @@ namespace RR.Components.Player
 
         [SerializeField] private MeshRenderer[] playerMeshRenderers;
 
+        /// <summary>
+        /// Awake() is called before OnEnable() and Start().
+        /// </summary>
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -26,11 +29,17 @@ namespace RR.Components.Player
 
         }
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             OnChangeOutfit += SwitchOutfit;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             OnChangeOutfit -= SwitchOutfit;

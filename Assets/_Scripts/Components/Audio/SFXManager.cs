@@ -15,6 +15,9 @@ namespace RR.Audio
 
         [SerializeField] private AudioMixerGroup outputMixerGroup;
 
+        /// <summary>
+        /// Awake() is called before Start() and OnEnable().
+        /// </summary>
         private void Awake()
         {
             if (instance != null && instance != this)

@@ -10,17 +10,26 @@ namespace RR.Components
     {
         private float movementSpeed = 60f;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             UpdateMovementSpeed();
             DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
         }
 
+        /// <summary>
+        /// OnDisable() is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
-            DifficultyManager.OnChangeDifficulty += UpdateMovementSpeed;
+            DifficultyManager.OnChangeDifficulty -= UpdateMovementSpeed;
         }
 
+        /// <summary>
+        /// Update() is called once per frame.
+        /// </summary>
         private void Update()
         {
             MoveObstacle();

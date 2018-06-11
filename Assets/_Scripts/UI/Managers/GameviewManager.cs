@@ -27,7 +27,7 @@ namespace RR.UI.Managers
         private int score;
 
         /// <summary>
-        /// Subscribes to alle the events we want to react on.
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         protected override void OnEnable()
         {
@@ -39,8 +39,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Singleton Implementation.
-        /// Also sets the screenstate to the state this script represents.
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         protected override void Awake()
         {
@@ -141,7 +140,7 @@ namespace RR.UI.Managers
         #endregion // Getters & Setters
 
         /// <summary>
-        /// Unsubscribes to different events we used
+        /// OnDisable() is called before the object is disabled.
         /// </summary>
         protected override void OnDisable()
         {

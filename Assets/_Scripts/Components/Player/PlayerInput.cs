@@ -13,11 +13,17 @@ namespace RR.Components.Player
 
         public static Action OnLeftMouseButtonDown;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             switchAreaButton.onClick.AddListener(() => SwitchPlayer());
         }
 
+        /// <summary>
+        /// OnDestroy() is called before the object is destroyed.
+        /// </summary>
         private void OnDestroy()
         {
             switchAreaButton.onClick.RemoveAllListeners();

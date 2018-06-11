@@ -19,7 +19,7 @@ namespace RR.UI.Managers
         [SerializeField] private GameObject gameOverScreen;
 
         /// <summary>
-        /// Subscribes to alle the events we want to react on.
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         private void OnEnable()
         {
@@ -28,7 +28,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Singleton implementation
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         private void Awake()
         {
@@ -76,7 +76,7 @@ namespace RR.UI.Managers
         #endregion // UI Events
 
         /// <summary>
-        /// Unubscribes to alle the events we used.
+        /// OnDisable is called before the object is disabled.
         /// </summary>
         private void OnDisable()
         {

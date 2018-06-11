@@ -38,7 +38,7 @@ namespace RR.UI.Managers
         private Sequence shirtPreviewSequence;
 
         /// <summary>
-        /// Subscribes to different events we want react on
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         protected override void OnEnable()
         {
@@ -152,7 +152,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Unsubscribes to different events we usedn
+        /// OnDisable() is called before the object is disabled.
         /// </summary>
         protected override void OnDisable()
         {

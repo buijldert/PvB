@@ -11,11 +11,17 @@ namespace RR.UI.Managers
         private MeshRenderer meshRenderer;
         private Material material;
 
+        /// <summary>
+        /// OnEnable() is called before Start() and after Awake().
+        /// </summary>
         private void OnEnable()
         {
             CodeScreenManager.onNewCodeUsed += SetSkin;
         }
 
+        /// <summary>
+        /// Start() is called after Awake() and OnEnable().
+        /// </summary>
         private void Start()
         {
             meshRenderer = GetComponent<MeshRenderer>();
@@ -31,6 +37,9 @@ namespace RR.UI.Managers
             material.SetTexture("_MainTex", item.ItemTexture);
         }
 
+        /// <summary>
+        /// OnDisable is called before the object is disabled.
+        /// </summary>
         private void OnDisable()
         {
             CodeScreenManager.onNewCodeUsed -= SetSkin;

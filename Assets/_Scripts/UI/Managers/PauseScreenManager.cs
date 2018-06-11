@@ -24,7 +24,7 @@ namespace RR.UI.Managers
         public static Action onQuit;
 
         /// <summary>
-        /// Subscribes to the events we want to react on
+        /// OnEnable() is called before Start() and after Awake().
         /// </summary>
         private void OnEnable()
         {
@@ -35,7 +35,7 @@ namespace RR.UI.Managers
         }
 
         /// <summary>
-        /// Singleton implementation
+        /// Awake() is called before Start() and OnEnable().
         /// </summary>
         private void Awake()
         {
@@ -88,7 +88,7 @@ namespace RR.UI.Managers
         #endregion // UI Events
 
         /// <summary>
-        /// Unsubscribes from the events that we used
+        /// OnDisable() is called before the object is disabled.
         /// </summary>
         private void OnDisable()
         {

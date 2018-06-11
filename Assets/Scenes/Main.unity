@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 153504275}
   - component: {fileID: 153504276}
   - component: {fileID: 153504277}
+  - component: {fileID: 153504278}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -661,6 +662,17 @@ MonoBehaviour:
   playerMeshRenderers:
   - {fileID: 1588590743}
   - {fileID: 1668633834}
+--- !u!114 &153504278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 153504272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2355441a439906a469bc24e5dd414f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &177835424
 GameObject:
   m_ObjectHideFlags: 0
