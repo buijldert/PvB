@@ -58,11 +58,12 @@ namespace RR.Handlers
                     deathParticleGameObject.SetActive(true);
                     StartCoroutine(DeathParticleDelay());
                     OnDeadlyCollision();
-
+#if !UNITY_WEBGL
                     if (SettingsController.GetVibrationState())
                     {
                         Handheld.Vibrate();
                     }
+#endif
                 }
                     
             }

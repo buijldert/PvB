@@ -11,11 +11,18 @@ namespace RR.Managers
     /// </summary>
     public class ChunkManager : MonoBehaviour
     {
+        private enum ChunkManagerSide
+        {
+            Left,
+            Middle,
+            Right
+        }
+
         private Dictionary<string, Vector3> sizeDatabase = new Dictionary<string, Vector3>();
 
         [SerializeField] private GameObject[] chunkPrefabs;
         [SerializeField] private float movementSpeed = 60f;
-        [SerializeField] private bool isLeftChunkManager;
+        [SerializeField] private ChunkManagerSide chunkSide;
 
         private List<GameObject> chunkClones = new List<GameObject>();
         private float outOfScreenPosZ = 300f;
@@ -150,11 +157,11 @@ namespace RR.Managers
             GameObject chunkClone = ObjectPool.instance.GetObjectForType(_chunk.name, false);
             chunkClone.transform.position = _position;
             chunkClone.transform.SetParent(transform);
-            if (isLeftChunkManager)
+            if (chunkSide == ChunkManagerSide.Left)
             {
                 chunkClone.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-            else
+            else if(chunkSide == ChunkManagerSide.Right)
             {
                 chunkClone.transform.rotation = Quaternion.Euler(0, 0, 0);
             }

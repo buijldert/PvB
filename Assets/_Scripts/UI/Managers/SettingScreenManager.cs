@@ -25,6 +25,7 @@ namespace RR.UI.Managers
         [SerializeField] private Button[] settingsButtons;
 
         private Text soundButtonText;
+        private Text vibrationButtonText;
         private Sequence startUpSequence;
 
         /// <summary>
@@ -59,7 +60,9 @@ namespace RR.UI.Managers
         private void Start()
         {
             soundButtonText = settingsButtons[(int)ButtonType.Sound].GetComponentInChildren<Text>();
+            vibrationButtonText = settingsButtons[(int)ButtonType.Vibration].GetComponentInChildren<Text>();
             soundButtonText.text = (SettingsController.GetMuteState()) ? "Sound: On" : "Sound: Off";
+            vibrationButtonText.text = (SettingsController.GetVibrationState()) ? "Vibration: On" : "Vibration: Off";
         }
 
         /// <summary>
@@ -98,7 +101,7 @@ namespace RR.UI.Managers
             SettingsController.SetMute(!SettingsController.GetMuteState());
             VolumeManager.instance.ChangeMasterVolume();
 
-            soundButtonText.text = (SettingsController.GetMuteState()) ? "Sound: On" : "Sound Off";
+            soundButtonText.text = (SettingsController.GetMuteState()) ? "Sound: On" : "Sound: Off";
         }
 
         /// <summary>
@@ -107,6 +110,8 @@ namespace RR.UI.Managers
         private void OnVibrationButtonClicked()
         {
             SettingsController.SetVibration(!SettingsController.GetVibrationState());
+
+            vibrationButtonText.text = (SettingsController.GetVibrationState()) ? "Vibration: On" : "Vibration: Off";
         }
 
         /// <summary>

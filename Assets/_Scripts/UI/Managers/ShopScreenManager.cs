@@ -88,6 +88,7 @@ namespace RR.UI.Managers
 
                 string key = unlockedItems[i].Key;
                 ItemModel model = unlockedItems[i];
+                childImages[1].sprite = unlockedItems[i].ItemUIImage; 
 
                 if (unlockedItems[i].Selected)
                 {

@@ -1328,7 +1328,7 @@ MonoBehaviour:
   - {fileID: 1077225972650364, guid: 6a892846e83803043a80a21b498deaa8, type: 2}
   - {fileID: 1066594442862752, guid: 2a678dd7894b29d4c92ea6583c122154, type: 2}
   movementSpeed: 60
-  isLeftChunkManager: 0
+  chunkSide: 1
 --- !u!1 &432295079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,7 +1999,7 @@ GameObject:
   - component: {fileID: 660415384}
   - component: {fileID: 660415383}
   m_Layer: 5
-  m_Name: btn_PushToStart
+  m_Name: btn_TapToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,16 +2814,19 @@ MonoBehaviour:
     Unlocked: 0
     Selected: 0
     ItemTexture: {fileID: 2800000, guid: c5dfbacc2014548839aeba95763c712e, type: 3}
+    ItemUIImage: {fileID: 21300000, guid: 6d2d7ec2311d1444cac5dbf7453f701f, type: 3}
     ItemName: Long Sleeve W
   - Key: Diablo
     Unlocked: 0
     Selected: 0
     ItemTexture: {fileID: 2800000, guid: 4d3e820a371d840c984852676530e384, type: 3}
+    ItemUIImage: {fileID: 21300000, guid: 6b137067d8c67f04dac377f866fd1a9c, type: 3}
     ItemName: 'Tanktop '
   - Key: Hex
     Unlocked: 0
     Selected: 0
     ItemTexture: {fileID: 2800000, guid: d47d5081f75e04ef385bd541cc03c654, type: 3}
+    ItemUIImage: {fileID: 21300000, guid: d16a1d9bbeaf0ea46b21770ae216198c, type: 3}
     ItemName: LongSleeve B
 --- !u!114 &859391181
 MonoBehaviour:
@@ -3310,7 +3313,7 @@ MonoBehaviour:
   - {fileID: 1221960596702956, guid: fe2c9ff55a7cd1c408f0db5760e3ea92, type: 2}
   - {fileID: 1910278214818478, guid: 0084775834aa75d42a988562da8801fd, type: 2}
   movementSpeed: 60
-  isLeftChunkManager: 1
+  chunkSide: 0
 --- !u!1 &1082702651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,7 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 76c868a00ba9bb945b13fa98b5ec7196, type: 2}
+  profile: {fileID: 11400000, guid: a6a14dd98180c9c4cbcd5181814fbb74, type: 2}
 --- !u!114 &1142334002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4514,7 +4517,7 @@ GameObject:
   - component: {fileID: 1556059330}
   - component: {fileID: 1556059329}
   m_Layer: 5
-  m_Name: txt_PushToStart
+  m_Name: txt_TapToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4570,7 +4573,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Push To Start
+  m_Text: Tap To Start
 --- !u!222 &1556059330
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4986,7 +4989,7 @@ MonoBehaviour:
   - {fileID: 1221960596702956, guid: fe2c9ff55a7cd1c408f0db5760e3ea92, type: 2}
   - {fileID: 1910278214818478, guid: 0084775834aa75d42a988562da8801fd, type: 2}
   movementSpeed: 60
-  isLeftChunkManager: 0
+  chunkSide: 2
 --- !u!1 &1816468093
 GameObject:
   m_ObjectHideFlags: 0

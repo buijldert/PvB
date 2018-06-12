@@ -12,6 +12,7 @@ namespace RR.Models
         public bool Unlocked;
         public bool Selected;
         public Texture ItemTexture;
+        public Sprite ItemUIImage;
         public string ItemName;
     }
 }
